@@ -1,21 +1,33 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Tous les doits au groupe Gustavo Pacheco, Marcos Gomes et Mohamed Nidhal
  */
 package mainPack;
 
+import dao.UtilisateursDAO;
+import javafx.application.Application;
+import javafx.stage.Stage;
+import tables.Utilisateurs;
+
 /**
  *
- * @author Marcos
+ * @author sire_marcos
  */
-public class Main {
+public class Main extends Application {
+    
+    @Override
+    public void start(Stage primaryStage) {
+        
+    }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        
+        UtilisateursDAO udao = new UtilisateursDAO();
+        
+        Utilisateurs ut = udao.rechercher("GustavoPach");
+        System.out.println(ut.toString());
     }
     
 }
