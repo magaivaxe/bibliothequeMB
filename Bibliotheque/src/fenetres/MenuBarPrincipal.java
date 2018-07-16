@@ -7,28 +7,21 @@ package fenetres;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
-import listeners.BaseListeners;
-import listeners.SortirListener;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
-import listeners.AProposListener;
 
 /**
  *
  * @author sire_marcos
  */
 public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
-    // JMenus
+    // Objets
     private JMenu bibliotheque;
-    // JMenuItems
     private JMenuItem aPropos, sortir;
-    // Autres
     private JSeparator separateur;
-    // Listeners
-    BaseListeners aProposListener, sortirListener;
     // Constructeur
     public MenuBarPrincipal() {
         initialiser();
@@ -40,8 +33,6 @@ public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
         aPropos = new JMenuItem();
         aPropos.setText("À Propos");
         aPropos.setMnemonic(KeyEvent.VK_P); 
-        aProposListener = new AProposListener();
-        aPropos.addActionListener(aProposListener);
         
         separateur = new JSeparator();
         
@@ -50,8 +41,6 @@ public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
         sortir.setMnemonic(KeyEvent.VK_S);
         sortir.setAccelerator(KeyStroke.getKeyStroke(
                 KeyEvent.VK_S, ActionEvent.CTRL_MASK));
-        sortirListener = new SortirListener();
-        sortir.addActionListener(sortirListener);
         
         bibliotheque = new JMenu();
         bibliotheque.setText("Bibliothèque");
@@ -66,7 +55,18 @@ public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
 
     @Override
     public void definirLayout() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+    }
+
+    @Override
+    public void definirListeners(){
+        sortir.addActionListener((ActionEvent e) ->{
+            Identifier.courant.dispose();
+            System.exit(0);
+        });
+        aPropos.addActionListener((ActionEvent e) ->{
+            
+        });
     }
     
 }

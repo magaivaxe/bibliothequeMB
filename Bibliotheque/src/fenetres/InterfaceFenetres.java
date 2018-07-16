@@ -20,4 +20,9 @@ interface InterfaceFenetres {
      * 
      */
     public void definirLayout();
+    
+    /**
+     * 
+     */
+    public void definirListeners();
 }
