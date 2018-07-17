@@ -15,12 +15,18 @@ interface InterfaceFenetres {
      * 
      */
     public void initialiser();
-    
     /**
      * 
      */
-    public void definirLayout();
-    
+    public void layouts();
+    /**
+     * 
+     */
+    public void styles();
+    /**
+     * 
+     */
+    public void polices();
     /**
      * 
      */

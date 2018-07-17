@@ -1,9 +1,11 @@
 
 package fenetres;
 
+
 import java.awt.Font;
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
+import java.awt.font.TextAttribute;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,8 +14,8 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import listeners.BaseListeners;
 import listeners.ConnecterListener;
+import listeners.MPOListener;
 
 /**
  *
@@ -25,116 +27,117 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private final String TITRE_PANE = "Bibliothèque Marguerite Bourgeoys";
     private final String UTILISATEUR = "Utilisateur: ";
     private final String MOT_DE_PASSE = "Mot de Passe: ";
-    private final int WITH_MAIN = 400;
-    private final int HEIGHT_MAIN = 350;
+    private final String B_CONNECTER = "Connection";
+    private final String B_OUBLIE = "Mot de passe oublié";
+    private final int LARGEUR = 400;
+    private final int HAUTEUR = 350;
     private final int BRD_H_B = 40;
     private final int BRD_G_D = 58;
+    private final int HAUT_BAS = 60;
+    private final int ENTRE_LB = 20;
     
     // Objects
-    private MenuBarPrincipal menuBar;
     private JPanel mainPanel, labelPanel, textePanel,
             basPanel, hautPanel, buttonPanel;
-    private JLabel labelUtilisateur, labelMotdePasse, labelMarguerite;
-    private JTextField textUtilisateur;
-    private JPasswordField textMotdePasse;
-    private JButton buttonConecter, buttonMdPOublie;
-    private BaseListeners connecterListener;
-    /*
-    Objet courant pour être possible d'accéder les objets de la fenêtre 
-    pour les listeners
-    */
+    private JLabel l_utilisateur, l_motPasse, l_titre;
+    private JTextField t_utilisateur;
+    private JPasswordField pf_motPasse;
+    private JButton b_connecter, b_mpOublie;
+    
     public static Identifier courant;
     
     // Constructeur
     public Identifier() {
         initialiser();
-        definirLayout();
+        layouts();
+        polices();
+        styles();
         definirListeners();
-        Identifier.courant = this;
+        courant = this;
     }
     
     @Override
     public void initialiser() {
-        // Préférences
+        //
         setTitle(TITRE);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        // Fenêtre
-        setResizable(false);
-        setBounds(new Rectangle(WITH_MAIN, HEIGHT_MAIN));
-        setLocationRelativeTo(null); /* Fonctionne près définir la taille */
-        // Menus
-        menuBar = new MenuBarPrincipal();
-        this.setJMenuBar(menuBar);
-        // Composants
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        // 
+        l_titre = new JLabel(TITRE_PANE);
+        l_motPasse = new JLabel(MOT_DE_PASSE);
+        l_utilisateur = new JLabel(UTILISATEUR);
         hautPanel = new JPanel();
-        labelMarguerite = new JLabel(TITRE_PANE);
-        hautPanel.add(labelMarguerite);
-        
-        labelMotdePasse = new JLabel(MOT_DE_PASSE);
-        labelUtilisateur = new JLabel(UTILISATEUR);
-        
+        hautPanel.add(l_titre);
         labelPanel = new JPanel();
-        labelPanel.add(labelUtilisateur);
-        labelPanel.add(labelMotdePasse);
+        labelPanel.add(l_utilisateur); labelPanel.add(l_motPasse);
         
+        t_utilisateur = new JTextField();
+        pf_motPasse = new JPasswordField();
         textePanel = new JPanel();
-        textUtilisateur = new JTextField();
-        textMotdePasse = new JPasswordField();
-        textePanel.add(textUtilisateur);
-        textePanel.add(textMotdePasse);
+        textePanel.add(t_utilisateur); textePanel.add(pf_motPasse);
         
         basPanel = new JPanel();
-        basPanel.add(labelPanel);
-        basPanel.add(textePanel);
+        basPanel.add(labelPanel); basPanel.add(textePanel);
         
-        buttonConecter = new JButton();
-        buttonMdPOublie = new JButton();
-        buttonMdPOublie.setText("Mot de passe oublié");
-        buttonConecter.setText("Connection");
+        b_connecter = new JButton(B_CONNECTER);
+        b_mpOublie = new JButton(B_OUBLIE);
         buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        buttonPanel.add(buttonMdPOublie);
-        buttonPanel.add(buttonConecter);
+        buttonPanel.add(b_mpOublie); buttonPanel.add(b_connecter);
         
         mainPanel = new JPanel();
-        mainPanel.add(hautPanel);
-        mainPanel.add(basPanel);
+        mainPanel.add(hautPanel); mainPanel.add(basPanel);
         mainPanel.add(buttonPanel);
         
         this.setContentPane(mainPanel);
     }
 
     @Override
-    public void definirLayout() {
+    public void layouts() {
         //
-        labelMarguerite.setAlignmentX(CENTER_ALIGNMENT);
-        labelMarguerite.setBorder(new EmptyBorder(0, 0, 40, 0));
-        labelUtilisateur.setAlignmentX(RIGHT_ALIGNMENT);
-        labelUtilisateur.setBorder(new EmptyBorder(0, 0, 30, 0));
-        labelMotdePasse.setAlignmentX(RIGHT_ALIGNMENT);
+        setResizable(false);
+        setSize(LARGEUR, HAUTEUR);
+        setLocationRelativeTo(null); /* Fonctionne après définir la taille */
+        //
+        l_titre.setAlignmentX(RIGHT_ALIGNMENT);
+        l_titre.setBorder(new EmptyBorder(0, 0, HAUT_BAS, 0));
+        l_utilisateur.setAlignmentX(RIGHT_ALIGNMENT);
+        l_utilisateur.setBorder(new EmptyBorder(0, 0, ENTRE_LB, 0));
+        l_motPasse.setAlignmentX(RIGHT_ALIGNMENT);
         //
         basPanel.setLayout(new BoxLayout(basPanel, BoxLayout.X_AXIS));
         labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
         textePanel.setLayout(new BoxLayout(textePanel, BoxLayout.Y_AXIS));
-        //
-        buttonPanel.setBorder(new EmptyBorder(40, 0, 0, 0));
+        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setBorder(new EmptyBorder(HAUT_BAS, 0, 0, 0));
         //
         mainPanel.setBorder(new EmptyBorder(BRD_H_B, BRD_G_D, BRD_H_B, BRD_G_D));
         mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.PAGE_AXIS));
     }
-
+    
+    @Override
+    public void styles() {
+    }
+    
+    @Override
+    public void polices() {
+        // Locaux
+        Map<TextAttribute, Object> pol_titre = new HashMap<>();
+            pol_titre.put(TextAttribute.FAMILY, Font.DIALOG);
+            pol_titre.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD);
+            pol_titre.put(TextAttribute.SIZE, 16);
+        l_titre.setFont(Font.getFont(pol_titre));
+    }
+    
     @Override
     public void definirListeners(){
-        connecterListener = new ConnecterListener();
-        buttonConecter.addActionListener(connecterListener);
+        ConnecterListener cl = new ConnecterListener();
+        MPOListener mpl = new MPOListener();
+        b_connecter.addActionListener(cl);
         // Listener local
-        buttonMdPOublie.addActionListener((ActionEvent e) -> {
-            
-        });
+        b_mpOublie.addActionListener(mpl); 
     }
 
-    public JTextField getTextUtilisateur(){return textUtilisateur;}
+    public JTextField getT_utilisateur(){return t_utilisateur;}
     
-    public JPasswordField getTextMotDePasse(){return textMotdePasse;}
-    
+    public JPasswordField getTextMotDePasse(){return pf_motPasse;}
+ 
 }

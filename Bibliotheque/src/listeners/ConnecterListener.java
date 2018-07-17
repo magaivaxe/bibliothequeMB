@@ -7,13 +7,14 @@ package listeners;
 
 import fenetres.Identifier;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author eleves
  */
-public class ConnecterListener extends BaseListeners
+public class ConnecterListener implements ActionListener
 {
     // Champs
     private final String MSG_1 = "Entrez l'utilisateur et le mot de passe "
@@ -25,7 +26,7 @@ public class ConnecterListener extends BaseListeners
     public void actionPerformed(ActionEvent e){
         //
         String textUtilisateur = Identifier.courant
-                .getTextUtilisateur().getText();
+                .getT_utilisateur().getText();
         char [] textMotDePasse = Identifier.courant
                 .getTextMotDePasse().getPassword();
         //

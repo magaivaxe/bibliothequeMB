@@ -2,6 +2,7 @@
 package mainPack;
 
 import fenetres.Identifier;
+import fenetres.NewMotPasse;
 
 /**
  *
@@ -15,7 +16,9 @@ public class Main {
     public static void main(String[] args) {
         //
         Identifier identifier;
-        
+        NewMotPasse nmp;
+//        nmp = new NewMotPasse();
+//        nmp.setVisible(true);
         identifier = new Identifier();
         identifier.setVisible(true);
     }

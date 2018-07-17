@@ -17,7 +17,7 @@ import javax.swing.KeyStroke;
  *
  * @author sire_marcos
  */
-public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
+public class MenuBarPrincipal extends JMenuBar{
     // Objets
     private JMenu bibliotheque;
     private JMenuItem aPropos, sortir;
@@ -27,7 +27,6 @@ public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
         initialiser();
     }
 
-    @Override
     public void initialiser() {
         // JMenu et ses JMenuItems
         aPropos = new JMenuItem();
@@ -50,21 +49,13 @@ public class MenuBarPrincipal extends JMenuBar implements InterfaceFenetres{
         bibliotheque.add(aPropos);
         bibliotheque.add(separateur);
         bibliotheque.add(sortir);
-        
     }
 
-    @Override
-    public void definirLayout() {
-        
-    }
-
-    @Override
     public void definirListeners(){
-        sortir.addActionListener((ActionEvent e) ->{
-            Identifier.courant.dispose();
-            System.exit(0);
+        sortir.addActionListener((e) ->{
+            System.out.println("teste");
         });
-        aPropos.addActionListener((ActionEvent e) ->{
+        aPropos.addActionListener((e) ->{
             
         });
     }
