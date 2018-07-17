@@ -16,8 +16,9 @@ import javax.swing.JOptionPane;
 public class ConnecterListener extends BaseListeners
 {
     // Champs
-    private final String MSG = "Entrez l'utilisateur et le mot de passe "
+    private final String MSG_1 = "Entrez l'utilisateur et le mot de passe "
             + "s'il vous plaît...";
+    private final String MSG_2 = "Mot de passe jusqu'au 8 charactères.";
     private final String TITRE = "ATTENTION!";
     
     @Override
@@ -29,11 +30,12 @@ public class ConnecterListener extends BaseListeners
                 .getTextMotDePasse().getPassword();
         //
         if (textUtilisateur.isEmpty() || textMotDePasse.length == 0){
-            JOptionPane.showMessageDialog(null, MSG, TITRE,
+            JOptionPane.showMessageDialog(null, MSG_1, TITRE,
                     JOptionPane.OK_OPTION);
         }
-        else{
-            
+        else if(textMotDePasse.length > 8){
+            JOptionPane.showMessageDialog(null, MSG_2, TITRE,
+                    JOptionPane.OK_OPTION);
         }
     }
     

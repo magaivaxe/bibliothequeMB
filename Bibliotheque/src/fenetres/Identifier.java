@@ -21,8 +21,7 @@ import listeners.ConnecterListener;
  */
 public class Identifier extends JFrame implements InterfaceFenetres{
     // Champs
-    private final String TITRE = "Bibliothèque Marguerite Bourgeoys - "
-            + "Identification";
+    private final String TITRE = "Identification";
     private final String TITRE_PANE = "Bibliothèque Marguerite Bourgeoys";
     private final String UTILISATEUR = "Utilisateur: ";
     private final String MOT_DE_PASSE = "Mot de Passe: ";
