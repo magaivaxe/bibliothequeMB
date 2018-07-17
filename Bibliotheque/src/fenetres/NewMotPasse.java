@@ -6,13 +6,18 @@
 package fenetres;
 
 import java.awt.Container;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+import listeners.ReinitialiserMDPListener;
 
 /**
  *
@@ -27,15 +32,22 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     private final String DATE_NAISSANCE = "Date de Naissance: ";
     private final String B_ENVOYER = "Envoyer";
     private final String B_ANNULER = "Annuler";
-    private final int LARGEUR = 600;
-    private final int HAUTEUR = 500;
-    
+    private final String MSG_1 = "Vous êtes sur de fermer?";
+    private final String ALERTE = "ATTENTION!";
+    private final int LARGEUR = 400;
+    private final int HAUTEUR = 300;
+    private final int H_PAD_TF = 50;
+    private final int B_PAD_TF = 40;
+    private final int GD_PAD_TF = 20;
+    private final int B_PAD_L = 20;
+    private final int B_PAD_B = 10;
+            
     // Objets
     private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date;
     private JTextField t_utilisateur, t_date;
     private JPasswordField pf_motPasse,pf_confirmation;
     private JButton b_envoyer, b_annuler;
-    private JPanel labelPanel, tfPanel, buttonPanel;
+    private JPanel labelPanel, tfPanel, horPanel, buttonPanel;
     private Container cont;
     
     public static NewMotPasse courant;
@@ -71,13 +83,16 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         tfPanel.add(t_utilisateur); tfPanel.add(t_date);
         tfPanel.add(pf_motPasse); tfPanel.add(pf_confirmation);
         
+        horPanel = new JPanel();
+        horPanel.add(labelPanel); horPanel.add(tfPanel);
+        
         b_annuler = new JButton(B_ANNULER);
         b_envoyer = new JButton(B_ENVOYER);
         buttonPanel = new JPanel();
         buttonPanel.add(b_annuler); buttonPanel.add(b_envoyer);
         
         cont = getContentPane();
-        cont.add(labelPanel); cont.add(tfPanel); cont.add(buttonPanel);
+        cont.add(horPanel); cont.add(buttonPanel);
     }
 
     @Override
@@ -86,19 +101,32 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         setResizable(false);
         setSize(LARGEUR, HAUTEUR);
         setLocationRelativeTo(null);
+        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
         //
+        l_utilisateur.setAlignmentX(RIGHT_ALIGNMENT);
+        l_date.setAlignmentX(RIGHT_ALIGNMENT);
+        l_motPasse.setAlignmentX(RIGHT_ALIGNMENT);
+        l_confirmation.setAlignmentX(RIGHT_ALIGNMENT);
+        l_utilisateur.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
+        l_date.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
+        l_motPasse.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
+        b_envoyer.setAlignmentX(RIGHT_ALIGNMENT); 
         
         //
+        horPanel.setLayout(new BoxLayout(horPanel, BoxLayout.X_AXIS));
+        horPanel.setBorder(
+                new EmptyBorder(H_PAD_TF, GD_PAD_TF,B_PAD_TF, GD_PAD_TF));
         labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
         tfPanel.setLayout(new BoxLayout(tfPanel, BoxLayout.Y_AXIS));
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
+        buttonPanel.setBorder(new EmptyBorder(0, 0, B_PAD_B, 0));
     }
 
     @Override
     public void styles() {
         
     }
-
+ 
     @Override
     public void polices() {
         
@@ -106,7 +134,18 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
 
     @Override
     public void definirListeners() {
-        
+        //
+        b_annuler.addActionListener((e) -> {
+            int reponse = JOptionPane.showConfirmDialog(null, MSG_1, ALERTE,
+                            JOptionPane.OK_OPTION,
+                            JOptionPane.WARNING_MESSAGE);
+            if (reponse == 0) {
+                this.dispose();
+            }
+        });
+        //
+        ReinitialiserMDPListener rmdp = new ReinitialiserMDPListener();
+        b_envoyer.addActionListener(rmdp);
     }
     
 }
