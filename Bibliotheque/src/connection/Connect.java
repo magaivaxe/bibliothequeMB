@@ -14,7 +14,7 @@ import java.sql.DriverManager;
 public class Connect {
         
        
-        private static String url = "jdbc:mysql://localhost:3306/bibliothequeMB_DB";
+        private static String url = "jdbc:mysql://localhost:3306/bibliothequeMB_DB?useSSL=false";
 	private static String user = "root";
 	private static String passwd = "16thfeb76";
         private static Connection connection;
@@ -22,9 +22,8 @@ public class Connect {
     public static Connection connecter(){
        if (connection == null){
            try {
-               Class.forName("com.mysql.jdbc.Driver");
                connection = DriverManager.getConnection(url, user, passwd);
-               System.out.println("Ça fonctionneeeeeeeee!!!!!!!!");
+               System.out.println("La connection réussit!");
            } catch (Exception e) {
                throw new IllegalStateException("Impossible connecter", e);
            }

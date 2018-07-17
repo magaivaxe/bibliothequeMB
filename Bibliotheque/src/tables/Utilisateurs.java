@@ -17,12 +17,7 @@ public class Utilisateurs {
     private String idUtilisateur, nom, preNom,
             adresse, telephone, courriel, role, statusUT;
     private Date dateNe, dateRegistre;
-    
-//enum--------------------------------------------------------------------------    
-    //private enum Roles {role0,role1,role2,role3;}
-    
-    //private enum StatusUTs {confirme,bloque,annule;}
-    
+
 //Constructeurs-----------------------------------------------------------------
     
     public Utilisateurs(String idUtilisateur, String nom, String preNom, 
@@ -127,8 +122,8 @@ public class Utilisateurs {
 
     @Override
     public String toString() {
-        return "Utilisateurs{" + "idUtilisateur=" + idUtilisateur + 
-                ", nom=" + nom + ", preNom=" + preNom + ", adresse=" 
+        return "Utilisateurs{" + "idUtilisateur=" + this.idUtilisateur + 
+                ", nom=" + this.nom + ", preNom=" + preNom + ", adresse=" 
                 + adresse + ", telephone=" + telephone + ", courriel=" 
                 + courriel + ", role=" + role + ", statusUT=" + statusUT +
                 ", dateNe=" + dateNe + ", dateRegistre=" + dateRegistre + '}';

@@ -5,36 +5,40 @@ package dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import tables.Utilisateurs;
-
-
-
 
 /**
  *
- * @author eleves
+ * @author Marcos
  */
 public class UtilisateursDAO extends DAO<Utilisateurs> {
+    
     // Contructeur
     public UtilisateursDAO() {
         super();
     }
+    
     // Méthodes
-    public Utilisateurs rechercher(String idUtilisateur) {
+    public Utilisateurs rechercher(String idUtilisateurEntree) {
+        System.out.println("Paramètre de rechercher() "+idUtilisateurEntree);
         // locaux
         Utilisateurs aRetouner = new Utilisateurs();
+        
         // Essaye de la requête
         try {
+
             ResultSet resultat = this.connect
                     .createStatement(
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_UPDATABLE
                     ).executeQuery(
-                            "select * from Utilisateurs"
-                                    + "where idUtilisateur = " + idUtilisateur
+                            "select * from Utilisateurs where idUtilisateur = "+"'"+ idUtilisateurEntree+"'"
                     );
-            // Attribution à l'objet utilisateur les valeurs de la requête
+            
+            // Attribution à l'objet utilisateur les valeurs de la requête            
             if (resultat.first()) {
+                System.out.println("Dans resultat.first()!!!!!");
                 aRetouner = new Utilisateurs(
                         resultat.getString("idUtilisateur"),
                         resultat.getString("nom"),
@@ -53,6 +57,7 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
         return aRetouner;
     }
 
+    
     @Override
     public Utilisateurs inserer() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -67,8 +72,6 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
     public Utilisateurs rechercher() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         
-    //SET @place = 0;
-    //SELECT @place := @place + 1 AS place, pseudo, points FROM joueurs ORDER BY points DESC;
     }
 
    
