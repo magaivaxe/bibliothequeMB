@@ -54,7 +54,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     
     // Constructeur
     public NewMotPasse() {
-        initialiser();
+        initialiserComposants();
         layouts();
         polices();
         definirListeners();
@@ -62,7 +62,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     }
 
     @Override
-    public void initialiser() {
+    public void initialiserComposants() {
         //
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -146,6 +146,11 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         //
         ReinitialiserMDPListener rmdp = new ReinitialiserMDPListener();
         b_envoyer.addActionListener(rmdp);
+    }
+
+    @Override
+    public void initialiserMenuBar(){
+        
     }
     
 }

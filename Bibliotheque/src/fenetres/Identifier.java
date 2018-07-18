@@ -2,7 +2,11 @@
 package fenetres;
 
 
+
+import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
@@ -15,7 +19,9 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
+import javax.swing.JSeparator;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.border.EmptyBorder;
 import listeners.ConnecterListener;
 import listeners.MPOListener;
@@ -32,6 +38,11 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private final String MOT_DE_PASSE = "Mot de Passe: ";
     private final String B_CONNECTER = "Connection";
     private final String B_OUBLIE = "Mot de passe oublié";
+    private final String BIBLIOTHEQUE = "Bibliothèque";
+    private final String RECHERCHE = "Recherche des livres";
+    private final String A_PROPOS = "À propos...";
+    private final String QUITER_BIBLIOTHEQUE = "Quiter la bibliothèque";
+    private final String AIDE = "Aide";
     private final int LARGEUR = 400;
     private final int HAUTEUR = 350;
     private final int BRD_H_B = 40;
@@ -47,14 +58,16 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private JPasswordField pf_motPasse;
     private JButton b_connecter, b_mpOublie;
     private JMenuBar menuBar;
-    private JMenu bibliotheque;
-    private JMenuItem aPropos, recherche;
+    private JMenu bibliotheque, aide;
+    private JMenuItem aPropos, recherche, quiter;
+    private JSeparator separator;
     
     public static Identifier courant;
     
     // Constructeur
     public Identifier() {
-        initialiser();
+        initialiserMenuBar();
+        initialiserComposants();
         layouts();
         polices();
         styles();
@@ -63,10 +76,31 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     }
     
     @Override
-    public void initialiser() {
+    public void initialiserMenuBar(){
+        //
+        menuBar = new JMenuBar();
+        bibliotheque = new JMenu(BIBLIOTHEQUE);
+        aide = new JMenu(AIDE);
+        recherche = new JMenuItem(RECHERCHE);
+        recherche.setAccelerator(
+            KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK)); 
+        aPropos = new JMenuItem(A_PROPOS);
+        quiter = new JMenuItem(QUITER_BIBLIOTHEQUE);
+        quiter.setAccelerator(
+            KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
+        separator = new JSeparator();
+        aide.add(aPropos); bibliotheque.add(recherche);
+        bibliotheque.add(separator); bibliotheque.add(quiter);
+        menuBar.add(bibliotheque); menuBar.add(aide);
+    }
+    
+    @Override
+    public void initialiserComposants() {
+        
         //
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setJMenuBar(menuBar);
         // 
         l_titre = new JLabel(TITRE_PANE);
         l_motPasse = new JLabel(MOT_DE_PASSE);
@@ -145,5 +179,6 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     public JTextField getT_utilisateur(){return t_utilisateur;}
     
     public JPasswordField getTextMotDePasse(){return pf_motPasse;}
+
  
 }
