@@ -10,6 +10,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -43,6 +46,9 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private JTextField t_utilisateur;
     private JPasswordField pf_motPasse;
     private JButton b_connecter, b_mpOublie;
+    private JMenuBar menuBar;
+    private JMenu bibliotheque;
+    private JMenuItem aPropos, recherche;
     
     public static Identifier courant;
     
