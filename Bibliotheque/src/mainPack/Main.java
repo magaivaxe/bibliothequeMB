@@ -2,7 +2,6 @@
 package mainPack;
 
 import fenetres.Identifier;
-import fenetres.NewMotPasse;
 
 /**
  *

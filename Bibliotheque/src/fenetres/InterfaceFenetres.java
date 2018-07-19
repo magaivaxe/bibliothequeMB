@@ -11,10 +11,12 @@ package fenetres;
  */
 interface InterfaceFenetres {
     
+    
+    public void initialiserMenuBar();
     /**
      * 
      */
-    public void initialiser();
+    public void initialiserComposants();
     /**
      * 
      */
