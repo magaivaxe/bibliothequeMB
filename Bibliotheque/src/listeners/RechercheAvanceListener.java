@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  *
  * @author Marcos
  */
-public class RechercheListener implements ActionListener{
+public class RechercheAvanceListener implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {

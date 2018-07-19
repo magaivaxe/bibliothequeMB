@@ -6,17 +6,15 @@
 package fenetres;
 
 import java.awt.Container;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import listeners.QuiterListener;
 import listeners.ReinitialiserMDPListener;
 
 /**
@@ -32,8 +30,10 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     private final String DATE_NAISSANCE = "Date de Naissance: ";
     private final String B_ENVOYER = "Envoyer";
     private final String B_ANNULER = "Annuler";
-    private final String MSG_1 = "Vous êtes sur de fermer?";
-    private final String ALERTE = "ATTENTION!";
+    private final String MSG_1 =
+              "Voulez-vous annuler le nouveau mot de passe?\n"
+            + "Si oui, les informations seront perdues!";
+    private final String MSG_TITRE = "Attention!";
     private final int LARGEUR = 400;
     private final int HAUTEUR = 300;
     private final int H_PAD_TF = 50;
@@ -135,17 +135,8 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     @Override
     public void definirListeners() {
         //
-        b_annuler.addActionListener((e) -> {
-            int reponse = JOptionPane.showConfirmDialog(null, MSG_1, ALERTE,
-                            JOptionPane.OK_OPTION,
-                            JOptionPane.WARNING_MESSAGE);
-            if (reponse == 0) {
-                this.dispose();
-            }
-        });
-        //
-        ReinitialiserMDPListener rmdp = new ReinitialiserMDPListener();
-        b_envoyer.addActionListener(rmdp);
+        b_annuler.addActionListener(new QuiterListener(this, MSG_1, MSG_TITRE));
+        b_envoyer.addActionListener(new ReinitialiserMDPListener());
     }
 
     @Override
