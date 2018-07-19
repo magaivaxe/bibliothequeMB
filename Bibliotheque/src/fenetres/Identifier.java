@@ -2,6 +2,8 @@
 package fenetres;
 
 
+
+import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -190,5 +192,6 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     public JTextField getT_utilisateur(){return t_utilisateur;}
     
     public JPasswordField getTextMotDePasse(){return pf_motPasse;}
+
  
 }

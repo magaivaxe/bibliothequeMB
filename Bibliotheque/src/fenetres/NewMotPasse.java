@@ -143,5 +143,5 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     public void initialiserMenuBar(){
         
     }
-    
+
 }
