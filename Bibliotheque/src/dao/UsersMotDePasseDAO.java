@@ -16,12 +16,14 @@ public class UsersMotDePasseDAO extends DAO<UsersMotDePasse> {
 
     String id;
     String mdpe;
+    UtilisateursDAO u = new UtilisateursDAO();
+    String idReinit = u.idReinit;
+    String mdpeChangee;
 //==============================================================================
 //LOGIN
 //PREND L'IDUTILISATEUR ET CHERCHE LE MOT DE PASSE POUR COMPARER
     
      public String trouverMotDePasse(String idUtilisateurEntree) {
-        System.out.println("Paramètre de rechercher() "+idUtilisateurEntree);
 
         try {
             Statement stmt;
@@ -29,30 +31,82 @@ public class UsersMotDePasseDAO extends DAO<UsersMotDePasse> {
             ResultSet rs = stmt.executeQuery("select * from UsersMotDePasse "
                     + "where idUtilisateur = "+"'"+ idUtilisateurEntree+"'");
             while (rs.next()) {
-                System.out.println("Test dans rs.next()!!!!!");
-                
 		id = rs.getString("idUtilisateur");
 		mdpe = rs.getString("mdpEncripte");
-            	
-                System.out.println("IDENTIFICATEUR ="  + id);
-		System.out.println("MOT DE PASSE ="  + mdpe);		
+                //System.out.println("IDENTIFICATEUR ="  + id);
+		//System.out.println("MOT DE PASSE ="  + mdpe);		
             }
         } catch (SQLException e) {
+            System.err.println("Identificateur non trouvable");
         }
         return mdpe;
     }
      
      public String comparerMotDePasse(String motDePasseEntree)
      {
-       if(motDePasseEntree.compareTo(mdpe)==0)
-       {System.out.println("Mot de passe confirmé");}
-        else{ System.out.println("Mot de passe erroné");}
+            if(motDePasseEntree.compareTo(mdpe)==0)
+            {System.out.println("Mot de passe confirmé");}
+             else{ System.out.println("Mot de passe erroné");}
         return null;
      }
+//==============================================================================
+//RÉINITIALISER MOT DE PASSE
+//PREND L'IDUTILISATEUR ET SA DATE DE NAISSANCE POUR CONFIRMER L'IDENTITÉ
+//PREND L'IDENTITÉ ET CHANGE LE MOT DE PASSE
+     
+     public String changerMotDePasse(String idReinit, String nouveauMotDePasse)
+     {
+ //update UsersMotDePasse set mdpEncripte='123lgp' where idUtilisateur='GustavoPach';
+         
+         try {
+            Statement stmt;
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery("update UsersMotDePasse "
+                    + "set mdpEncripte="+"'"+ nouveauMotDePasse+"'"
+                    + "where idUtilisateur="+"'"+ idReinit+"'");
+            if(rs.next()) {
+                idReinit = rs.getString("idUtilisateur");
+		mdpeChangee = rs.getString("mdpEncripte");
+
+		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + mdpeChangee 
+                        +" POUR L'UTILISATEUR "+idReinit);		
+            }
+        } catch (SQLException e) {
+            
+        }
+        return mdpeChangee;
+        }  
+  
+   
+
 //==============================================================================    
     @Override
     public UsersMotDePasse rechercher() {
-        throw new UnsupportedOperationException("Not supported yet.");
+            throw new UnsupportedOperationException("Not supported yet.");
+//         // locaux
+//        UsersMotDePasse aRetouner = new UsersMotDePasse();
+//        
+//        // Essaye de la requête
+//        try {
+//
+//            ResultSet resultat = this.connect
+//                    .createStatement(
+//                            ResultSet.TYPE_SCROLL_INSENSITIVE,
+//                            ResultSet.CONCUR_UPDATABLE
+//                    ).executeQuery(
+//                            "select * from UsersMotDePasse"//PROBLÈME: SANS WHERE COMMENT PASSER TOUS LES VALEURS??
+//                    );
+//            
+//            // Attribution à l'objet utilisateur les valeurs de la requête            
+//            while(resultat.next()) {
+//                aRetouner = new UsersMotDePasse(
+//                        resultat.getString("idUtilisateur"),
+//                        resultat.getString("mdpEncripte"));
+//            }
+//        } catch (SQLException e) {
+//        }
+//        
+//        return aRetouner;
     }
 
     @Override

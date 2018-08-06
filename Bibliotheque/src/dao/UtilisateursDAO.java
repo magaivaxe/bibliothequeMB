@@ -6,6 +6,8 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import tables.Utilisateurs;
 
 /**
@@ -13,6 +15,9 @@ import tables.Utilisateurs;
  * @author Marcos
  */
 public class UtilisateursDAO extends DAO<Utilisateurs> {
+    //Attributs
+    String idReinit;
+    
     
     // Contructeur
     public UtilisateursDAO() {
@@ -20,8 +25,30 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
     }
     
     // Méthodes
+    
+//==============================================================================
+//RÉINITIALISER MOT DE PASSE
+//PREND L'IDUTILISATEUR ET SA DATE DE NAISSANCE POUR CONFIRMER L'IDENTITÉ
+//PREND L'IDENTITÉ ET CHANGE LE MOT DE PASSE
+     
+    public String chercherUtilisateur(String idUtilisateurEntree,String dateNeEntree)
+    {
+        try {
+            ResultSet rs = connect.createStatement().executeQuery(
+                    "select idUtilisateur,dateNe from Utilisateurs where "
+                            + "idUtilisateur="+"'"+idUtilisateurEntree+"'"
+                                    +" and dateNe="+"'"+dateNeEntree+"'");
+            if(rs.next())
+                idReinit = rs.getString("idUtilisateur");
+        } catch (SQLException ex) {
+            Logger.getLogger(UtilisateursDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return idReinit;
+    }
+
+//==============================================================================
+    
     public Utilisateurs rechercher(String idUtilisateurEntree) {
-        System.out.println("Paramètre de rechercher() "+idUtilisateurEntree);
         // locaux
         Utilisateurs aRetouner = new Utilisateurs();
         
@@ -33,12 +60,12 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
                             ResultSet.CONCUR_UPDATABLE
                     ).executeQuery(
-                            "select * from Utilisateurs where idUtilisateur = "+"'"+ idUtilisateurEntree+"'"
+                            "select * from Utilisateurs where idUtilisateur = "
+                                    +"'"+ idUtilisateurEntree+"'"
                     );
             
             // Attribution à l'objet utilisateur les valeurs de la requête            
             if (resultat.first()) {
-                System.out.println("Dans resultat.first()!!!!!");
                 aRetouner = new Utilisateurs(
                         resultat.getString("idUtilisateur"),
                         resultat.getString("nom"),

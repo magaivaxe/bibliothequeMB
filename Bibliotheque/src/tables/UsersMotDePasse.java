@@ -45,9 +45,4 @@ public class UsersMotDePasse {
         return "UsersMotDePasse{" + "idUtilisateur=" + this.idUtilisateur + 
                 ", mdpEncripte=" + this.mdpEncripte + '}';
     }
-    
-   
-    public String reponse() {
-        return this.mdpEncripte;
-    }
 }

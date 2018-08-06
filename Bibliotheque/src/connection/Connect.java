@@ -23,7 +23,6 @@ public class Connect {
        if (connection == null){
            try {
                connection = DriverManager.getConnection(url, user, passwd);
-               System.out.println("La connection réussit!");
            } catch (Exception e) {
                throw new IllegalStateException("Impossible connecter", e);
            }
