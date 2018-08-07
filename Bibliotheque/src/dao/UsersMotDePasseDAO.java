@@ -6,6 +6,7 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import mainPack.Main;
 import tables.UsersMotDePasse;
 
 /**
@@ -17,8 +18,9 @@ public class UsersMotDePasseDAO extends DAO<UsersMotDePasse> {
     String id;
     String mdpe;
     UtilisateursDAO u = new UtilisateursDAO();
-    String idReinit = u.idReinit;
+    String idConfirmee = u.idConfirmee;
     String mdpeChangee;
+
 //==============================================================================
 //LOGIN
 //PREND L'IDUTILISATEUR ET CHERCHE LE MOT DE PASSE POUR COMPARER
@@ -45,7 +47,7 @@ public class UsersMotDePasseDAO extends DAO<UsersMotDePasse> {
      public String comparerMotDePasse(String motDePasseEntree)
      {
             if(motDePasseEntree.compareTo(mdpe)==0)
-            {System.out.println("Mot de passe confirmé");}
+            {System.out.println("Mot de passe confirmé");} 
              else{ System.out.println("Mot de passe erroné");}
         return null;
      }
@@ -54,27 +56,25 @@ public class UsersMotDePasseDAO extends DAO<UsersMotDePasse> {
 //PREND L'IDUTILISATEUR ET SA DATE DE NAISSANCE POUR CONFIRMER L'IDENTITÉ
 //PREND L'IDENTITÉ ET CHANGE LE MOT DE PASSE
      
-     public String changerMotDePasse(String idReinit, String nouveauMotDePasse)
+     public String changerMotDePasse(String idConfirmee, String nouveauMotDePasse)
      {
+         System.out.println("Tester "+idConfirmee+" "+nouveauMotDePasse);
  //update UsersMotDePasse set mdpEncripte='123lgp' where idUtilisateur='GustavoPach';
          
          try {
             Statement stmt;
             stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery("update UsersMotDePasse "
+            stmt.executeUpdate("update UsersMotDePasse "
                     + "set mdpEncripte="+"'"+ nouveauMotDePasse+"'"
-                    + "where idUtilisateur="+"'"+ idReinit+"'");
-            if(rs.next()) {
-                idReinit = rs.getString("idUtilisateur");
-		mdpeChangee = rs.getString("mdpEncripte");
-
-		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + mdpeChangee 
-                        +" POUR L'UTILISATEUR "+idReinit);		
-            }
+                    + "where idUtilisateur="+"'"+ idConfirmee+"'");
+          
+		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + nouveauMotDePasse 
+                        +" POUR L'UTILISATEUR "+idConfirmee);		
+    
         } catch (SQLException e) {
             
         }
-        return mdpeChangee;
+        return nouveauMotDePasse;
         }  
   
    
