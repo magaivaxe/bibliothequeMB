@@ -6,7 +6,6 @@ package dao;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import mainPack.Main;
 import tables.UsersMotDePasse;
 
 /**

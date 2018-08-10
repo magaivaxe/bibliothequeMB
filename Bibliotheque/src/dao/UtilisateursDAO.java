@@ -16,9 +16,8 @@ import tables.Utilisateurs;
  */
 public class UtilisateursDAO extends DAO<Utilisateurs> {
     //Attributs
-    String idReinit;
-    
-    
+    String idConfirmee;
+
     // Contructeur
     public UtilisateursDAO() {
         super();
@@ -39,11 +38,11 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
                             + "idUtilisateur="+"'"+idUtilisateurEntree+"'"
                                     +" and dateNe="+"'"+dateNeEntree+"'");
             if(rs.next())
-                idReinit = rs.getString("idUtilisateur");
+                idConfirmee = rs.getString("idUtilisateur");
         } catch (SQLException ex) {
             Logger.getLogger(UtilisateursDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return idReinit;
+        return idConfirmee;
     }
 
 //==============================================================================

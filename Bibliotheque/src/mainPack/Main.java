@@ -5,10 +5,7 @@ package mainPack;
 
 import dao.UsersMotDePasseDAO;
 import dao.UtilisateursDAO;
-import java.sql.SQLException;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import tables.UsersMotDePasse;
@@ -39,7 +36,7 @@ public class Main extends Application {
         // PREMIÈRE RECHERCHE TEST
         UtilisateursDAO udao = new UtilisateursDAO();
         Utilisateurs ut = udao.rechercher(idUtilisateurEntree);
-        //System.out.println(ut.toString());
+        System.out.println(ut.toString());
         
         //LOGIN
         UsersMotDePasseDAO umdpdao = new UsersMotDePasseDAO();
@@ -49,15 +46,15 @@ public class Main extends Application {
         umdpdao.trouverMotDePasse(idUtilisateurEntree);
         umdpdao.comparerMotDePasse(motDePasseEntree);
         
+        //RÉINITIALISER MOT DE PASSE
         System.out.println("Tapez la date de naissance: ");
         String dateNeEntree = scn.nextLine();
-        
-        udao.chercherUtilisateur(idUtilisateurEntree, dateNeEntree);
 
         System.out.println("Tapez le nouveau mot de passe: ");
         String nouveauMotDePasse = scn.nextLine();    
 
-        umdpdao.changerMotDePasse(dateNeEntree, nouveauMotDePasse);
+        String idConfirmee = udao.chercherUtilisateur(idUtilisateurEntree, dateNeEntree);
+        umdpdao.changerMotDePasse(idConfirmee, nouveauMotDePasse);
         
         
     }
