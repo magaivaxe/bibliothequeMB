@@ -1,6 +1,7 @@
 
 package mainPack;
 
+import fenetres.Acceuil;
 import fenetres.Identifier;
 
 /**
@@ -14,10 +15,13 @@ public class Main {
      */
     public static void main(String[] args) {
         //
-        Identifier identifier;
+//        Identifier identifier;
+//        
+//        identifier = new Identifier();
+//        identifier.setVisible(true);
         
-        identifier = new Identifier();
-        identifier.setVisible(true);
+        Acceuil acceuil = new Acceuil();
+        acceuil.setVisible(true);
     }
     
 }

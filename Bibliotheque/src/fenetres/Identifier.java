@@ -3,7 +3,6 @@ package fenetres;
 
 
 
-import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -108,7 +107,6 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     
     @Override
     public final void initialiserComposants() {
-        
         //
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
