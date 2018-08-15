@@ -26,7 +26,7 @@ public class ConnecterListener implements ActionListener
     public void actionPerformed(ActionEvent e){
         //
         String textUtilisateur = Identifier.courant
-                .getT_utilisateur().getText();
+                .getTf_utilisateur().getText();
         char [] textMotDePasse = Identifier.courant
                 .getTextMotDePasse().getPassword();
         //

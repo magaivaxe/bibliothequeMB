@@ -44,7 +44,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
             
     // Objets
     private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date;
-    private JTextField t_utilisateur, t_date;
+    private JTextField tf_utilisateur, tf_date;
     private JPasswordField pf_motPasse,pf_confirmation;
     private JButton b_envoyer, b_annuler;
     private JPanel labelPanel, tfPanel, horPanel, buttonPanel;
@@ -75,12 +75,12 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         labelPanel.add(l_utilisateur); labelPanel.add(l_date);
         labelPanel.add(l_motPasse); labelPanel.add(l_confirmation);
         
-        t_utilisateur = new JTextField();
-        t_date = new JTextField();
+        tf_utilisateur = new JTextField();
+        tf_date = new JTextField();
         pf_motPasse = new JPasswordField();
         pf_confirmation = new JPasswordField();
         tfPanel = new JPanel();
-        tfPanel.add(t_utilisateur); tfPanel.add(t_date);
+        tfPanel.add(tf_utilisateur); tfPanel.add(tf_date);
         tfPanel.add(pf_motPasse); tfPanel.add(pf_confirmation);
         
         horPanel = new JPanel();
@@ -135,7 +135,8 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     @Override
     public void definirListeners() {
         //
-        b_annuler.addActionListener(new QuiterListener(this, MSG_1, MSG_TITRE));
+        b_annuler.addActionListener(
+            new QuiterListener(this, MSG_1, MSG_TITRE));
         b_envoyer.addActionListener(new ReinitialiserMDPListener());
     }
 
@@ -143,5 +144,15 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     public void initialiserMenuBar(){
         
     }
+    
+    // Getters
+    public JTextField getTf_utilisateur() {return tf_utilisateur;}
+
+    public JTextField getTf_date() {return tf_date;}
+
+    public JPasswordField getPf_motPasse() {return pf_motPasse;}
+
+    public JPasswordField getPf_confirmation() {return pf_confirmation;}
+    
 
 }

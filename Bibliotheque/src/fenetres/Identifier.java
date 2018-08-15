@@ -58,7 +58,7 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private JPanel mainPanel, labelPanel, textePanel,
             basPanel, hautPanel, buttonPanel;
     private JLabel l_utilisateur, l_motPasse, l_titre;
-    private JTextField t_utilisateur;
+    private JTextField tf_utilisateur;
     private JPasswordField pf_motPasse;
     private JButton b_connecter, b_mpOublie;
     private JMenuBar menuBar;
@@ -107,7 +107,7 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     
     @Override
     public final void initialiserComposants() {
-        //
+        // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setJMenuBar(menuBar);
@@ -120,10 +120,10 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         labelPanel = new JPanel();
         labelPanel.add(l_utilisateur); labelPanel.add(l_motPasse);
         
-        t_utilisateur = new JTextField();
+        tf_utilisateur = new JTextField();
         pf_motPasse = new JPasswordField();
         textePanel = new JPanel();
-        textePanel.add(t_utilisateur); textePanel.add(pf_motPasse);
+        textePanel.add(tf_utilisateur); textePanel.add(pf_motPasse);
         
         basPanel = new JPanel();
         basPanel.add(labelPanel); basPanel.add(textePanel);
@@ -160,7 +160,8 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         buttonPanel.setBorder(new EmptyBorder(HAUT_BAS, 0, 0, 0));
         l_utilisateur.setBorder(new EmptyBorder(0, 0, ENTRE_LB, 0));
         l_titre.setBorder(new EmptyBorder(0, 0, HAUT_BAS, 0));
-        mainPanel.setBorder(new EmptyBorder(BRD_H_B, BRD_G_D, BRD_H_B, BRD_G_D));
+        mainPanel.setBorder(
+            new EmptyBorder(BRD_H_B, BRD_G_D, BRD_H_B, BRD_G_D));
     }
     
     @Override
@@ -172,7 +173,8 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         // Locaux
         Map<TextAttribute, Object> pol_titre = new HashMap<>();
             pol_titre.put(TextAttribute.FAMILY, Font.DIALOG);
-            pol_titre.put(TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD);
+            pol_titre.put(
+                TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD);
             pol_titre.put(TextAttribute.SIZE, 16);
         l_titre.setFont(Font.getFont(pol_titre));
     }
@@ -183,11 +185,11 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         b_connecter.addActionListener(new ConnecterListener());
         b_mpOublie.addActionListener(new MPOListener());
         mi_parTitre.addActionListener(new RechercheAvanceListener());
-        mi_quiter.addActionListener(new QuiterListener(this, MSG_1, MSG_1_TITRE));
-        
+        mi_quiter.addActionListener(
+                new QuiterListener(this, MSG_1, MSG_1_TITRE));
     }
 
-    public JTextField getT_utilisateur(){return t_utilisateur;}
+    public JTextField getTf_utilisateur(){return tf_utilisateur;}
     
     public JPasswordField getTextMotDePasse(){return pf_motPasse;}
 
