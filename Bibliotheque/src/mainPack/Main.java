@@ -15,11 +15,11 @@ public class Main {
      */
     public static void main(String[] args) {
         // App initialisator
-        Identifier identifier = new Identifier();
-        identifier.setVisible(true);
+//        Identifier identifier = new Identifier();
+//        identifier.setVisible(true);
         // Tests
-//        Acceuil acceuil = new Acceuil();
-//        acceuil.setVisible(true);
+        Acceuil acceuil = new Acceuil();
+        acceuil.setVisible(true);
         
     }
     

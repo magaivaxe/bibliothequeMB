@@ -28,58 +28,8 @@ import tables.TMRechercher;
  */
 public class Acceuil extends JFrame implements InterfaceFenetres{
     // Champs
-    private final String TITRE = "Acceuil";
-    private final String M_BIBLIOTHEQUE = "Bibliothèque";
-    private final String A_PROPOS = "À propos...";
-    private final String MI_DECONNEXION = "Déconnexion";
-    private final String TP_RECHERCHE = "Recherche";
-    private final String TP_HISTORIQUE = "Historique";
-    private final String TP_LIVRES = "Livres";
-    private final String TP_AJOUTER = "Ajouter";
-    private final String TP_LIVRE_MISEJOUR = "Mise à jour";
-    private final String TP_LIVRE_ARCH_MORT = "Archive Mort";
-    private final String TP_UTILISATEUR = "Utilisateur";
-    private final String TP_USER_BLOQUER = "Bloquer/Débloquer";
-    private final String TP_EMPRUNTS = "Emprunts/Réservations";
-    private final String CB_TITRE = "Titre";
-    private final String CB_AUTEUR = "Auteur";
-    private final String CB_ISBN = "ISBN";
-    private final String CB_SUJET = "Sujet";
-    private final String B_RECHERCHER = "Rechercher";
-    private final String B_RESERVER = "Réserver livre";
-    // Main bounds
-    private final int W_FRAME = 1200;
-    private final int H_FRAME = 800;
-    private final int Y_ORIGIN = 30; 
-    private final int SPACE = 5;
-    // Recherche bounds
-    private final int W_CBOX = 100;
-    private final int H_CBOX = 30;
-    private final int Y_CBOX = Y_ORIGIN;
-    private final int X_CBOX_AUTEUR = (W_FRAME - 4*(W_CBOX + SPACE)) / 2;
-    private final int X_CBOX_TITRE = X_CBOX_AUTEUR + W_CBOX + SPACE;
-    private final int X_CBOX_ISBN = X_CBOX_TITRE + W_CBOX + SPACE;
-    private final int X_CBOX_SUJET = X_CBOX_ISBN + W_CBOX + SPACE;
-    
-    private final int W_B_RECHERCHE = 120;
-    private final int H_BUTTON = H_CBOX;
-    private final int H_TF_RECHERCHE = H_CBOX;
-    private final int W_TF_RECHERCHE = W_FRAME - 2*W_CBOX - W_B_RECHERCHE;
-    private final int X_TF_RECHERCHE = 
-        (W_FRAME - W_TF_RECHERCHE - W_B_RECHERCHE) / 2 - 2*SPACE;
-    private final int X_B_RECHERCHE = X_TF_RECHERCHE + W_TF_RECHERCHE + SPACE;
-    private final int Y_TF_RECHERCHE = Y_ORIGIN + H_CBOX;
-    private final int Y_B_RECHERCHE = Y_TF_RECHERCHE;
-    
-    private final int W_SCROLLPANE = 
-        W_TF_RECHERCHE + W_B_RECHERCHE + X_TF_RECHERCHE;
-    private final int X_SCROLLPANE = (W_FRAME - W_SCROLLPANE) / 2 - 2*SPACE;
-    private final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_TF_RECHERCHE + SPACE;
-    private final int H_SCROLLPANE = H_FRAME - 2*Y_SCROLLPANE - 2*Y_ORIGIN;
-    
-    private final int W_B_RESERVE = 150;
-    private final int Y_B_RESERVE = Y_SCROLLPANE + H_SCROLLPANE + 3*SPACE;
-    private final int X_B_RESERVE = X_SCROLLPANE + W_SCROLLPANE - W_B_RESERVE;
+     
+     
     
     // Objects
     private JCheckBox cb_titre, cb_auteur, cb_isbn, cb_sujet;
@@ -88,7 +38,7 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
     private JScrollPane scrollPane;
     private JTable jta_recherche;
     private TMRechercher tm_recherche;
-    private JPanel recherchePanel,historiquePanel,livresPanel,usersPanel,
+    private JPanel recherchePanel,historiquePanel,
             empruntsPanel,livreAjouterPanel,livreMJPanel,livreAMPanel,
             userAjouterPanel,userBloquerPanel;
     private JTabbedPane tp_main,tp_livre,tp_user;
@@ -103,15 +53,21 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
         initialiserMenuBar();
         initialiserComposants();
         layouts();
+        styles();
+        polices();
         courant = this;
     }
     
     @Override
     public void initialiserMenuBar() {
+        // Locals
+        final String M_BIBLIOTHEQUE = "Bibliothèque";
+        final String MI_A_PROPOS = "À propos...";
+        final String MI_DECONNEXION = "Déconnexion";
         // Menus
         m_biblio = new JMenu(M_BIBLIOTHEQUE);
         // Menu items
-        mi_aPropos = new JMenuItem(A_PROPOS);
+        mi_aPropos = new JMenuItem(MI_A_PROPOS);
         mi_deconnexion = new JMenuItem(MI_DECONNEXION);
         mi_deconnexion.setAccelerator(
                 KeyStroke.getKeyStroke(KeyEvent.VK_D, ActionEvent.CTRL_MASK));
@@ -125,6 +81,14 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
     
     // Initialise recherche tabbedPane components
     private void initTPRecherche(){
+        // Locals
+        final String CB_TITRE = "Titre";
+        final String CB_AUTEUR = "Auteur";
+        final String CB_ISBN = "ISBN";
+        final String CB_SUJET = "Sujet";
+        final String B_RECHERCHER = "Rechercher";
+        final String B_RESERVER = "Réserver livre";
+        //
         cb_titre = new JCheckBox(CB_TITRE);
         cb_isbn = new JCheckBox(CB_ISBN);
         cb_auteur = new JCheckBox(CB_AUTEUR);
@@ -147,6 +111,17 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
     
     @Override
     public void initialiserComposants() {
+        // Locals
+        final String TITRE = "Acceuil";
+        final String TP_RECHERCHE = "Recherche";
+        final String TP_HISTORIQUE = "Historique";
+        final String TP_LIVRES = "Livres";
+        final String TP_AJOUTER = "Ajouter";
+        final String TP_LIVRE_MISEJOUR = "Mise à jour";
+        final String TP_LIVRE_ARCH_MORT = "Archive Mort";
+        final String TP_UTILISATEUR = "Utilisateur";
+        final String TP_USER_BLOQUER = "Bloquer/Débloquer";
+        final String TP_EMPRUNTS = "Emprunts/Réservations";
         // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -155,7 +130,6 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
         initTPRecherche();
         // Panels
         historiquePanel = new JPanel();
-        livresPanel = new JPanel(); usersPanel = new JPanel();
         empruntsPanel = new JPanel();
         livreAjouterPanel = new JPanel(); livreMJPanel = new JPanel();
         livreAMPanel = new JPanel();
@@ -182,6 +156,39 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
 
     @Override
     public void layouts() {
+        // Main bounds
+        final int W_FRAME = 1200;
+        final int H_FRAME = 800;
+        final int Y_ORIGIN = 30; 
+        final int SPACE = 5;
+        // Recherche bounds
+        final int W_CBOX = 100;
+        final int H_CBOX = 30;
+        final int Y_CBOX = Y_ORIGIN;
+        final int X_CBOX_AUTEUR = (W_FRAME - 4*(W_CBOX + SPACE)) / 2;
+        final int X_CBOX_TITRE = X_CBOX_AUTEUR + W_CBOX + SPACE;
+        final int X_CBOX_ISBN = X_CBOX_TITRE + W_CBOX + SPACE;
+        final int X_CBOX_SUJET = X_CBOX_ISBN + W_CBOX + SPACE;
+
+        final int W_B_RECHERCHE = 120;
+        final int H_BUTTON = H_CBOX;
+        final int H_TF_RECHERCHE = H_CBOX;
+        final int W_TF_RECHERCHE = W_FRAME - 2*W_CBOX - W_B_RECHERCHE;
+        final int X_TF_RECHERCHE = 
+           (W_FRAME - W_TF_RECHERCHE - W_B_RECHERCHE) / 2 - 2*SPACE;
+        final int X_B_RECHERCHE = X_TF_RECHERCHE + W_TF_RECHERCHE + SPACE;
+        final int Y_TF_RECHERCHE = Y_ORIGIN + H_CBOX;
+        final int Y_B_RECHERCHE = Y_TF_RECHERCHE;
+
+        final int W_SCROLLPANE = 
+           W_TF_RECHERCHE + W_B_RECHERCHE + X_TF_RECHERCHE;
+        final int X_SCROLLPANE = (W_FRAME - W_SCROLLPANE) / 2 - 2*SPACE;
+        final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_TF_RECHERCHE + SPACE;
+        final int H_SCROLLPANE = H_FRAME - 2*Y_SCROLLPANE - 2*Y_ORIGIN;
+
+        final int W_B_RESERVE = 150;
+        final int Y_B_RESERVE = Y_SCROLLPANE + H_SCROLLPANE + 3*SPACE;
+        final int X_B_RESERVE = X_SCROLLPANE + W_SCROLLPANE - W_B_RESERVE;
         // Frame layout
         setResizable(false);
         setSize(W_FRAME, H_FRAME);
