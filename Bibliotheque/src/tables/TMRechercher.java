@@ -16,10 +16,10 @@ import javax.swing.table.DefaultTableModel;
 public class TMRechercher extends DefaultTableModel{
     // Fields
     private String [] collumnNames = {
+        "CDU",
         "Auteur",
         "Titre",
-        "Année",
-        "Quantité"
+        "Type"
     };
     // Constructor
     public TMRechercher(){

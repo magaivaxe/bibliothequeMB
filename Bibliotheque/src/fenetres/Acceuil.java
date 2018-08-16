@@ -51,33 +51,34 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
     private final int W_FRAME = 1200;
     private final int H_FRAME = 800;
     private final int Y_ORIGIN = 30; 
+    private final int SPACE = 5;
     // Recherche bounds
     private final int W_CBOX = 100;
     private final int H_CBOX = 30;
     private final int Y_CBOX = Y_ORIGIN;
-    private final int X_CBOX_AUTEUR = (W_FRAME - 4*(W_CBOX + 5)) / 2;
-    private final int X_CBOX_TITRE = X_CBOX_AUTEUR + W_CBOX + 5;
-    private final int X_CBOX_ISBN = X_CBOX_TITRE + W_CBOX + 5;
-    private final int X_CBOX_SUJET = X_CBOX_ISBN + W_CBOX + 5;
+    private final int X_CBOX_AUTEUR = (W_FRAME - 4*(W_CBOX + SPACE)) / 2;
+    private final int X_CBOX_TITRE = X_CBOX_AUTEUR + W_CBOX + SPACE;
+    private final int X_CBOX_ISBN = X_CBOX_TITRE + W_CBOX + SPACE;
+    private final int X_CBOX_SUJET = X_CBOX_ISBN + W_CBOX + SPACE;
     
     private final int W_B_RECHERCHE = 120;
     private final int H_BUTTON = H_CBOX;
     private final int H_TF_RECHERCHE = H_CBOX;
     private final int W_TF_RECHERCHE = W_FRAME - 2*W_CBOX - W_B_RECHERCHE;
     private final int X_TF_RECHERCHE = 
-        (W_FRAME - W_TF_RECHERCHE - W_B_RECHERCHE) / 2 - 10;
-    private final int X_B_RECHERCHE = X_TF_RECHERCHE + W_TF_RECHERCHE + 5;
+        (W_FRAME - W_TF_RECHERCHE - W_B_RECHERCHE) / 2 - 2*SPACE;
+    private final int X_B_RECHERCHE = X_TF_RECHERCHE + W_TF_RECHERCHE + SPACE;
     private final int Y_TF_RECHERCHE = Y_ORIGIN + H_CBOX;
     private final int Y_B_RECHERCHE = Y_TF_RECHERCHE;
     
     private final int W_SCROLLPANE = 
         W_TF_RECHERCHE + W_B_RECHERCHE + X_TF_RECHERCHE;
-    private final int X_SCROLLPANE = (W_FRAME - W_SCROLLPANE) / 2 - 10;
-    private final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_TF_RECHERCHE + 5;
+    private final int X_SCROLLPANE = (W_FRAME - W_SCROLLPANE) / 2 - 2*SPACE;
+    private final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_TF_RECHERCHE + SPACE;
     private final int H_SCROLLPANE = H_FRAME - 2*Y_SCROLLPANE - 2*Y_ORIGIN;
     
     private final int W_B_RESERVE = 150;
-    private final int Y_B_RESERVE = Y_SCROLLPANE + H_SCROLLPANE + 15;
+    private final int Y_B_RESERVE = Y_SCROLLPANE + H_SCROLLPANE + 3*SPACE;
     private final int X_B_RESERVE = X_SCROLLPANE + W_SCROLLPANE - W_B_RESERVE;
     
     // Objects

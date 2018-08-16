@@ -5,50 +5,33 @@
  */
 package fenetres;
 
-import java.awt.Container;
-import javax.swing.BoxLayout;
+import java.awt.Font;
+import java.awt.font.TextAttribute;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.border.EmptyBorder;
 import listeners.QuiterListener;
 import listeners.ReinitialiserMDPListener;
 
 /**
- *
- * @author sire_marcos
+ * @author Marcos Gomes
  */
 public class NewMotPasse extends JFrame implements InterfaceFenetres{
-    // Champs
-    private final String TITRE = "Réinitialiser mot de passe";
-    private final String UTILISATEUR = "Utilisateur: ";
-    private final String MDP = "Mot de Passe: ";
-    private final String CONFIRM_MDP = "Confirmation: ";
-    private final String DATE_NAISSANCE = "Date de Naissance: ";
-    private final String B_ENVOYER = "Envoyer";
-    private final String B_ANNULER = "Annuler";
-    private final String MSG_1 =
-              "Voulez-vous annuler le nouveau mot de passe?\n"
-            + "Si oui, les informations seront perdues!";
-    private final String MSG_TITRE = "Attention!";
-    private final int LARGEUR = 400;
-    private final int HAUTEUR = 300;
-    private final int H_PAD_TF = 50;
-    private final int B_PAD_TF = 40;
-    private final int GD_PAD_TF = 20;
-    private final int B_PAD_L = 20;
-    private final int B_PAD_B = 10;
-            
+    // Fields
+    
+    
     // Objets
-    private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date;
+    private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date,
+            l_hintDate;
     private JTextField tf_utilisateur, tf_date;
     private JPasswordField pf_motPasse,pf_confirmation;
     private JButton b_envoyer, b_annuler;
-    private JPanel labelPanel, tfPanel, horPanel, buttonPanel;
-    private Container cont;
+    private JPanel mainPanel;
     
     public static NewMotPasse courant;
     
@@ -57,69 +40,114 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         initialiserComposants();
         layouts();
         polices();
+        styles();
         definirListeners();
         courant = this;
     }
 
     @Override
     public void initialiserComposants() {
-        //
+        // Locals
+        final String TITRE = "Réinitialiser mot de passe";
+        final String L_USER = "Utilisateur:";
+        final String L_MDP = "Mot de Passe:";
+        final String L_CONFIRM_MDP = "Confirmation:";
+        final String L_DATE = "Date de Naissance:";
+        final String L_HINTDATE = "yyyy-mm-jj";
+        final String B_ENVOYER = "Envoyer";
+        final String B_ANNULER = "Annuler";
+        // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        //
-        l_utilisateur = new JLabel(UTILISATEUR);
-        l_date = new JLabel(DATE_NAISSANCE);
-        l_motPasse = new JLabel(MDP);
-        l_confirmation = new JLabel(CONFIRM_MDP);
-        labelPanel = new JPanel();
-        labelPanel.add(l_utilisateur); labelPanel.add(l_date);
-        labelPanel.add(l_motPasse); labelPanel.add(l_confirmation);
-        
+        // Labels
+        l_utilisateur = new JLabel(L_USER);
+        l_date = new JLabel(L_DATE);
+        l_hintDate = new JLabel(L_HINTDATE);
+        l_motPasse = new JLabel(L_MDP);
+        l_confirmation = new JLabel(L_CONFIRM_MDP);
+        // Text fields
         tf_utilisateur = new JTextField();
         tf_date = new JTextField();
         pf_motPasse = new JPasswordField();
         pf_confirmation = new JPasswordField();
-        tfPanel = new JPanel();
-        tfPanel.add(tf_utilisateur); tfPanel.add(tf_date);
-        tfPanel.add(pf_motPasse); tfPanel.add(pf_confirmation);
-        
-        horPanel = new JPanel();
-        horPanel.add(labelPanel); horPanel.add(tfPanel);
-        
+        // Buttons
         b_annuler = new JButton(B_ANNULER);
         b_envoyer = new JButton(B_ENVOYER);
-        buttonPanel = new JPanel();
-        buttonPanel.add(b_annuler); buttonPanel.add(b_envoyer);
+        // Panel
+        mainPanel = new JPanel();
+        mainPanel.add(l_utilisateur); mainPanel.add(l_date);
+        mainPanel.add(l_hintDate);mainPanel.add(l_motPasse); 
+        mainPanel.add(l_confirmation);
+        mainPanel.add(tf_utilisateur);mainPanel.add(tf_date);
+        mainPanel.add(pf_motPasse);mainPanel.add(pf_confirmation);
+        mainPanel.add(b_annuler);mainPanel.add(b_envoyer);
         
-        cont = getContentPane();
-        cont.add(horPanel); cont.add(buttonPanel);
+        add(mainPanel);
     }
 
     @Override
     public void layouts() {
-        //
+        // Main bounds
+        final int W_FRAME = 470;
+        final int H_FRAME = 310;
+        final int ORIGIN = 30;
+        final int SPACE = 5;
+        // Components bounds
+        final int H_COMP = 30;
+        final int W_TFIELD = 200;
+
+        final int W_L_USER = 70;
+        final int X_L_USER = ORIGIN + 10*SPACE;
+        final int Y_L_USER = ORIGIN;
+        final int X_TF_USER = X_L_USER + W_L_USER + SPACE;
+        final int Y_TF_USER = Y_L_USER;
+
+        final int W_L_DATE = 120;
+        final int X_L_DATE = ORIGIN;
+        final int Y_L_DATE = Y_L_USER + H_COMP + SPACE;
+        final int X_TF_DATE = X_L_DATE + W_L_DATE + SPACE;
+        final int Y_TF_DATE = Y_L_DATE;
+        final int W_L_HINTDATE = 80;
+        final int X_L_HINTDATE = X_TF_DATE + W_TFIELD + SPACE;
+        final int Y_L_HINTDATE = Y_TF_DATE;
+    
+        final int W_L_MDP = 90;
+        final int X_L_MDP = ORIGIN + 6*SPACE;
+        final int Y_L_MDP = Y_L_DATE + H_COMP + ORIGIN;
+        final int X_PF_MDP = X_L_MDP + W_L_MDP + SPACE;
+        final int Y_PF_MDP = Y_L_MDP;
+
+        final int W_L_CMDP = 90;
+        final int X_L_CMDP = ORIGIN + 6*SPACE;
+        final int Y_L_CMDP = Y_L_MDP + H_COMP + SPACE;
+        final int X_PF_CMDP = X_L_CMDP + W_L_CMDP + SPACE;
+        final int Y_PF_CMDP = Y_L_CMDP;
+
+        final int W_BUTTON = 100;
+        final int X_B_ANNULER = (W_FRAME - 2*W_BUTTON - 20*SPACE) / 2;
+        final int Y_B_ANNULER = Y_L_CMDP + H_COMP + ORIGIN;
+        final int X_B_ENVOYER = X_B_ANNULER + W_BUTTON + 20*SPACE;
+        final int Y_B_ENVOYER = Y_B_ANNULER;
+        // Frame layout
         setResizable(false);
-        setSize(LARGEUR, HAUTEUR);
+        setSize(W_FRAME, H_FRAME);
         setLocationRelativeTo(null);
-        cont.setLayout(new BoxLayout(cont, BoxLayout.Y_AXIS));
-        //
-        l_utilisateur.setAlignmentX(RIGHT_ALIGNMENT);
-        l_date.setAlignmentX(RIGHT_ALIGNMENT);
-        l_motPasse.setAlignmentX(RIGHT_ALIGNMENT);
-        l_confirmation.setAlignmentX(RIGHT_ALIGNMENT);
-        l_utilisateur.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
-        l_date.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
-        l_motPasse.setBorder(new EmptyBorder(0, 0, B_PAD_L, 0));
-        b_envoyer.setAlignmentX(RIGHT_ALIGNMENT); 
+        // Panel layout
+        mainPanel.setLayout(null);
+        // Components layout
+        l_utilisateur.setBounds(X_L_USER, Y_L_USER, W_L_USER, H_COMP);
+        l_date.setBounds(X_L_DATE, Y_L_DATE, W_L_DATE, H_COMP);
+        l_hintDate.setBounds(X_L_HINTDATE, Y_L_HINTDATE, W_L_HINTDATE, H_COMP);
+        l_motPasse.setBounds(X_L_MDP, Y_L_MDP, W_L_MDP, H_COMP);
+        l_confirmation.setBounds(X_L_CMDP, Y_L_CMDP, W_L_CMDP, H_COMP);
         
-        //
-        horPanel.setLayout(new BoxLayout(horPanel, BoxLayout.X_AXIS));
-        horPanel.setBorder(
-                new EmptyBorder(H_PAD_TF, GD_PAD_TF,B_PAD_TF, GD_PAD_TF));
-        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
-        tfPanel.setLayout(new BoxLayout(tfPanel, BoxLayout.Y_AXIS));
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        buttonPanel.setBorder(new EmptyBorder(0, 0, B_PAD_B, 0));
+        tf_utilisateur.setBounds(X_TF_USER, Y_TF_USER, W_TFIELD, H_COMP);
+        tf_date.setBounds(X_TF_DATE, Y_TF_DATE, W_TFIELD, H_COMP);
+        pf_motPasse.setBounds(X_PF_MDP, Y_PF_MDP, W_TFIELD, H_COMP);
+        pf_confirmation.setBounds(X_PF_CMDP, Y_PF_CMDP, W_TFIELD, H_COMP);
+        
+        b_annuler.setBounds(X_B_ANNULER, Y_B_ANNULER, W_BUTTON, H_COMP);
+        b_envoyer.setBounds(X_B_ENVOYER, Y_B_ENVOYER, W_BUTTON, H_COMP);
     }
 
     @Override
@@ -129,14 +157,22 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
  
     @Override
     public void polices() {
-        
+        Map<TextAttribute, Object> pol_hintDate = new HashMap<>();
+        pol_hintDate.put(
+            TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE);
+        l_hintDate.setFont(Font.getFont(pol_hintDate));
     }
 
     @Override
     public void definirListeners() {
-        //
+        // Locals
+        final String MSG_1 =
+              "Voulez-vous annuler le nouveau mot de passe?\n"
+            + "Si oui, les informations seront perdues!";
+        final String MSG_1_TITRE = "Attention!";
+        // Listeners
         b_annuler.addActionListener(
-            new QuiterListener(this, MSG_1, MSG_TITRE));
+            new QuiterListener(this, MSG_1, MSG_1_TITRE));
         b_envoyer.addActionListener(new ReinitialiserMDPListener());
     }
 

@@ -2,14 +2,12 @@
 package fenetres;
 
 
-
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -21,7 +19,6 @@ import javax.swing.JPasswordField;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.KeyStroke;
-import javax.swing.border.EmptyBorder;
 import listeners.ConnecterListener;
 import listeners.MPOListener;
 import listeners.QuiterListener;
@@ -29,34 +26,13 @@ import listeners.RechercheAvanceListener;
 
 /**
  *
- * @author sire_marcos
+ * @author Marcos Gomes
  */
 public class Identifier extends JFrame implements InterfaceFenetres{
-    // Champs
-    private final String TITRE = "Identification";
-    private final String TITRE_PANE = "Bibliothèque Marguerite Bourgeoys";
-    private final String L_UTILISATEUR = "Utilisateur: ";
-    private final String L_MOT_DE_PASSE = "Mot de Passe: ";
-    private final String B_CONNECTER = "Connection";
-    private final String B_OUBLIE = "Mot de passe oublié";
-    private final String M_BIBLIOTHEQUE = "Bibliothèque";
-    private final String M_RECHERCHE = "Recherche";
-    private final String MI_RECHERCHE_TITRE = "Par titre";
-    private final String MI_RECHERCHE_AVANCE = "Avancée";
-    private final String A_PROPOS = "À propos...";
-    private final String QUITER_BIBLIOTHEQUE = "Quiter la bibliothèque";
-    private final String MSG_1 = "Voulez-vous quiter l'appication?";
-    private final String MSG_1_TITRE = "Message";
-    private final int LARGEUR = 400;
-    private final int HAUTEUR = 350;
-    private final int BRD_H_B = 40;
-    private final int BRD_G_D = 58;
-    private final int HAUT_BAS = 50;
-    private final int ENTRE_LB = 20;
+    // Fields
     
     // Objects
-    private JPanel mainPanel, labelPanel, textePanel,
-            basPanel, hautPanel, buttonPanel;
+    private JPanel mainPanel;
     private JLabel l_utilisateur, l_motPasse, l_titre;
     private JTextField tf_utilisateur;
     private JPasswordField pf_motPasse;
@@ -80,10 +56,14 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     
     @Override
     public final void initialiserMenuBar(){
-        //
-        m_biblio = new JMenu(M_BIBLIOTHEQUE);
-        m_recherche = new JMenu(M_RECHERCHE);
-        
+        // Locals
+        final String M_BIBLIOTHEQUE = "Bibliothèque";
+        final String M_RECHERCHE = "Recherche";
+        final String MI_RECHERCHE_TITRE = "Par titre";
+        final String MI_RECHERCHE_AVANCE = "Avancée";
+        final String A_PROPOS = "À propos...";
+        final String QUITER = "Quiter";
+        // Menu items
         mi_parTitre = new JMenuItem(MI_RECHERCHE_TITRE);
         mi_parTitre.setAccelerator(
             KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
@@ -92,76 +72,102 @@ public class Identifier extends JFrame implements InterfaceFenetres{
             KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
         
         mi_aPropos = new JMenuItem(A_PROPOS);
-        mi_quiter = new JMenuItem(QUITER_BIBLIOTHEQUE);
+        mi_quiter = new JMenuItem(QUITER);
         mi_quiter.setAccelerator(
             KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
-        
+        // Menus
+        m_biblio = new JMenu(M_BIBLIOTHEQUE);
+        m_recherche = new JMenu(M_RECHERCHE);
         m_recherche.add(mi_parTitre); m_recherche.add(new JSeparator());
         m_recherche.add(mi_avancee);
         m_biblio.add(mi_aPropos); m_biblio.add(new JSeparator());
         m_biblio.add(mi_quiter);
-        
+        // Menubar
         menuBar = new JMenuBar();
         menuBar.add(m_biblio); menuBar.add(m_recherche);
     }
     
     @Override
     public final void initialiserComposants() {
+        // Locals
+        final String TITRE = "Identification";
+        final String TITRE_PANEL = "Bibliothèque Marguerite Bourgeoys";
+        final String L_UTILISATEUR = "Utilisateur:";
+        final String L_MDP = "Mot de Passe:";
+        final String B_CONNECTER = "Connection";
+        final String B_OUBLIE = "Mot de passe oublié";
         // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setJMenuBar(menuBar);
-        // 
-        l_titre = new JLabel(TITRE_PANE);
-        l_motPasse = new JLabel(L_MOT_DE_PASSE);
+        // Labels
+        l_titre = new JLabel(TITRE_PANEL);
+        l_motPasse = new JLabel(L_MDP);
         l_utilisateur = new JLabel(L_UTILISATEUR);
-        hautPanel = new JPanel();
-        hautPanel.add(l_titre);
-        labelPanel = new JPanel();
-        labelPanel.add(l_utilisateur); labelPanel.add(l_motPasse);
-        
+        // Text fields
         tf_utilisateur = new JTextField();
         pf_motPasse = new JPasswordField();
-        textePanel = new JPanel();
-        textePanel.add(tf_utilisateur); textePanel.add(pf_motPasse);
-        
-        basPanel = new JPanel();
-        basPanel.add(labelPanel); basPanel.add(textePanel);
-        
+        // Buttons
         b_connecter = new JButton(B_CONNECTER);
         b_mpOublie = new JButton(B_OUBLIE);
-        buttonPanel = new JPanel();
-        buttonPanel.add(b_mpOublie); buttonPanel.add(b_connecter);
-        
+        // Panel
         mainPanel = new JPanel();
-        mainPanel.add(hautPanel); mainPanel.add(basPanel);
-        mainPanel.add(buttonPanel);
+        mainPanel.add(l_titre);mainPanel.add(l_motPasse);
+        mainPanel.add(l_utilisateur);
+        mainPanel.add(tf_utilisateur);mainPanel.add(pf_motPasse);
+        mainPanel.add(b_connecter);mainPanel.add(b_mpOublie);
         
-        this.setContentPane(mainPanel);
+        add(mainPanel);
     }
 
     @Override
     public final void layouts() {
-        //
+        // Main bounds
+        final int W_FRAME = 400;
+        final int H_FRAME = 300;
+        final int ORIGIN = 30;
+        final int SPACE = 5;
+        // Components bounds
+        final int W_L_TITRE = 280;
+        final int H_COMP = 30;
+        final int X_L_TITRE = (W_FRAME - W_L_TITRE) / 2;
+        final int Y_L_TITRE = ORIGIN;
+
+        final int W_L_USER = 70;
+        final int X_L_USER = ORIGIN + 4*SPACE;
+        final int Y_L_USER = Y_L_TITRE + H_COMP + ORIGIN;
+        final int W_TF_USER = 200;
+        final int X_TF_USER = X_L_USER + W_L_USER + SPACE;
+        final int Y_TF_USER = Y_L_USER;
+
+        final int W_L_MPASSE = 90;
+        final int X_L_MPASSE = ORIGIN;
+        final int Y_L_MPASSE = Y_L_USER + H_COMP + 3*SPACE;
+        final int W_PF_MPASSE = W_TF_USER;
+        final int X_PF_MPASSE = X_L_MPASSE + W_L_MPASSE + SPACE;
+        final int Y_PF_MPASSE = Y_L_MPASSE;
+
+        final int W_BUTTON = 160;
+        final int X_B_MPO = (W_FRAME - 2*W_BUTTON - SPACE) / 2;
+        final int Y_B_MPO = Y_L_MPASSE + H_COMP + ORIGIN;
+        final int X_B_CONEC = X_B_MPO + W_BUTTON + SPACE;
+        final int Y_B_CONEC = Y_B_MPO;
+        // Frame layout
         setResizable(false);
-        setSize(LARGEUR, HAUTEUR);
+        setSize(W_FRAME, H_FRAME);
         setLocationRelativeTo(null); /* Fonctionne après définir la taille */
+        // Panel layout
+        mainPanel.setLayout(null);
+        // Components layout
+        l_titre.setBounds(X_L_TITRE, Y_L_TITRE, W_L_TITRE, H_COMP);
+        l_utilisateur.setBounds(X_L_USER, Y_L_USER, W_L_USER, H_COMP);
+        l_motPasse.setBounds(X_L_MPASSE, Y_L_MPASSE, W_L_MPASSE, H_COMP);
+        tf_utilisateur.setBounds(X_TF_USER, Y_TF_USER, W_TF_USER, H_COMP);
+        pf_motPasse.setBounds(X_PF_MPASSE, Y_PF_MPASSE, W_PF_MPASSE, H_COMP);
+        b_mpOublie.setBounds(X_B_MPO, Y_B_MPO, W_BUTTON, H_COMP);
+        b_connecter.setBounds(X_B_CONEC, Y_B_CONEC, W_BUTTON, H_COMP);
         //
-        l_titre.setAlignmentX(RIGHT_ALIGNMENT);
-        l_utilisateur.setAlignmentX(RIGHT_ALIGNMENT);
-        l_motPasse.setAlignmentX(RIGHT_ALIGNMENT);
-        //
-        basPanel.setLayout(new BoxLayout(basPanel, BoxLayout.X_AXIS));
-        labelPanel.setLayout(new BoxLayout(labelPanel, BoxLayout.Y_AXIS));
-        textePanel.setLayout(new BoxLayout(textePanel, BoxLayout.Y_AXIS));
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-        mainPanel.setLayout(new BoxLayout(mainPanel,BoxLayout.PAGE_AXIS));
         
-        buttonPanel.setBorder(new EmptyBorder(HAUT_BAS, 0, 0, 0));
-        l_utilisateur.setBorder(new EmptyBorder(0, 0, ENTRE_LB, 0));
-        l_titre.setBorder(new EmptyBorder(0, 0, HAUT_BAS, 0));
-        mainPanel.setBorder(
-            new EmptyBorder(BRD_H_B, BRD_G_D, BRD_H_B, BRD_G_D));
     }
     
     @Override
@@ -181,6 +187,9 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     
     @Override
     public final void definirListeners(){
+        // Locals 
+        final String MSG_1 = "Voulez-vous quiter l'appication?";
+        final String MSG_1_TITRE = "Message";
         //
         b_connecter.addActionListener(new ConnecterListener());
         b_mpOublie.addActionListener(new MPOListener());
