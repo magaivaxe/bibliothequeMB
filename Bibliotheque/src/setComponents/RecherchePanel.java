@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import tables.TMRechercher;
+import tableModels.TMSearchBook;
 
 /**
  * @author Marcos Gomes
@@ -21,7 +21,7 @@ public class RecherchePanel extends JPanel implements InterfaceComponents{
     private JButton b_recherche, b_reserver;
     private JScrollPane scrollPane;
     private JTable jta_recherche;
-    private TMRechercher tm_recherche;
+    private TMSearchBook tm_recherche;
     
     public static RecherchePanel courant;
     // Constructor
@@ -52,7 +52,7 @@ public class RecherchePanel extends JPanel implements InterfaceComponents{
         tf_recherche = new JTextField();
         b_recherche = new JButton(B_RECHERCHER);
         b_reserver = new JButton(B_RESERVER);
-        tm_recherche = new TMRechercher();
+        tm_recherche = new TMSearchBook();
         jta_recherche = new JTable(tm_recherche);
         scrollPane = new JScrollPane(jta_recherche);
         

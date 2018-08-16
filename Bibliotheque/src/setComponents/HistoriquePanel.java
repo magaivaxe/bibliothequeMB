@@ -5,7 +5,15 @@
  */
 package setComponents;
 
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import tableModels.TMHistory;
 
 /**
  *
@@ -15,6 +23,14 @@ public class HistoriquePanel extends JPanel implements InterfaceComponents{
     // Fields
     
     // Objects
+    private JLabel l_startDate, l_finalDate;
+    private JDateChooser dc_startDate, dc_finalDate;
+    private JCheckBox cb_phone, cb_id;
+    private JTextField tf_search;
+    private JButton b_search, b_renew;
+    private JScrollPane scrollPane;
+    private JTable table;
+    private TMHistory tm_history;
     
     public static HistoriquePanel courant;
     

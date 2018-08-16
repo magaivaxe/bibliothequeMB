@@ -84,7 +84,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     @Override
     public void layouts() {
         // Main bounds
-        final int W_FRAME = 470;
+        final int W_FRAME = 400;
         final int H_FRAME = 310;
         final int ORIGIN = 30;
         final int SPACE = 5;
@@ -103,9 +103,6 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         final int Y_L_DATE = Y_L_USER + H_COMP + SPACE;
         final int X_TF_DATE = X_L_DATE + W_L_DATE + SPACE;
         final int Y_TF_DATE = Y_L_DATE;
-        final int W_L_HINTDATE = 80;
-        final int X_L_HINTDATE = X_TF_DATE + W_TFIELD + SPACE;
-        final int Y_L_HINTDATE = Y_TF_DATE;
     
         final int W_L_MDP = 90;
         final int X_L_MDP = ORIGIN + 6*SPACE;
