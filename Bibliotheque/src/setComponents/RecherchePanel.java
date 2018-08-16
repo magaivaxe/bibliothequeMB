@@ -10,7 +10,6 @@ import javax.swing.JTextField;
 import tables.TMRechercher;
 
 /**
- *
  * @author Marcos Gomes
  */
 public class RecherchePanel extends JPanel implements InterfaceComponents{

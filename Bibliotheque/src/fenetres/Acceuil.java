@@ -1,28 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package fenetres;
 
-
 import javax.swing.JFrame;
-import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import listeners.QuiterListener;
 import setComponents.GeneralMenuBar;
+import setComponents.HistoriquePanel;
 import setComponents.RecherchePanel;
 
 /**
- *
- * @author sire_marcos
+ * @author Marcos Gomes
  */
 public class Acceuil extends JFrame implements InterfaceFenetres{
     // Champs
     
     // Objects
-    private JMenuBar menuBar;
     private JPanel recherchePanel, historiquePanel,
             empruntsPanel,livreAjouterPanel,livreMJPanel,livreAMPanel,
             userAjouterPanel,userBloquerPanel;
@@ -40,7 +33,6 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
         courant = this;
     }
     
-    
     @Override
     public void initialiserComposants() {
         // Locals
@@ -57,11 +49,10 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
         // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        menuBar = new GeneralMenuBar();
-        setJMenuBar(menuBar);
+        setJMenuBar(new GeneralMenuBar());
         // Panels
         recherchePanel = new RecherchePanel();
-        historiquePanel = new JPanel();
+        historiquePanel = new HistoriquePanel();
         empruntsPanel = new JPanel();
         livreAjouterPanel = new JPanel(); livreMJPanel = new JPanel();
         livreAMPanel = new JPanel();
@@ -110,10 +101,10 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
 
     @Override
     public void definirListeners() {
-        //
+        // Locals
         final String MSG_1 = "Voulez-vous quiter l'appication?";
         final String MSG_1_TITRE = "Message";
-        
+        // Menubar listeners
         GeneralMenuBar.courant.getMi_quiter().addActionListener(
             new QuiterListener(this, MSG_1, MSG_1_TITRE));
     }

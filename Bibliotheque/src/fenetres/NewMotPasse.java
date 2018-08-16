@@ -5,7 +5,7 @@
  */
 package fenetres;
 
-import java.awt.Font;
+import com.toedter.calendar.JDateChooser;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,11 +24,10 @@ import listeners.ReinitialiserMDPListener;
 public class NewMotPasse extends JFrame implements InterfaceFenetres{
     // Fields
     
-    
     // Objets
-    private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date,
-            l_hintDate;
-    private JTextField tf_utilisateur, tf_date;
+    private JLabel l_utilisateur, l_motPasse, l_confirmation, l_date;
+    private JTextField tf_utilisateur;
+    private JDateChooser dataChooser;
     private JPasswordField pf_motPasse,pf_confirmation;
     private JButton b_envoyer, b_annuler;
     private JPanel mainPanel;
@@ -53,7 +52,6 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         final String L_MDP = "Mot de Passe:";
         final String L_CONFIRM_MDP = "Confirmation:";
         final String L_DATE = "Date de Naissance:";
-        final String L_HINTDATE = "yyyy-mm-jj";
         final String B_ENVOYER = "Envoyer";
         final String B_ANNULER = "Annuler";
         // Frame
@@ -62,12 +60,11 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         // Labels
         l_utilisateur = new JLabel(L_USER);
         l_date = new JLabel(L_DATE);
-        l_hintDate = new JLabel(L_HINTDATE);
         l_motPasse = new JLabel(L_MDP);
         l_confirmation = new JLabel(L_CONFIRM_MDP);
         // Text fields
         tf_utilisateur = new JTextField();
-        tf_date = new JTextField();
+        dataChooser = new JDateChooser();
         pf_motPasse = new JPasswordField();
         pf_confirmation = new JPasswordField();
         // Buttons
@@ -76,9 +73,8 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         // Panel
         mainPanel = new JPanel();
         mainPanel.add(l_utilisateur); mainPanel.add(l_date);
-        mainPanel.add(l_hintDate);mainPanel.add(l_motPasse); 
-        mainPanel.add(l_confirmation);
-        mainPanel.add(tf_utilisateur);mainPanel.add(tf_date);
+        mainPanel.add(l_motPasse); mainPanel.add(l_confirmation);
+        mainPanel.add(tf_utilisateur);mainPanel.add(dataChooser);
         mainPanel.add(pf_motPasse);mainPanel.add(pf_confirmation);
         mainPanel.add(b_annuler);mainPanel.add(b_envoyer);
         
@@ -137,12 +133,11 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         // Components layout
         l_utilisateur.setBounds(X_L_USER, Y_L_USER, W_L_USER, H_COMP);
         l_date.setBounds(X_L_DATE, Y_L_DATE, W_L_DATE, H_COMP);
-        l_hintDate.setBounds(X_L_HINTDATE, Y_L_HINTDATE, W_L_HINTDATE, H_COMP);
         l_motPasse.setBounds(X_L_MDP, Y_L_MDP, W_L_MDP, H_COMP);
         l_confirmation.setBounds(X_L_CMDP, Y_L_CMDP, W_L_CMDP, H_COMP);
         
         tf_utilisateur.setBounds(X_TF_USER, Y_TF_USER, W_TFIELD, H_COMP);
-        tf_date.setBounds(X_TF_DATE, Y_TF_DATE, W_TFIELD, H_COMP);
+        dataChooser.setBounds(X_TF_DATE, Y_TF_DATE, W_TFIELD, H_COMP);
         pf_motPasse.setBounds(X_PF_MDP, Y_PF_MDP, W_TFIELD, H_COMP);
         pf_confirmation.setBounds(X_PF_CMDP, Y_PF_CMDP, W_TFIELD, H_COMP);
         
@@ -160,7 +155,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         Map<TextAttribute, Object> pol_hintDate = new HashMap<>();
         pol_hintDate.put(
             TextAttribute.POSTURE, TextAttribute.POSTURE_OBLIQUE);
-        l_hintDate.setFont(Font.getFont(pol_hintDate));
+//        l_hintDate.setFont(Font.getFont(pol_hintDate));
     }
 
     @Override
@@ -179,7 +174,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
     // Getters
     public JTextField getTf_utilisateur() {return tf_utilisateur;}
 
-    public JTextField getTf_date() {return tf_date;}
+    public JDateChooser getDataChooser() {return dataChooser;}
 
     public JPasswordField getPf_motPasse() {return pf_motPasse;}
 
