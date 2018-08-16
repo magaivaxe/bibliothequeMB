@@ -10,9 +10,9 @@ import java.awt.event.ActionListener;
 
 /**
  *
- * @author Marcos
+ * @author sire_marcos
  */
-public class RechercheAvanceListener implements ActionListener{
+public class AProposListener implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {

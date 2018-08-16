@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package panelsAcceuil;
+package setComponents;
 
 /**
  *
  * @author sire_marcos
  */
-public interface InterfacePanels {
+public interface InterfaceComponents {
     
     /**
      * 

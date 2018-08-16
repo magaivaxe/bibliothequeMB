@@ -11,8 +11,6 @@ package fenetres;
  */
 interface InterfaceFenetres {
     
-    
-    public void initialiserMenuBar();
     /**
      * 
      */

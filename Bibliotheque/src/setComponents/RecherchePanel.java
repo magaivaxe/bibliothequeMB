@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package panelsAcceuil;
+
+package setComponents;
 
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -15,9 +11,9 @@ import tables.TMRechercher;
 
 /**
  *
- * @author sire_marcos
+ * @author Marcos Gomes
  */
-public class RecherchePanel extends JPanel implements InterfacePanels{
+public class RecherchePanel extends JPanel implements InterfaceComponents{
     // Fields
     
     // Objects
@@ -126,8 +122,21 @@ public class RecherchePanel extends JPanel implements InterfacePanels{
         
     }
 
-    public JButton getB_recherche() {
-        return b_recherche;
-    }
+    // Getters
+
+    public JCheckBox getCb_titre() {return cb_titre;}
+
+    public JCheckBox getCb_auteur() {return cb_auteur;}
+
+    public JCheckBox getCb_isbn() {return cb_isbn;}
+
+    public JCheckBox getCb_sujet() {return cb_sujet;}
+
+    public JTextField getTf_recherche() {return tf_recherche;}
+
+    public JButton getB_recherche() {return b_recherche;}
+
+    public JButton getB_reserver() {return b_reserver;}
+    
     
 }

@@ -175,11 +175,6 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
             new QuiterListener(this, MSG_1, MSG_1_TITRE));
         b_envoyer.addActionListener(new ReinitialiserMDPListener());
     }
-
-    @Override
-    public void initialiserMenuBar(){
-        
-    }
     
     // Getters
     public JTextField getTf_utilisateur() {return tf_utilisateur;}

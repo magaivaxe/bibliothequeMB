@@ -3,26 +3,21 @@ package fenetres;
 
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JMenu;
 import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
-import javax.swing.JSeparator;
 import javax.swing.JTextField;
-import javax.swing.KeyStroke;
+import listeners.AProposListener;
 import listeners.ConnecterListener;
 import listeners.MPOListener;
 import listeners.QuiterListener;
-import listeners.RechercheAvanceListener;
+import setComponents.GeneralMenuBar;
 
 /**
  *
@@ -38,53 +33,17 @@ public class Identifier extends JFrame implements InterfaceFenetres{
     private JPasswordField pf_motPasse;
     private JButton b_connecter, b_mpOublie;
     private JMenuBar menuBar;
-    private JMenu m_biblio, m_recherche;
-    private JMenuItem mi_aPropos,mi_quiter, mi_parTitre, mi_avancee;
     
     public static Identifier courant;
     
     // Constructeur
     public Identifier() {
-        initialiserMenuBar();
         initialiserComposants();
         layouts();
         polices();
         styles();
         definirListeners();
         courant = this;
-    }
-    
-    @Override
-    public final void initialiserMenuBar(){
-        // Locals
-        final String M_BIBLIOTHEQUE = "Bibliothèque";
-        final String M_RECHERCHE = "Recherche";
-        final String MI_RECHERCHE_TITRE = "Par titre";
-        final String MI_RECHERCHE_AVANCE = "Avancée";
-        final String A_PROPOS = "À propos...";
-        final String QUITER = "Quiter";
-        // Menu items
-        mi_parTitre = new JMenuItem(MI_RECHERCHE_TITRE);
-        mi_parTitre.setAccelerator(
-            KeyStroke.getKeyStroke(KeyEvent.VK_R, ActionEvent.CTRL_MASK));
-        mi_avancee = new JMenuItem(MI_RECHERCHE_AVANCE);
-        mi_avancee.setAccelerator(
-            KeyStroke.getKeyStroke(KeyEvent.VK_A, ActionEvent.CTRL_MASK));
-        
-        mi_aPropos = new JMenuItem(A_PROPOS);
-        mi_quiter = new JMenuItem(QUITER);
-        mi_quiter.setAccelerator(
-            KeyStroke.getKeyStroke(KeyEvent.VK_Q, ActionEvent.CTRL_MASK));
-        // Menus
-        m_biblio = new JMenu(M_BIBLIOTHEQUE);
-        m_recherche = new JMenu(M_RECHERCHE);
-        m_recherche.add(mi_parTitre); m_recherche.add(new JSeparator());
-        m_recherche.add(mi_avancee);
-        m_biblio.add(mi_aPropos); m_biblio.add(new JSeparator());
-        m_biblio.add(mi_quiter);
-        // Menubar
-        menuBar = new JMenuBar();
-        menuBar.add(m_biblio); menuBar.add(m_recherche);
     }
     
     @Override
@@ -99,6 +58,7 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         // Frame
         setTitle(TITRE);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        menuBar = new GeneralMenuBar();
         setJMenuBar(menuBar);
         // Labels
         l_titre = new JLabel(TITRE_PANEL);
@@ -166,8 +126,6 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         pf_motPasse.setBounds(X_PF_MPASSE, Y_PF_MPASSE, W_PF_MPASSE, H_COMP);
         b_mpOublie.setBounds(X_B_MPO, Y_B_MPO, W_BUTTON, H_COMP);
         b_connecter.setBounds(X_B_CONEC, Y_B_CONEC, W_BUTTON, H_COMP);
-        //
-        
     }
     
     @Override
@@ -190,12 +148,14 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         // Locals 
         final String MSG_1 = "Voulez-vous quiter l'appication?";
         final String MSG_1_TITRE = "Message";
-        //
+        // Identifier listeners
         b_connecter.addActionListener(new ConnecterListener());
         b_mpOublie.addActionListener(new MPOListener());
-        mi_parTitre.addActionListener(new RechercheAvanceListener());
-        mi_quiter.addActionListener(
+        // Menubar listeners
+        GeneralMenuBar.courant.getMi_quiter().addActionListener(
                 new QuiterListener(this, MSG_1, MSG_1_TITRE));
+        GeneralMenuBar.courant.getMi_aPropos().addActionListener(
+            new AProposListener());
     }
 
     public JTextField getTf_utilisateur(){return tf_utilisateur;}

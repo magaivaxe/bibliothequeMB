@@ -26,7 +26,6 @@ public class QuiterListener implements ActionListener{
         this.msg_titre = msg_titre;
     }
     
-    //
     @Override
     public void actionPerformed(ActionEvent e) {
         int r = JOptionPane.showConfirmDialog(
