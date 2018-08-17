@@ -10,11 +10,14 @@ import framesComponents.HistoryPanel;
 import framesComponents.SearchPanel;
 import interfaces.DefineActions;
 import interfaces.DefineComponents;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import listeners.RechercheListener;
 
 /**
  * @author Marcos Gomes
  */
-public class Acceuil
+public final class Acceuil
         extends JFrame implements DefineActions, DefineComponents {
     // Champs
     
@@ -104,9 +107,12 @@ public class Acceuil
         // Locals
         final String MSG_1 = "Voulez-vous quiter l'appication?";
         final String MSG_1_TITRE = "Message";
-        // Menubar listeners
+        // Menubar
         GeneralMenuBar.courant.getMi_quiter().addActionListener(
-            new QuiterListener(this, MSG_1, MSG_1_TITRE));
+            new QuiterListener(this, MSG_1, MSG_1_TITRE)); 
+        // Search Panel
+        SearchPanel.courant.getB_recherche().addActionListener(
+            new RechercheListener());
     }
     
 }

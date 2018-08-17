@@ -1,6 +1,7 @@
 
 package framesComponents;
 
+import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JPanel;
@@ -13,19 +14,23 @@ import interfaces.DefineComponents;
 /**
  * @author Marcos Gomes
  */
-public class SearchPanel extends JPanel implements DefineComponents{
+public final class SearchPanel extends JPanel implements DefineComponents{
     // Fields
     
     // Objects
     private JCheckBox cb_titre, cb_auteur, cb_isbn, cb_sujet;
     private JTextField tf_recherche;
-    /* hide update button to user */
-    private JButton b_recherche, b_reserver, b_update; 
+    private JButton b_recherche, b_reserver; 
     private JScrollPane scrollPane;
     private JTable jta_recherche;
     private TMSearchBook tm_recherche;
+        // Hide to users
+        private JDateChooser dc_start, dc_final;
+        private JCheckBox cb_deadArchive;
+        private JButton b_update;
     
     public static SearchPanel courant;
+    
     // Constructor
     public SearchPanel() {
         super();

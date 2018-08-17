@@ -20,8 +20,6 @@ public class Main {
         // Tests
         Acceuil acceuil = new Acceuil();
         acceuil.setVisible(true);
-        
-        
     }
     
 }
