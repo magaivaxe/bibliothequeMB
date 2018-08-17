@@ -17,12 +17,11 @@ import javax.swing.JTextArea;
  */
 public class UpdateBookPanel extends JPanel implements DefineComponents{
     // Fields
-    private final String [] statusBook = {
-        "Choisir status","Archive mort","Perdu","Renovation"};
+    
     // Objects
     private JTextArea textArea;
     private JComboBox<String> cmb_status;
-    private JButton b_cancel, b_saveUpdate;
+    private JButton b_cancel, b_update;
     
     public static UpdateBookPanel courant;
     
@@ -40,8 +39,18 @@ public class UpdateBookPanel extends JPanel implements DefineComponents{
     @Override
     public void initialiserComposants() {
         // Locals
+        final String [] statusBook = {
+            "Choisir status","Archive mort","Perdu","Renovation"
+        };
         final String B_CANCEL = "Annuler";
         final String B_UPDATE = "Enregistrer status";
+        // Components
+        textArea = new JTextArea();
+        cmb_status = new JComboBox<>(statusBook);
+        b_cancel = new JButton(B_CANCEL);
+        b_update = new JButton(B_UPDATE);
+        // Panel
+        add(textArea);add(cmb_status);add(b_cancel);add(b_update);
     }
 
     @Override
@@ -62,6 +71,11 @@ public class UpdateBookPanel extends JPanel implements DefineComponents{
     @Override
     public void polices() {
         
+    }
+    
+    // Getters
+    public JComboBox<String> getCmb_status() {
+        return cmb_status;
     }
     
 }
