@@ -1,8 +1,8 @@
 
 package mainPack;
 
-import fenetres.Acceuil;
-import fenetres.Identifier;
+import frames.Acceuil;
+import frames.Identifier;
 
 /**
  *

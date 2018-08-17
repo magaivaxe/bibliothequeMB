@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package setComponents;
+package framesComponents;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
@@ -12,12 +12,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
+import interfaces.DefineComponents;
 
 /**
  *
  * @author sire_marcos
  */
-public class GeneralMenuBar extends JMenuBar implements InterfaceComponents{
+public class GeneralMenuBar extends JMenuBar implements DefineComponents{
     // Fields
     
     // Objects
@@ -28,6 +29,7 @@ public class GeneralMenuBar extends JMenuBar implements InterfaceComponents{
     
     // Constructors
     public GeneralMenuBar() {
+        super();
         initialiserComposants();
         layouts();
         styles();

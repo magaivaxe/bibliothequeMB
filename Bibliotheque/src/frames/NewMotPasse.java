@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fenetres;
+package frames;
 
 import com.toedter.calendar.JDateChooser;
 import java.awt.font.TextAttribute;
@@ -17,11 +17,14 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import listeners.QuiterListener;
 import listeners.ReinitialiserMDPListener;
+import interfaces.DefineActions;
+import interfaces.DefineComponents;
 
 /**
  * @author Marcos Gomes
  */
-public class NewMotPasse extends JFrame implements InterfaceFenetres{
+public class NewMotPasse
+        extends JFrame implements DefineActions, DefineComponents {
     // Fields
     
     // Objets
@@ -83,13 +86,7 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
 
     @Override
     public void layouts() {
-        // Main bounds
-        final int W_FRAME = 400;
-        final int H_FRAME = 310;
-        final int ORIGIN = 30;
-        final int SPACE = 5;
         // Components bounds
-        final int H_COMP = 30;
         final int W_TFIELD = 200;
 
         final int W_L_USER = 70;
@@ -117,13 +114,13 @@ public class NewMotPasse extends JFrame implements InterfaceFenetres{
         final int Y_PF_CMDP = Y_L_CMDP;
 
         final int W_BUTTON = 100;
-        final int X_B_ANNULER = (W_FRAME - 2*W_BUTTON - 20*SPACE) / 2;
+        final int X_B_ANNULER = (WS_FRAME - 2*W_BUTTON - 20*SPACE) / 2;
         final int Y_B_ANNULER = Y_L_CMDP + H_COMP + ORIGIN;
         final int X_B_ENVOYER = X_B_ANNULER + W_BUTTON + 20*SPACE;
         final int Y_B_ENVOYER = Y_B_ANNULER;
         // Frame layout
         setResizable(false);
-        setSize(W_FRAME, H_FRAME);
+        setSize(WS_FRAME, HS_FRAME + 2*SPACE);
         setLocationRelativeTo(null);
         // Panel layout
         mainPanel.setLayout(null);

@@ -5,7 +5,7 @@
  */
 package listeners;
 
-import fenetres.NewMotPasse;
+import frames.NewMotPasse;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 

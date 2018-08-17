@@ -1,18 +1,21 @@
 
-package fenetres;
+package frames;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import listeners.QuiterListener;
-import setComponents.GeneralMenuBar;
-import setComponents.HistoriquePanel;
-import setComponents.RecherchePanel;
+import framesComponents.GeneralMenuBar;
+import framesComponents.HistoryPanel;
+import framesComponents.SearchPanel;
+import interfaces.DefineActions;
+import interfaces.DefineComponents;
 
 /**
  * @author Marcos Gomes
  */
-public class Acceuil extends JFrame implements InterfaceFenetres{
+public class Acceuil
+        extends JFrame implements DefineActions, DefineComponents {
     // Champs
     
     // Objects
@@ -51,8 +54,8 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setJMenuBar(new GeneralMenuBar());
         // Panels
-        recherchePanel = new RecherchePanel();
-        historiquePanel = new HistoriquePanel();
+        recherchePanel = new SearchPanel();
+        historiquePanel = new HistoryPanel();
         empruntsPanel = new JPanel();
         livreAjouterPanel = new JPanel(); livreMJPanel = new JPanel();
         livreAMPanel = new JPanel();
@@ -79,12 +82,9 @@ public class Acceuil extends JFrame implements InterfaceFenetres{
 
     @Override
     public void layouts() {
-        // Main bounds
-        final int W_FRAME = 1200;
-        final int H_FRAME = 800;
         // Frame layout
         setResizable(false);
-        setSize(W_FRAME, H_FRAME);
+        setSize(WL_FRAME, HL_FRAME);
         setLocationRelativeTo(null);
         
     }

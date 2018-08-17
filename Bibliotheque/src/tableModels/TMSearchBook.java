@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package tableModels;
 
-
+import interfaces.DataTables;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
@@ -18,13 +14,16 @@ import tableData.SearchedBook;
 public class TMSearchBook extends DefaultTableModel
     implements DataTables<SearchedBook> {
     // Fields
-    private final String [] collumnNames = {"CDU","Auteur","Titre","Type"};
     private final int rowLength;
+    
+    // Objects
+    private final String [] collumnNames = {"CDU","Auteur","Titre","Type"};
+    
     // Constructor
     public TMSearchBook(){
         super();
         rowLength = this.collumnNames.length;
-        setColumnCount(collumnNames.length);
+        setColumnCount(rowLength);
         setColumnIdentifiers(collumnNames);
         setRowCount(0);
     }

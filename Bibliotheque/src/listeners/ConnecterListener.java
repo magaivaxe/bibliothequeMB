@@ -5,7 +5,7 @@
  */
 package listeners;
 
-import fenetres.Identifier;
+import frames.Identifier;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;

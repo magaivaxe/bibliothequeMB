@@ -1,5 +1,5 @@
 
-package fenetres;
+package frames;
 
 
 import java.awt.Font;
@@ -17,13 +17,16 @@ import listeners.AProposListener;
 import listeners.ConnecterListener;
 import listeners.MPOListener;
 import listeners.QuiterListener;
-import setComponents.GeneralMenuBar;
+import framesComponents.GeneralMenuBar;
+import interfaces.DefineActions;
+import interfaces.DefineComponents;
 
 /**
  *
  * @author Marcos Gomes
  */
-public class Identifier extends JFrame implements InterfaceFenetres{
+public class Identifier
+        extends JFrame implements DefineActions, DefineComponents {
     // Fields
     
     // Objects
@@ -82,15 +85,9 @@ public class Identifier extends JFrame implements InterfaceFenetres{
 
     @Override
     public final void layouts() {
-        // Main bounds
-        final int W_FRAME = 400;
-        final int H_FRAME = 300;
-        final int ORIGIN = 30;
-        final int SPACE = 5;
         // Components bounds
         final int W_L_TITRE = 280;
-        final int H_COMP = 30;
-        final int X_L_TITRE = (W_FRAME - W_L_TITRE) / 2;
+        final int X_L_TITRE = (WS_FRAME - W_L_TITRE) / 2;
         final int Y_L_TITRE = ORIGIN;
 
         final int W_L_USER = 70;
@@ -108,13 +105,13 @@ public class Identifier extends JFrame implements InterfaceFenetres{
         final int Y_PF_MPASSE = Y_L_MPASSE;
 
         final int W_BUTTON = 160;
-        final int X_B_MPO = (W_FRAME - 2*W_BUTTON - SPACE) / 2;
+        final int X_B_MPO = (WS_FRAME - 2*W_BUTTON - SPACE) / 2;
         final int Y_B_MPO = Y_L_MPASSE + H_COMP + ORIGIN;
         final int X_B_CONEC = X_B_MPO + W_BUTTON + SPACE;
         final int Y_B_CONEC = Y_B_MPO;
         // Frame layout
         setResizable(false);
-        setSize(W_FRAME, H_FRAME);
+        setSize(WS_FRAME, HS_FRAME);
         setLocationRelativeTo(null); /* Fonctionne après définir la taille */
         // Panel layout
         mainPanel.setLayout(null);
