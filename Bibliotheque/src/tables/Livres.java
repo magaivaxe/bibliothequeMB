@@ -13,11 +13,67 @@ import java.util.Date;
  * @author eleves
  */
 public class Livres {
-    private String idLivre, cdu, titre;
-    private int isbn;
+    private String idLivre,cdu,typeLivre,titre;
     private Date dateRegistre;
-    private TypeLivres typeLivre;
+
+    public Livres(String idLivre, String cdu, String titre, Date dateRegistre, String typeLivre) {
+        this.idLivre = idLivre;
+        this.cdu = cdu;
+        this.titre = titre;
+        this.dateRegistre = dateRegistre;        
+        this.typeLivre = typeLivre;
+
+    }
+
+    public String getIdLivre() {
+        return idLivre;
+    }
+
+    public void setIdLivre(String idLivre) {
+        this.idLivre = idLivre;
+    }
+
+    public String getCdu() {
+        return cdu;
+    }
+
+    public void setCdu(String cdu) {
+        this.cdu = cdu;
+    }
+
+    public String getTypeLivre() {
+        return typeLivre;
+    }
+
+    public void setTypeLivre(String typeLivre) {
+        this.typeLivre = typeLivre;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public Date getDateRegistre() {
+        return dateRegistre;
+    }
+
+    public void setDateRegistre(Date dateRegistre) {
+        this.dateRegistre = dateRegistre;
+    }
+
+    @Override
+    public String toString() {
+        return "Livres{" + "idLivre=" + idLivre + ", cdu=" + cdu + 
+                ", typeLivre=" + typeLivre + ", titre=" + titre + 
+                ", dateRegistre=" + dateRegistre + '}';
+    }
+
+   
     
-    public enum TypeLivres {regulier,rare}
-                            
+    
+                          
 }

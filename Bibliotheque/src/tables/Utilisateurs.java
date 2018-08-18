@@ -4,9 +4,8 @@
  * and open the template in the editor.
  */
 package tables;
-
+import java.text.SimpleDateFormat;
 import java.util.Date;
-
 /**
  *
  * @author eleves
@@ -14,14 +13,13 @@ import java.util.Date;
 public class Utilisateurs {
 //Attibuts----------------------------------------------------------------------
     private String idUtilisateur, nom, preNom,
-            adresse, telephone, courriel, role, statusUT;
-    private Date dateNe, dateRegistre;
-
+            adresse, telephone, courriel, role, statusUT,dateNe,dateRegistre;
+ 
 //Constructeurs-----------------------------------------------------------------
     
     public Utilisateurs(String idUtilisateur, String nom, String preNom, 
-            String adresse, String telephone, String courriel, Date dateNe, 
-            Date dateRegistre, String role, String statusUT) {
+            String adresse, String telephone, String courriel, String dateNe, 
+            String dateRegistre, String role, String statusUT) {
         this.idUtilisateur = idUtilisateur;
         this.nom = nom;
         this.preNom = preNom;
@@ -87,19 +85,19 @@ public class Utilisateurs {
         this.courriel = courriel;
     }
 
-    public Date getDateNe() {
+    public String getDateNe() {
         return dateNe;
     }
 
-    public void setDateNe(Date dateNe) {
+    public void setDateNe(String dateNe) {
         this.dateNe = dateNe;
     }
 
-    public Date getDateRegistre() {
+    public String getDateRegistre() {
         return dateRegistre;
     }
 
-    public void setDateRegistre(Date dateRegistre) {
+    public void setDateRegistre(String dateRegistre) {
         this.dateRegistre = dateRegistre;
     }
 
@@ -127,6 +125,7 @@ public class Utilisateurs {
                 + courriel + ", role=" + role + ", statusUT=" + statusUT +
                 ", dateNe=" + dateNe + ", dateRegistre=" + dateRegistre + '}';
     }
+
 
   
 }
