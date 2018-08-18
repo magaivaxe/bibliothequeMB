@@ -24,7 +24,7 @@ public final class SearchPanel extends JPanel implements DefineComponents{
     private JScrollPane scrollPane;
     private JTable jta_recherche;
     private TMSearchBook tm_recherche;
-        // Hide to users
+        // Hide to users and visible to employee
         private JDateChooser dc_start, dc_final;
         private JCheckBox cb_deadArchive;
         private JButton b_update;
@@ -75,7 +75,7 @@ public final class SearchPanel extends JPanel implements DefineComponents{
         // Components bounds
         final int W_CBOX = 100;
         final int Y_CBOX = ORIGIN;
-        final int X_CBOX_AUTEUR = (WL_FRAME - 4*(W_CBOX + SPACE)) / 2;
+        final int X_CBOX_AUTEUR = W_CBOX - 3*SPACE;
         final int X_CBOX_TITRE = X_CBOX_AUTEUR + W_CBOX + SPACE;
         final int X_CBOX_ISBN = X_CBOX_TITRE + W_CBOX + SPACE;
         final int X_CBOX_SUJET = X_CBOX_ISBN + W_CBOX + SPACE;
@@ -85,14 +85,15 @@ public final class SearchPanel extends JPanel implements DefineComponents{
         final int X_TF_RECHERCHE = 
            (WL_FRAME - W_TF_RECHERCHE - W_B_RECHERCHE) / 2 - 2*SPACE;
         final int X_B_RECHERCHE = X_TF_RECHERCHE + W_TF_RECHERCHE + SPACE;
-        final int Y_TF_RECHERCHE = ORIGIN + H_COMP;
+        final int Y_TF_RECHERCHE = ORIGIN + H_COMP + 2*SPACE;
         final int Y_B_RECHERCHE = Y_TF_RECHERCHE;
 
         final int W_SCROLLPANE = 
            W_TF_RECHERCHE + W_B_RECHERCHE + X_TF_RECHERCHE;
+        final int H_SCROLLPANE = HL_FRAME - 9*ORIGIN;
         final int X_SCROLLPANE = (WL_FRAME - W_SCROLLPANE) / 2 - 2*SPACE;
-        final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_COMP + SPACE;
-        final int H_SCROLLPANE = HL_FRAME - 2*Y_SCROLLPANE - 2*ORIGIN;
+        final int Y_SCROLLPANE = Y_TF_RECHERCHE + H_COMP + 4*SPACE;
+        
 
         final int W_B_RESERVE = 150;
         final int Y_B_RESERVE = Y_SCROLLPANE + H_SCROLLPANE + 3*SPACE;
