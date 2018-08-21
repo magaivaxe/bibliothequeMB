@@ -12,6 +12,7 @@ public interface DefineComponents {
     final int WS_FRAME = 400;
     final int HS_FRAME = 300;
     final int ORIGIN = 30; 
+    final int LINE = 15;
     final int SPACE = 5;
     // Elements bounds
     final int H_COMP = 30;

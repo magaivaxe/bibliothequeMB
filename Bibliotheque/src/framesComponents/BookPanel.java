@@ -17,7 +17,7 @@ import interfaces.DefineComponents;
  *
  * @author sire_marcos
  */
-public class AddBookPanel extends JPanel implements DefineComponents{
+public class BookPanel extends JPanel implements DefineComponents{
     // Fields
     private String er = "er";
     private String e = "e";
@@ -34,10 +34,10 @@ public class AddBookPanel extends JPanel implements DefineComponents{
         tf_cdu,tf_edition,tf_bookID,tf_imageCover;
     private JButton b_autoID,b_choiceImage,b_saveBook;
             
-    public static AddBookPanel courant;
+    public static BookPanel courant;
             
     // Contructors
-    public AddBookPanel() {
+    public BookPanel() {
         super();
         initialiserComposants();
         layouts();

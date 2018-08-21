@@ -4,14 +4,14 @@ package tableModels;
 import interfaces.DataTables;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
-import tableData.SearchedHistoty;
+import tableData.SearchedHistory;
 
 /**
  *
  * @author Marcos Gomes
  */
 public class TMHistory extends DefaultTableModel
-    implements DataTables<SearchedHistoty>{
+    implements DataTables<SearchedHistory>{
     // Fields
     private final int rowLength;
     
@@ -30,12 +30,12 @@ public class TMHistory extends DefaultTableModel
     }
     
     @Override
-    public void setRows(LinkedList<SearchedHistoty> list) {
+    public void setRows(LinkedList<SearchedHistory> list) {
         
     }
 
     @Override
-    public LinkedList<SearchedHistoty> getRow(int[] row) {
+    public LinkedList<SearchedHistory> getRow(int[] row) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

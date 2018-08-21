@@ -11,16 +11,16 @@ import java.util.Date;
  *
  * @author sire_marcos
  */
-public class SearchedHistoty {
+public class SearchedHistory {
     // Fields
     private String type;
     private Date date;
     private String titleBook;
     private String status;
     // Constructors
-    public SearchedHistoty() {}
+    public SearchedHistory() {}
     
-    public SearchedHistoty(String type, Date date,
+    public SearchedHistory(String type, Date date,
         String titleBook, String status) {
         this.type = type;
         this.date = date;
