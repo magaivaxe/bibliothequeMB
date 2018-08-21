@@ -12,15 +12,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import interfaces.DefineComponents;
-import java.awt.Font;
 import java.awt.font.TextAttribute;
-import java.text.AttributedString;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
  *
- * @author sire_marcos
+ * @author Marcos Gomes
  */
 public class BookPanel extends JPanel implements DefineComponents{
     // Fields
@@ -150,6 +148,9 @@ public class BookPanel extends JPanel implements DefineComponents{
         final int W_L_BIRTH = 75;
         final int X_L_BIRTH = X_TF_LNA1 + W_TF + ORIGIN;
         final int X_YC_BIRTH = X_L_BIRTH + W_L_BIRTH + SPACE;
+        final int W_L_DEATH = 75;
+        final int X_L_DEATH = X_YC_BIRTH + W_YC + ORIGIN;
+        final int X_YC_DEATH = X_L_DEATH + W_L_DEATH + SPACE;
         
         final int W_L_FNA1 = 120;
         final int X_L_FNA1 = ORIGIN;
@@ -188,6 +189,8 @@ public class BookPanel extends JPanel implements DefineComponents{
         tf_1authorLastName.setBounds(X_TF_LNA1, Y_LINE3, W_TF, H_COMP);
         l_birth.setBounds(X_L_BIRTH, Y_LINE3, W_L_BIRTH, H_COMP);
         yc_birth.setBounds(X_YC_BIRTH, Y_LINE3, W_YC, H_COMP);
+        l_death.setBounds(X_L_DEATH, Y_LINE3, W_L_DEATH, H_COMP);
+        yc_death.setBounds(X_YC_DEATH, Y_LINE3, W_YC, H_COMP);
         
         l_1autorFirstName.setBounds(X_L_FNA1, Y_L_FNA1, W_L_FNA1, H_COMP);
         tf_1autorFirstName.setBounds(X_TF_FNA1, Y_TF_FNA1, W_TF, H_COMP);
