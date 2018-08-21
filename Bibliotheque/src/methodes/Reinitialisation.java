@@ -1,7 +1,7 @@
 /*
  * Tous les doits au groupe Gustavo Pacheco, Marcos Gomes et Mohamed Nidhal
  */
-package dao;
+package methodes;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,18 +12,16 @@ import tables.Utilisateurs;
 
 /**
  *
- * @author Marcos
+ * @author luizgustavopacheco
  */
-public class UtilisateursDAO extends DAO<Utilisateurs> {
+public class Reinitialisation extends ConnectParent {
     //Attributs
     String idConfirmee;
 
     // Contructeur
-    public UtilisateursDAO() {
+    public Reinitialisation() {
         super();
     }
-    
-    // Méthodes
     
 //==============================================================================
 //RÉINITIALISER MOT DE PASSE
@@ -40,7 +38,7 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
             if(rs.next())
                 idConfirmee = rs.getString("idUtilisateur");
         } catch (SQLException ex) {
-            Logger.getLogger(UtilisateursDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Reinitialisation.class.getName()).log(Level.SEVERE, null, ex);
         }
         return idConfirmee;
     }
@@ -48,12 +46,10 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
 //==============================================================================
     
     public Utilisateurs rechercher(String idUtilisateurEntree) {
-        // locaux
-        Utilisateurs aRetouner = new Utilisateurs();
         
-        // Essaye de la requête
-        try {
+        Utilisateurs aRetouner = new Utilisateurs();
 
+        try {
             ResultSet resultat = this.connect
                     .createStatement(
                             ResultSet.TYPE_SCROLL_INSENSITIVE,
@@ -62,8 +58,7 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
                             "select * from Utilisateurs where idUtilisateur = "
                                     +"'"+ idUtilisateurEntree+"'"
                     );
-            
-            // Attribution à l'objet utilisateur les valeurs de la requête            
+           
             if (resultat.first()) {
                 aRetouner = new Utilisateurs(
                         resultat.getString("idUtilisateur"),
@@ -72,8 +67,8 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
                         resultat.getString("adresse"),
                         resultat.getString("telephone"),
                         resultat.getString("courriel"),
-                        resultat.getDate("dateNe"), 
-                        resultat.getDate("dateRegistre"),
+                        resultat.getString("dateNe"), 
+                        resultat.getString("dateRegistre"),
                         resultat.getString("role"), 
                         resultat.getString("statusUT"));
             }
@@ -83,23 +78,26 @@ public class UtilisateursDAO extends DAO<Utilisateurs> {
         return aRetouner;
     }
 
+//==============================================================================
     
-    @Override
-    public Utilisateurs inserer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Utilisateurs mettreAJour() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Utilisateurs rechercher() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        
-    }
-
-   
+         public String changerMotDePasse(String idConfirmee, String nouveauMotDePasse)
+     {        
+         try {
+            Statement stmt;
+            stmt = connect.createStatement();
+            stmt.executeUpdate("update UsersMotDePasse "
+                    + "set mdpEncripte="+"'"+ nouveauMotDePasse+"'"
+                    + "where idUtilisateur="+"'"+ idConfirmee+"'");
+          
+		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + nouveauMotDePasse 
+                        +" POUR L'UTILISATEUR "+idConfirmee);		
     
+        } catch (SQLException e) {
+            
+        }
+        return nouveauMotDePasse;
+        }  
+         
+//==============================================================================         
+ 
 }

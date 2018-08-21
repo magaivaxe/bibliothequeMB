@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 
 /**
  * pour faire la connection avec la base de donneés
- * @author Gustavo
+ * @author luizgustavopacheco
  */
 public class Connect {
         
