@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import interfaces.DefineComponents;
+import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.text.AttributedString;
 import java.util.HashMap;
@@ -23,16 +24,15 @@ import java.util.Map;
  */
 public class BookPanel extends JPanel implements DefineComponents{
     // Fields
-    private AttributedString er = new AttributedString("er");
-    private AttributedString e = new AttributedString("e");
+    
     // Objects
     private JCheckBox cb_regularBook, cb_rareBook;
     private JYearChooser yc_birth, yc_death, yc_year;
-    private JLabel l_titre,l_1autorFirstName,l_1authorLastName,l_birth,
+    private JLabel l_title,l_1autorFirstName,l_1authorLastName,l_birth,
         l_death,l_2authorFirstName,l_2authorLastName,l_3authorFirstName,
         l_3authorLastName,l_publisher,l_city,l_pages,l_price,l_isbn,l_cdu,
         l_year,l_edition,l_bookID,l_imageCover;
-    private JTextField tf_titre,tf_1autorFirstName,tf_1authorLastName,
+    private JTextField tf_title,tf_1autorFirstName,tf_1authorLastName,
         tf_2authorFirstName,tf_2authorLastName,tf_3authorFirstName,
         tf_3authorLastName,tf_publisher,tf_city,tf_pages,tf_price,tf_isbn,
         tf_cdu,tf_edition,tf_bookID,tf_imageCover;
@@ -83,7 +83,7 @@ public class BookPanel extends JPanel implements DefineComponents{
         yc_birth = new JYearChooser();yc_death = new JYearChooser();
         yc_year = new JYearChooser();
 
-        l_titre = new JLabel(L_TITRE);
+        l_title = new JLabel(L_TITRE);
         l_1authorLastName = new JLabel(L_1AUTHOR2NAME);
         l_1autorFirstName = new JLabel(L_1AUTHOR1NAME);
         l_2authorLastName = new JLabel(L_2AUTHOR2NAME);
@@ -97,7 +97,7 @@ public class BookPanel extends JPanel implements DefineComponents{
         l_year = new JLabel(L_YEAR); l_edition = new JLabel(L_EDITION);
         l_bookID = new JLabel(L_ID); l_imageCover = new JLabel(L_IMAGECOVER);
         
-        tf_titre = new JTextField();tf_imageCover = new JTextField();
+        tf_title = new JTextField();tf_imageCover = new JTextField();
         tf_1authorLastName = new JTextField();tf_city = new JTextField();
         tf_1autorFirstName = new JTextField();tf_price = new JTextField();
         tf_2authorFirstName = new JTextField();tf_cdu = new JTextField();
@@ -116,12 +116,12 @@ public class BookPanel extends JPanel implements DefineComponents{
         add(l_2authorFirstName);add(l_2authorLastName);add(l_edition);
         add(l_3authorFirstName);add(l_3authorLastName);add(l_publisher);
         add(l_birth);add(l_death);add(l_isbn);add(l_cdu);add(l_year);
-        add(l_price);add(l_bookID);add(l_imageCover);add(l_titre);
+        add(l_price);add(l_bookID);add(l_imageCover);add(l_title);
         
         add(tf_1authorLastName);add(tf_1autorFirstName);add(tf_publisher);
         add(tf_2authorFirstName);add(tf_2authorLastName);add(tf_edition);
         add(tf_3authorFirstName);add(tf_3authorLastName);add(tf_isbn);
-        add(tf_titre);add(tf_imageCover);add(tf_city);add(tf_price);
+        add(tf_title);add(tf_imageCover);add(tf_city);add(tf_price);
         add(tf_cdu);add(tf_bookID);add(tf_pages);
         
         add(b_autoID);add(b_saveBook);add(b_choiceImage);
@@ -130,11 +130,76 @@ public class BookPanel extends JPanel implements DefineComponents{
     @Override
     public void layouts() {
         // Locals
+        final int W_CB = 115;
+        final int W_TF = 600;
+        final int W_YC = 60;
+        
+        final int Y_LINE1 = ORIGIN;
+        final int X_CB_REGULAR = (WL_FRAME - 2*W_CB - 4*ORIGIN)/2 - 2*SPACE;
+        final int X_CB_RARE = X_CB_REGULAR + W_CB + 4*ORIGIN;
+        
+        final int W_L_TITLE = 40;
+        final int X_L_TITLE = ORIGIN;
+        final int Y_LINE2 = Y_LINE1 + H_COMP + DOUBLE_LINE;
+        final int X_TF_TITLE = X_L_TITLE + W_L_TITLE + SPACE;
+        
+        final int W_L_LNA1 = 120;
+        final int X_L_LNA1 = ORIGIN;
+        final int Y_LINE3 = Y_LINE2 + H_COMP + LINE;
+        final int X_TF_LNA1 = X_L_LNA1 + W_L_LNA1 + SPACE;
+        final int W_L_BIRTH = 75;
+        final int X_L_BIRTH = X_TF_LNA1 + W_TF + ORIGIN;
+        final int X_YC_BIRTH = X_L_BIRTH + W_L_BIRTH + SPACE;
+        
+        final int W_L_FNA1 = 120;
+        final int X_L_FNA1 = ORIGIN;
+        final int Y_L_FNA1 = Y_LINE3 + H_COMP + LINE;
+        final int X_TF_FNA1 = X_L_FNA1 + W_L_FNA1 + SPACE;
+        final int Y_TF_FNA1 = Y_L_FNA1;
+        
+        final int W_L_LNA2 = 120;
+        final int X_L_LNA2 = ORIGIN;
+        final int Y_L_LNA2 = Y_L_FNA1 + H_COMP + LINE;
+        final int X_TF_LNA2 = X_L_LNA2 + W_L_LNA2 + SPACE;
+        final int Y_TF_LNA2 = Y_L_LNA2;
+        
+        final int W_L_FNA2 = 120;
+        final int X_L_FNA2 = ORIGIN;
+        final int Y_L_FNA2 = Y_L_LNA2 + H_COMP + LINE;
+        final int X_TF_FNA2 = X_L_FNA2 + W_L_FNA2 + SPACE;
+        final int Y_TF_FNA2 = Y_L_FNA2;
+        
+        final int W_L_LNA3 = 120;
+        final int X_L_LNA3 = ORIGIN;
+        final int Y_L_LNA3 = Y_L_FNA2 + H_COMP + LINE;
+        final int X_TF_LNA3 = X_L_LNA3 + W_L_LNA3 + SPACE;
+        final int Y_TF_LNA3 = Y_L_LNA3;
         
         // Panel
         setLayout(null);
         // Components
+        cb_regularBook.setBounds(X_CB_REGULAR,Y_LINE1,W_CB,H_COMP);
+        cb_rareBook.setBounds(X_CB_RARE, Y_LINE1, W_CB, H_COMP);
         
+        l_title.setBounds(X_L_TITLE, Y_LINE2, W_L_TITLE, H_COMP);
+        tf_title.setBounds(X_TF_TITLE, Y_LINE2, W_TF, H_COMP);
+        
+        l_1authorLastName.setBounds(X_L_LNA1, Y_LINE3, W_L_LNA1, H_COMP);
+        tf_1authorLastName.setBounds(X_TF_LNA1, Y_LINE3, W_TF, H_COMP);
+        l_birth.setBounds(X_L_BIRTH, Y_LINE3, W_L_BIRTH, H_COMP);
+        yc_birth.setBounds(X_YC_BIRTH, Y_LINE3, W_YC, H_COMP);
+        
+        l_1autorFirstName.setBounds(X_L_FNA1, Y_L_FNA1, W_L_FNA1, H_COMP);
+        tf_1autorFirstName.setBounds(X_TF_FNA1, Y_TF_FNA1, W_TF, H_COMP);
+        
+        l_2authorLastName.setBounds(X_L_LNA2, Y_L_LNA2, W_L_LNA2, H_COMP);
+        tf_2authorLastName.setBounds(X_TF_LNA2, Y_TF_LNA2, W_TF, H_COMP);
+        
+        l_2authorFirstName.setBounds(X_L_FNA2, Y_L_FNA2, W_L_FNA2, H_COMP);
+        tf_2authorFirstName.setBounds(X_TF_FNA2, Y_TF_FNA2, W_TF, H_COMP);
+        
+        l_3authorLastName.setBounds(X_L_LNA3, Y_L_LNA3, W_L_LNA3, H_COMP);
+        tf_3authorLastName.setBounds(X_TF_LNA3, Y_TF_LNA3, W_TF, H_COMP);
     }
 
     @Override
@@ -146,7 +211,8 @@ public class BookPanel extends JPanel implements DefineComponents{
     public void polices() {
         // Locals
         Map<TextAttribute, Object> font_super = new HashMap<>();
-        font_super.put(TextAttribute.SUPERSCRIPT, TextAttribute.SUPERSCRIPT_SUPER);
+        font_super.put(
+            TextAttribute.SUPERSCRIPT, TextAttribute.SUPERSCRIPT_SUPER);
         Map<TextAttribute, Object> font_sub = new HashMap<>();
         font_sub.put(TextAttribute.SUPERSCRIPT, TextAttribute.SUPERSCRIPT_SUB);
     }
@@ -172,8 +238,8 @@ public class BookPanel extends JPanel implements DefineComponents{
         return yc_year;
     }
 
-    public JTextField getTf_titre() {
-        return tf_titre;
+    public JTextField getTf_title() {
+        return tf_title;
     }
 
     public JTextField getTf_1autorFirstName() {
@@ -268,8 +334,8 @@ public class BookPanel extends JPanel implements DefineComponents{
         this.yc_year = yc_year;
     }
 
-    public void setTf_titre(JTextField tf_titre) {
-        this.tf_titre = tf_titre;
+    public void setTf_title(JTextField tf_title) {
+        this.tf_title = tf_title;
     }
 
     public void setTf_1autorFirstName(JTextField tf_1autorFirstName) {
