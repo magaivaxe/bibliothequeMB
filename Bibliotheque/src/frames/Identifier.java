@@ -131,13 +131,8 @@ public class Identifier
     
     @Override
     public final void polices() {
-        // Locaux
-        Map<TextAttribute, Object> pol_titre = new HashMap<>();
-            pol_titre.put(TextAttribute.FAMILY, Font.DIALOG);
-            pol_titre.put(
-                TextAttribute.WEIGHT, TextAttribute.WEIGHT_SEMIBOLD);
-            pol_titre.put(TextAttribute.SIZE, 16);
-        l_titre.setFont(Font.getFont(pol_titre));
+        // Locals
+        l_titre.setFont(Font.getFont(FONT_TITLE));
     }
     
     @Override

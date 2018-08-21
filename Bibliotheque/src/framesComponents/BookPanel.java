@@ -12,6 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import interfaces.DefineComponents;
+import java.awt.font.TextAttribute;
+import java.text.AttributedString;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  *
@@ -19,8 +23,8 @@ import interfaces.DefineComponents;
  */
 public class BookPanel extends JPanel implements DefineComponents{
     // Fields
-    private String er = "er";
-    private String e = "e";
+    private AttributedString er = new AttributedString("er");
+    private AttributedString e = new AttributedString("e");
     // Objects
     private JCheckBox cb_regularBook, cb_rareBook;
     private JYearChooser yc_birth, yc_death, yc_year;
@@ -140,7 +144,11 @@ public class BookPanel extends JPanel implements DefineComponents{
 
     @Override
     public void polices() {
-        // to do the police upercase
+        // Locals
+        Map<TextAttribute, Object> font_super = new HashMap<>();
+        font_super.put(TextAttribute.SUPERSCRIPT, TextAttribute.SUPERSCRIPT_SUPER);
+        Map<TextAttribute, Object> font_sub = new HashMap<>();
+        font_sub.put(TextAttribute.SUPERSCRIPT, TextAttribute.SUPERSCRIPT_SUB);
     }
     
     // Setters and Getters

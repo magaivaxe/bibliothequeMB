@@ -98,8 +98,8 @@ public class NewMotPasse
         final int W_L_DATE = 120;
         final int X_L_DATE = ORIGIN;
         final int Y_L_DATE = Y_L_USER + H_COMP + SPACE;
-        final int X_TF_DATE = X_L_DATE + W_L_DATE + SPACE;
-        final int Y_TF_DATE = Y_L_DATE;
+        final int X_DC_DATE = X_L_DATE + W_L_DATE + SPACE;
+        final int Y_DC_DATE = Y_L_DATE;
     
         final int W_L_MDP = 90;
         final int X_L_MDP = ORIGIN + 6*SPACE;
@@ -131,7 +131,7 @@ public class NewMotPasse
         l_confirmation.setBounds(X_L_CMDP, Y_L_CMDP, W_L_CMDP, H_COMP);
         
         tf_utilisateur.setBounds(X_TF_USER, Y_TF_USER, W_TFIELD, H_COMP);
-        dataChooser.setBounds(X_TF_DATE, Y_TF_DATE, W_TFIELD, H_COMP);
+        dataChooser.setBounds(X_DC_DATE, Y_DC_DATE, W_TFIELD, H_COMP);
         pf_motPasse.setBounds(X_PF_MDP, Y_PF_MDP, W_TFIELD, H_COMP);
         pf_confirmation.setBounds(X_PF_CMDP, Y_PF_CMDP, W_TFIELD, H_COMP);
         
