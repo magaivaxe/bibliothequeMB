@@ -53,7 +53,7 @@ public final class BlockUserPanel extends JPanel implements DefineComponents {
         final String B_SEARCH = "Rechercher";
         final String B_UNBLOCKUSER = "Débloquer";
         final String B_BLOCKUSER = "Bloquer";
-        final String B_MJOURUSER = "Mise a jour";
+        final String B_MJOURUSER = "Mise à jour";
         final String L_UNLOCKBY = "Débloquer par:";
 
         // Components
@@ -82,11 +82,30 @@ public final class BlockUserPanel extends JPanel implements DefineComponents {
     @Override
     public void layouts(){
         // Locals
-
+        final int W_B = 110;
+        
+        final int Y_LINE1 = ORIGIN;
+        final int W_CB_PHONE = 85;
+        final int W_CB_LNAME = 55;
+        final int W_CB_ID = 45;
+        final int W_TF_SEARCH = 300;
+        final int X_CB_PHONE = (WL_FRAME - W_CB_PHONE - W_CB_LNAME - W_CB_ID -
+            W_TF_SEARCH - W_B - 3*ORIGIN) / 2 - 2*SPACE;
+        final int X_CB_LNAME = X_CB_PHONE + W_CB_PHONE + ORIGIN;
+        final int X_CB_ID = X_CB_LNAME + W_CB_LNAME +ORIGIN;
+        final int X_TF_SEARCH = X_CB_ID + W_CB_ID + ORIGIN;
+        final int X_B_SEARCH = X_TF_SEARCH + W_TF_SEARCH + SPACE;
+        
+        final int Y_LINE2 = Y_LINE1 + H_COMP + LINE;
+        
         // Panel
         setLayout(null);
         // Components
-
+        cb_phone.setBounds(X_CB_PHONE, Y_LINE1, W_CB_PHONE, H_COMP);
+        cb_lastName.setBounds(X_CB_LNAME, Y_LINE1, W_CB_LNAME, H_COMP);
+        cb_id.setBounds(X_CB_ID, Y_LINE1, W_CB_ID, H_COMP);
+        tf_search.setBounds(X_TF_SEARCH, Y_LINE1, W_TF_SEARCH, H_COMP);
+        b_search.setBounds(X_B_SEARCH, Y_LINE1, W_B, H_COMP);
         // set bounds to all components... :-p
     }
 
