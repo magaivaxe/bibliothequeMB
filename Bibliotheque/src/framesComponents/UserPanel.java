@@ -46,7 +46,7 @@ public final class UserPanel extends JPanel implements DefineComponents {
         final String CB_EMPLOYEE = "Employé(e):";
         final String L_FNAME = "Nom:";
         final String L_LNAME = "Prénom:";
-        final String L_BDATE = "Date naissance:";
+        final String L_BDATE = "Date de naissance:";
         final String L_ADDRESS = "Adresse:";
         final String L_PHONE = "Téléphone:";
         final String L_MAIL = "Courriel:";
@@ -92,74 +92,93 @@ public final class UserPanel extends JPanel implements DefineComponents {
     @Override
     public void layouts(){
         // Locals
-        final int W_CBOX = 100;
+        final int W_CBOX = 110;
         final int W_TF = 400;
-        final int W_BUTTON = 250;
+        final int W_BUTTON = 180;
 
-        final int W_L_LNAME = 50;
-        final int X_L_LNAME = ORIGIN;
-        final int Y_L_LNAME = ORIGIN;
+        final int W_L_LNAME = 55;
+        final int X_L_LNAME = 3*ORIGIN + 13*SPACE;
+        final int Y_LINE1 = 3*ORIGIN;
         final int X_TF_LNAME = X_L_LNAME + W_L_LNAME + SPACE;
-        final int Y_TF_LNAME = Y_L_LNAME;
         final int X_CBOX_EMPLOYEE = X_TF_LNAME + W_TF + ORIGIN;
-        final int Y_CBOX_EMPLOYEE = Y_TF_LNAME;
 
-        final int W_L_FNAME = 80;
-        final int X_L_FNAME = ORIGIN;
-        final int Y_L_FNAME = Y_L_LNAME + H_COMP + LINE;
+        final int W_L_FNAME = 35;
+        final int X_L_FNAME = 3*ORIGIN + 17*SPACE;
+        final int Y_LINE2 = Y_LINE1 + H_COMP + LINE;
         final int X_TF_FNAME = X_L_FNAME + W_L_FNAME + SPACE;
-        final int Y_TF_FNAME = Y_L_FNAME;
 
-        final int W_L_BIRTHDATE = 160;
-        final int X_L_BIRTHDATE = ORIGIN;
-        final int Y_L_BIRTHDATE = Y_L_FNAME + H_COMP + LINE;
-        final int W_DC_BIRTHDATE = 100;
+        final int W_L_BIRTHDATE = 120;
+        final int X_L_BIRTHDATE = 3*ORIGIN;
+        final int Y_LINE3 = Y_LINE2 + H_COMP + LINE;
+        final int W_DC_BIRTHDATE = 200;
         final int X_DC_BIRTHDATE = X_L_BIRTHDATE + W_L_BIRTHDATE + SPACE;
-        final int Y_DC_BIRTHDATE = Y_L_BIRTHDATE;
 
-        final int W_L_ADDRESS = 100;
-        final int X_L_ADDRESS = ORIGIN;
-        final int Y_L_ADDRESS = Y_L_BIRTHDATE + H_COMP + LINE;
+        final int W_L_ADDRESS = 55;
+        final int X_L_ADDRESS = 3*ORIGIN + 13*SPACE;
+        final int Y_LINE4 = Y_LINE3 + H_COMP + LINE;
         final int X_TF_ADDRESS = X_L_ADDRESS + W_L_ADDRESS + SPACE;
-        final int Y_TF_ADDRESS = Y_L_ADDRESS;
 
-        final int W_L_PHONE = 120;
-        final int X_L_PHONE = ORIGIN;
-        final int Y_L_PHONE = Y_L_ADDRESS + H_COMP + LINE;
+        final int W_L_PHONE = 70;
+        final int X_L_PHONE = 3*ORIGIN + 10*SPACE;
+        final int Y_LINE5 = Y_LINE4 + H_COMP + LINE;
         final int X_TF_PHONE = X_L_PHONE + W_L_PHONE + SPACE;
-        final int Y_TF_PHONE = Y_L_PHONE;
 
-        final int W_L_MAIL = 100;
-        final int X_L_MAIL = ORIGIN;
-        final int Y_L_MAIL = Y_L_PHONE + H_COMP + LINE;
+        final int W_L_MAIL = 55;
+        final int X_L_MAIL = 3*ORIGIN + 13*SPACE;
+        final int Y_LINE6 = Y_LINE5 + H_COMP + LINE;
         final int X_TF_MAIL = X_L_MAIL + W_L_MAIL + SPACE;
-        final int Y_TF_MAIL = Y_L_MAIL;
 
         final int W_L_ID = 20;
-        final int X_L_ID = ORIGIN;
-        final int Y_L_ID = Y_L_MAIL + H_COMP + LINE;
+        final int X_L_ID = 3*ORIGIN + 20*SPACE;
+        final int Y_LINE7 = Y_LINE6 + H_COMP + LINE;
         final int X_TF_ID = X_L_ID + W_L_ID + SPACE;
-        final int Y_TF_ID = Y_L_ID;
 
-        final int W_SEPARATOR = WL_FRAME - 2*ORIGIN;
-        final int X_SEPARATOR = (WL_FRAME - W_SEPARATOR) / 2;
-        final int Y_SEPARATOR = Y_L_ID + H_COMP + LINE;
+        final int W_SEPARATOR = WL_FRAME - 6*ORIGIN;
+        final int X_SEPARATOR = (WL_FRAME - W_SEPARATOR) / 2 - 4*SPACE;
+        final int Y_LINE8 = Y_LINE7 + H_COMP + ORIGIN;
 
-        final int W_L_TPASSWORD = 220;
-        final int X_L_TPASSWORD = ORIGIN;
-        final int Y_L_TPASSWORD = Y_SEPARATOR + H_COMP + LINE;
+        final int W_L_TPASSWORD = 160;
+        final int Y_LINE9 = Y_LINE8 + H_COMP + LINE;
+        final int X_L_TPASSWORD = 
+            (WL_FRAME - W_L_TPASSWORD - W_BUTTON - W_TF - 2*SPACE)/2 - 2*SPACE;
         final int X_TF_TPASSWORD = X_L_TPASSWORD + W_L_TPASSWORD + SPACE;
-        final int Y_TF_TPASSWORD = Y_L_TPASSWORD;
         final int X_B_TPASSWORD = X_TF_TPASSWORD + W_TF + SPACE;
-        final int Y_B_TPASSWORD = Y_L_TPASSWORD;
-
-        final int X_B_SAVE = ORIGIN;
-        final int Y_B_SAVE = Y_L_TPASSWORD + H_COMP + LINE;
+        
+        final int X_B_SAVE = (WL_FRAME - W_BUTTON)/2 - 2*SPACE;
+        final int Y_LINE10 = Y_LINE9 + H_COMP + 2*ORIGIN - 2*SPACE;
 
         // Panel
         setLayout(null);
         // Components
-        // set bounds to all components... :-p
+        l_lastName.setBounds(X_L_LNAME, Y_LINE1, W_L_LNAME, H_COMP);
+        tf_lastName.setBounds(X_TF_LNAME, Y_LINE1, W_TF, H_COMP);
+        cb_employee.setBounds(X_CBOX_EMPLOYEE, Y_LINE1, W_CBOX, H_COMP);
+        
+        l_firstName.setBounds(X_L_FNAME, Y_LINE2, W_L_FNAME, H_COMP);
+        tf_firstName.setBounds(X_TF_FNAME, Y_LINE2, W_TF, H_COMP);
+        
+        l_birthdate.setBounds(X_L_BIRTHDATE, Y_LINE3, W_L_BIRTHDATE, H_COMP);
+        dc_birthdate.setBounds(X_DC_BIRTHDATE, Y_LINE3, W_DC_BIRTHDATE, H_COMP);
+        
+        l_address.setBounds(X_L_ADDRESS, Y_LINE4, W_L_ADDRESS, H_COMP);
+        tf_address.setBounds(X_TF_ADDRESS, Y_LINE4, W_TF, H_COMP);
+        
+        l_phone.setBounds(X_L_PHONE, Y_LINE5, W_L_PHONE, H_COMP);
+        tf_phone.setBounds(X_TF_PHONE, Y_LINE5, W_TF, H_COMP);
+        
+        l_mail.setBounds(X_L_MAIL, Y_LINE6, W_TF, H_COMP);
+        tf_mail.setBounds(X_TF_MAIL, Y_LINE6, W_TF, H_COMP);
+        
+        l_id.setBounds(X_L_ID, Y_LINE7, W_TF, H_COMP);
+        tf_id.setBounds(X_TF_ID, Y_LINE7, W_TF, H_COMP);
+        
+        separator.setBounds(X_SEPARATOR, Y_LINE8, W_SEPARATOR, H_COMP);
+        
+        l_tempPassword.setBounds(X_L_TPASSWORD, Y_LINE9, W_L_TPASSWORD, H_COMP);
+        tf_tempPassword.setBounds(X_TF_TPASSWORD, Y_LINE9, W_TF, H_COMP);
+        b_temPassword.setBounds(X_B_TPASSWORD, Y_LINE9, W_BUTTON, H_COMP);
+        
+        b_saveUser.setBounds(X_B_SAVE, Y_LINE10, W_BUTTON, 2*H_COMP);
     }
 
     @Override
