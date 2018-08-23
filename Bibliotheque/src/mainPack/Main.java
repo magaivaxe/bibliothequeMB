@@ -6,7 +6,7 @@ import frames.Identifier;
 
 /**
  *
- * @author Marcos
+ * @author Marcos Gomes
  */
 public class Main {
 
