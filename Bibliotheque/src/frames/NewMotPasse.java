@@ -15,10 +15,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import listeners.QuiterListener;
-import listeners.ReinitialiserMDPListener;
-import interfaces.DefineActions;
-import interfaces.DefineComponents;
+import framesListeners.QuiterListener;
+import framesListeners.ReinitialiserMDPListener;
+import framesInterfaces.DefineActions;
+import framesInterfaces.DefineComponents;
 
 /**
  * @author Marcos Gomes

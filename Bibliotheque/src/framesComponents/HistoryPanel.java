@@ -10,7 +10,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import tableModels.TMHistory;
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import java.awt.Font;
 import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;

@@ -13,13 +13,13 @@ import javax.swing.JMenuBar;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import listeners.AProposListener;
-import listeners.ConnecterListener;
-import listeners.MPOListener;
-import listeners.QuiterListener;
+import framesListeners.AProposListener;
+import framesListeners.ConnecterListener;
+import framesListeners.MPOListener;
+import framesListeners.QuiterListener;
 import framesComponents.GeneralMenuBar;
-import interfaces.DefineActions;
-import interfaces.DefineComponents;
+import framesInterfaces.DefineActions;
+import framesInterfaces.DefineComponents;
 
 /**
  *

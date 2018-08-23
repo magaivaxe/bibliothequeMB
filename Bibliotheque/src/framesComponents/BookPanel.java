@@ -11,7 +11,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import java.awt.Color;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;

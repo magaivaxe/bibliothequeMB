@@ -6,15 +6,15 @@ import framesComponents.BookPanel;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
-import listeners.QuiterListener;
+import framesListeners.QuiterListener;
 import framesComponents.GeneralMenuBar;
 import framesComponents.HistoryPanel;
 import framesComponents.LoanPanel;
 import framesComponents.SearchPanel;
 import framesComponents.UserPanel;
-import interfaces.DefineActions;
-import interfaces.DefineComponents;
-import listeners.RechercheListener;
+import framesInterfaces.DefineActions;
+import framesInterfaces.DefineComponents;
+import framesListeners.RechercheListener;
 
 /**
  * @author Marcos Gomes

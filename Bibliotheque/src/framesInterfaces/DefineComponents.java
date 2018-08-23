@@ -1,5 +1,5 @@
 
-package interfaces;
+package framesInterfaces;
 
 import java.awt.Color;
 import java.awt.Font;

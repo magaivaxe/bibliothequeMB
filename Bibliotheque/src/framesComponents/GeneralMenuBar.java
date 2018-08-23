@@ -12,7 +12,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JSeparator;
 import javax.swing.KeyStroke;
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 
 /**
  *

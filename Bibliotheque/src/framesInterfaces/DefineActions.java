@@ -1,5 +1,5 @@
 
-package interfaces;
+package framesInterfaces;
 
 /**
  *

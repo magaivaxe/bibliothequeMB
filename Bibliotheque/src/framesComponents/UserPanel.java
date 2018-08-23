@@ -2,7 +2,7 @@
 package framesComponents;
 
 import com.toedter.calendar.JDateChooser;
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;

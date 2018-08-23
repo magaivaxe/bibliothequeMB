@@ -1,7 +1,7 @@
 
 package framesComponents;
 
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;

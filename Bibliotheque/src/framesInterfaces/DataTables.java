@@ -3,20 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package listeners;
+package framesInterfaces;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.util.LinkedList;
 
 /**
  *
  * @author sire_marcos
+ * @param <T>
  */
-public class AProposListener implements ActionListener{
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
-    }
+public interface DataTables<T> {
     
+    public void setRows(LinkedList<T> list);
+    
+    public LinkedList<T> getRow(int [] row);
 }

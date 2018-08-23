@@ -1,7 +1,7 @@
 
 package framesComponents;
 
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;

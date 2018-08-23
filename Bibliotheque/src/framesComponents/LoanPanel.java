@@ -1,7 +1,7 @@
 
 package framesComponents;
 
-import interfaces.DefineComponents;
+import framesInterfaces.DefineComponents;
 import java.awt.Color;
 import java.awt.ScrollPane;
 import javax.swing.BorderFactory;

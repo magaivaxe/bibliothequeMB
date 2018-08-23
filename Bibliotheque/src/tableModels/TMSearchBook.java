@@ -1,7 +1,7 @@
 
 package tableModels;
 
-import interfaces.DataTables;
+import framesInterfaces.DataTables;
 import java.util.Iterator;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
