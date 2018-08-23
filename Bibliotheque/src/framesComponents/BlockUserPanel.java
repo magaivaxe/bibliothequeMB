@@ -2,6 +2,7 @@
 package framesComponents;
 
 import interfaces.DefineComponents;
+import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
@@ -10,6 +11,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.JTableHeader;
 import tableModels.TMSearchUser;
 
 /**
@@ -25,7 +27,7 @@ public final class BlockUserPanel extends JPanel implements DefineComponents {
     private JLabel l_unblockBy;
     private JTextField tf_search;
     private JScrollPane scrollPane;
-    private JTable table;
+    private JTable tm_blockUser;
     private TMSearchUser tm_searchUser;
     private JSeparator separator1, separator2;
 
@@ -71,8 +73,8 @@ public final class BlockUserPanel extends JPanel implements DefineComponents {
         l_unblockBy = new JLabel(L_UNLOCKBY);
         tf_search = new JTextField();
         tm_searchUser = new TMSearchUser();
-        table = new JTable(tm_searchUser);
-        scrollPane = new JScrollPane(table);
+        tm_blockUser = new JTable(tm_searchUser);
+        scrollPane = new JScrollPane(tm_blockUser);
         
         separator1 = new JSeparator();
         separator2 = new JSeparator();
@@ -151,6 +153,9 @@ public final class BlockUserPanel extends JPanel implements DefineComponents {
 
     @Override
     public void polices(){
+        // Locals
+        JTableHeader tableHeader = tm_blockUser.getTableHeader();
+        tableHeader.setFont(Font.getFont(FONT_HEADER));
     }
 
     // Add setters and getters

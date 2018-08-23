@@ -323,7 +323,7 @@ public class BookPanel extends JPanel implements DefineComponents{
     @Override
     public void styles() {
         // Border show image
-        Border borderImage = BorderFactory.createLineBorder(Color.BLACK, 1);
+        Border borderImage = BorderFactory.createLineBorder(BORDER_COLOR, 1);
         l_showImage.setBorder(borderImage);
     }
 

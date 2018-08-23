@@ -9,6 +9,7 @@ import javax.swing.JTabbedPane;
 import listeners.QuiterListener;
 import framesComponents.GeneralMenuBar;
 import framesComponents.HistoryPanel;
+import framesComponents.LoanPanel;
 import framesComponents.SearchPanel;
 import framesComponents.UserPanel;
 import interfaces.DefineActions;
@@ -24,7 +25,7 @@ public final class Acceuil
     
     // Objects
     private JPanel searchPanel, historyPanel,
-            empruntsPanel,bookPanel,
+            loanPanel,bookPanel,
             userPanel,blockUserPanel;
     private JTabbedPane tp_main,tp_user;
     
@@ -58,7 +59,7 @@ public final class Acceuil
         // Panels
         searchPanel = new SearchPanel();
         historyPanel = new HistoryPanel();
-        empruntsPanel = new JPanel();
+        loanPanel = new LoanPanel();
         bookPanel = new BookPanel();
         userPanel = new UserPanel();
         blockUserPanel = new BlockUserPanel();
@@ -72,7 +73,7 @@ public final class Acceuil
         tp_main.add(TP_HISTORIQUE, historyPanel);
         tp_main.add(TP_LIVRES, bookPanel);
         tp_main.add(TP_UTILISATEUR, tp_user);
-        tp_main.add(TP_EMPRUNTS, empruntsPanel);
+        tp_main.add(TP_EMPRUNTS, loanPanel);
         
         add(tp_main);
     }

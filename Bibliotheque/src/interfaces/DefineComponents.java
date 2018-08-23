@@ -1,6 +1,7 @@
 
 package interfaces;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.font.TextAttribute;
 import java.util.HashMap;
@@ -23,6 +24,8 @@ public interface DefineComponents {
     final int SPACE = 5;
     // Elements bounds
     final int H_COMP = 30;
+    // Colors
+    final Color BORDER_COLOR = new Color(204, 204, 204);
     // Fonts
     final Map<TextAttribute, Object> FONT_HEADER =
         new HashMap<TextAttribute,Object>(){{
