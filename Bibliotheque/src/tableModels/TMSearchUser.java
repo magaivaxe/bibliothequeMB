@@ -14,7 +14,7 @@ import tableData.SearchedUser;
  *
  * @author Marcos
  */
-public class TMSearchUser
+public final class TMSearchUser
     extends DefaultTableModel implements DataTables<SearchedUser> {
     // Fields
     private int rowLength;
