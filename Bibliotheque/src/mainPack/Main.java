@@ -1,13 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package mainPack;
+
+import frames.Acceuil;
+import frames.Identifier;
 
 /**
  *
- * @author Marcos
+ * @author Marcos Gomes
  */
 public class Main {
 
@@ -15,7 +14,14 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        // App initialisator
+//        Identifier identifier = new Identifier();
+//        identifier.setVisible(true);
+        // Tests
+//        Acceuil acceuil = new Acceuil();
+//        acceuil.setVisible(true);
+        
+        Log.getInstance().createLogFile("coco"); 
     }
     
 }
