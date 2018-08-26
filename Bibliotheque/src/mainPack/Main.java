@@ -8,19 +8,18 @@ package mainPack;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
+import java.util.GregorianCalendar;
 import methodes.Emprunt;
 import methodes.Historique;
 import methodes.Insertions;
 import methodes.Login;
-import methodes.LoginAndroid;
 import methodes.Reinitialisation;
 import methodes.RechercherParTitre;
+import methodes.RendezVousMethodes;
+import methodes.Renouvellement;
+import tables.Emprunts;
 import tables.UsersMotDePasse;
 import tables.Utilisateurs;
 
@@ -32,9 +31,6 @@ public class Main{
 
     public static void main(String[] args) throws SQLException {
         
-        Date date = new Date(); 
-        String dateRegistreAInserer = new SimpleDateFormat("yyyy-MM-dd").format(date);
-        
         String idUtilisateurEntree = "Utilisateur";
         String motDePasseEntree = "123util";
         
@@ -44,6 +40,8 @@ public class Main{
         
         String dateNeEntree = "1234-12-12";
         String nouveauMotDePasse = "123encrypte";
+        
+        String courrielEntree = "123@ex.com";
 
         //LOGIN===============================================================OK
         Login l = new Login();
@@ -58,10 +56,6 @@ public class Main{
 
         //l.trouverMotDePasse(idUtilisateurEntree,motDePasseEntree);
         //l.comparerMotDePasse(motDePasseEntree,mdpDecrypte);
-        
-        //LOGIN ANDROID=========================================================
-
-        String courrielEntree = "123@ex.com";
 
         //RÉINITIALISER MOT DE PASSE============================================OK        
         String idConfirmee = r.chercherUtilisateur(idUtilisateurEntree, dateNeEntree);
@@ -106,6 +100,8 @@ public class Main{
         //in.insererReservation(3,"livre1", "GustavoPach", "2018-08-16", "fini");déjà fait
         //in.insererReservation(4,"livre", "NidhalAfrican", "2018-08-29", "attente");déjà fait
         //in.insererReservation(5,"livre1","Utilisateur","2018-09-02","attente");déjà fait
+        //tester la condition
+        //in.insererReservation(6,"livre1","Utilisateur","2018-09-02","attente");
 
        //RESERVATION DE LIVRES=================================================OK
         
@@ -132,7 +128,7 @@ public class Main{
         String idLivreAEmprunter = "livre1"; 
         String idUtilisateurAEmprunter = "Utilisateur"; 
         String dateEmpAEmprunter = "2018-09-02"; 
-        String dateRenAEmprunter = "2018-09-16"; 
+        String dateRenAEmprunter = addDays(dateEmpAEmprunter,14); 
         String statusEMAEmprunter = "cours";
         
         //pour emprunter sans reservation
@@ -146,6 +142,61 @@ public class Main{
         //pour retourner le livre
         //emp.retounerLivre(idEmpruntAEmprunter);
 
+        //FIXER UN RENDEZ-VOUS==================================================OK
+        //in.insererRendezVous(2,"livre","NidhalAfrican","2018-09-15","apresmidi","attente");déjà fait
+        //pour annuler un rendez-vous
+        RendezVousMethodes rvm = new RendezVousMethodes();
+        //rvm.anuulerRendezVous(2);
+        //pour changer l'horaire du rendez-vous
+        //rvm.changerHoraireRendezVous(2, "2018-09-15", "matin");
+        
+        //RENOUVELLEMENT D'EMPRUNT DE LIVRE=====================================OK
+        Renouvellement rn = new Renouvellement();
+        Emprunts e = new Emprunts();
+
+        e = rn.chercherLivreEmprunte("livre1", "NidhalAfrican");
+        //System.out.println("Test prémier emprunt "+e.toString());
+
+        int idEmpruntPremierEmprunt = e.getIdEmprunt();
+        String idLivrePremierEmprunt = e.getIdLivre();
+        String idUtilisateurPremierEmprunt = e.getIdUtilisateur();
+        String dateEmp = e.getDateRen();
+        String dateRen = addDays(dateEmp, 14);
+        String statusEM = e.getStatusEM();
+        
+        //rn.insererRenouvellement(idEmpruntPremierEmprunt,idLivrePremierEmprunt,idUtilisateurPremierEmprunt,dateEmp,dateRen,statusEM);
+
+        //TEST POUR CHANGER DATE================================================
+        //System.out.println("Date de retour "+e.getDateRen());
+        //System.out.println("Nouvelle date de retour "+addDays("2018-09-13", 14));
+        
+        //TEST DE COMPARAISON DE STRING=========================================
+        String a= "2018-07-31";
+        String b= "2018-07-14";
+
+        //System.out.println(a.compareTo(b));
+        //testerComparaison(a,b);
     }
+    
+        public static void testerComparaison(String a, String b){
+                if(a.compareTo(b)==0){System.out.println("a==b");}
+                else if(a.compareTo(b)<0){System.out.println("a<b");}
+                  else{System.out.println("a>b");}
+            } 
+
+        public static String addDays(String date, Integer days){
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                        String result = "";
+                        try {
+                                Date df = sdf.parse(date);
+                                GregorianCalendar calendar = new java.util.GregorianCalendar();
+                                calendar.setTime(df);
+                                calendar.add (Calendar.DAY_OF_MONTH, days);
+                                result = sdf.format(calendar.getTime());
+                        } catch (ParseException e) {
+                                e.printStackTrace();
+                        }
+                        return result;
+                }           
     
 }

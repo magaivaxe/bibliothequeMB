@@ -13,12 +13,81 @@ import java.util.Date;
  */
 public class RendezVous {
     private int idRendezVous; 
-    private String Livre, idUtilisateur;
-    private Date datePrevue;
-    private Types type;        
-    private StatusRVs statusRV;
+    private String idLivre, idUtilisateur;
+    private String datePrevue;
+    private String type;        
+    private String statusRV;
     
-    private enum Types {journee, matin, apresmidi}
-    private enum StatusRVs {conclu, annule, attente}
+    //Types {journee, matin, apresmidi}
+    //StatusRVs {conclu, annule, attente}
+
+    public RendezVous() {
+    }
+
+    public RendezVous(int idRendezVous, String idLivre, String idUtilisateur, String datePrevue, String type, String statusRV) {
+        this.idRendezVous = idRendezVous;
+        this.idLivre = idLivre;
+        this.idUtilisateur = idUtilisateur;
+        this.datePrevue = datePrevue;
+        this.type = type;
+        this.statusRV = statusRV;
+    }
+
+    public int getIdRendezVous() {
+        return idRendezVous;
+    }
+
+    public void setIdRendezVous(int idRendezVous) {
+        this.idRendezVous = idRendezVous;
+    }
+
+    public String getLivre() {
+        return idLivre;
+    }
+
+    public void setLivre(String Livre) {
+        this.idLivre = Livre;
+    }
+
+    public String getIdUtilisateur() {
+        return idUtilisateur;
+    }
+
+    public void setIdUtilisateur(String idUtilisateur) {
+        this.idUtilisateur = idUtilisateur;
+    }
+
+    public String getDatePrevue() {
+        return datePrevue;
+    }
+
+    public void setDatePrevue(String datePrevue) {
+        this.datePrevue = datePrevue;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getStatusRV() {
+        return statusRV;
+    }
+
+    public void setStatusRV(String statusRV) {
+        this.statusRV = statusRV;
+    }
+
+    @Override
+    public String toString() {
+        return "RendezVous{" + "idRendezVous=" + idRendezVous + ", Livre=" + 
+                idLivre + ", idUtilisateur=" + idUtilisateur + ", datePrevue=" + 
+                datePrevue + ", type=" + type + ", statusRV=" + statusRV + '}';
+    }
+    
+    
     
 }

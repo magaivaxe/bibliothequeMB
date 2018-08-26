@@ -14,7 +14,7 @@ import java.util.Date;
 public class Emprunts {
     private int idEmprunt; 
     private String idLivre,idUtilisateur;
-    private Date dateEmp, dateRen;
+    private String dateEmp, dateRen;
     private String statusEM;
     
     //StatusEMs {cours,fini,delai}
@@ -23,7 +23,7 @@ public class Emprunts {
     }
 
     public Emprunts(int idEmprunt, String idLivre, String idUtilisateur, 
-            Date dateEmp, Date dateRen, String statusEM) {
+            String dateEmp, String dateRen, String statusEM) {
         this.idEmprunt = idEmprunt;
         this.idLivre = idLivre;
         this.idUtilisateur = idUtilisateur;
@@ -56,19 +56,19 @@ public class Emprunts {
         this.idUtilisateur = idUtilisateur;
     }
 
-    public Date getDateEmp() {
+    public String getDateEmp() {
         return dateEmp;
     }
 
-    public void setDateEmp(Date dateEmp) {
+    public void setDateEmp(String dateEmp) {
         this.dateEmp = dateEmp;
     }
 
-    public Date getDateRen() {
+    public String getDateRen() {
         return dateRen;
     }
 
-    public void setDateRen(Date dateRen) {
+    public void setDateRen(String dateRen) {
         this.dateRen = dateRen;
     }
 

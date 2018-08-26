@@ -8,8 +8,11 @@ package methodes;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import mainPack.Main;
+import static mainPack.Main.addDays;
 import tables.Emprunts;
 import tables.Livres;
+import tables.RendezVous;
 import tables.Reservations;
 import tables.UsersMotDePasse;
 import tables.Utilisateurs;
@@ -106,9 +109,13 @@ public class Insertions extends ConnectParent {
     }
 
     public Reservations insererReservation(int idReservation, 
-            String idLivreReservation, String idUtilisateurReservation, 
-            String datePrevueReservation, String statusRsReservation){
+            String idLivre, String idUtilisateur, 
+            String datePrevue, String statusRs){
     		try {
+                    Reservation r = new Reservation();
+                    String dateDerniereReservation=r.conditionReservation(idLivre);
+                    String dateEntree =  datePrevue;
+                    if(dateEntree.compareTo(Main.addDays(dateDerniereReservation,14))>0){
 			connect.setAutoCommit(false);
 			Statement stmt ;
 			stmt = connect.createStatement();
@@ -120,16 +127,17 @@ public class Insertions extends ConnectParent {
                                 + "statusRs)"
                                 + " values ('"
                                 + idReservation+"','"
-                                + idLivreReservation+"','"
-                                + idUtilisateurReservation+"','"
-                                + datePrevueReservation+"','"                                
-                                + statusRsReservation+"')");
-                        System.out.println("Le livre "+idLivreReservation+
-                                " a été réservé par "+idUtilisateurReservation);
+                                + idLivre+"','"
+                                + idUtilisateur+"','"
+                                + datePrevue+"','"                                
+                                + statusRs+"')");
+                        System.out.println("Le livre "+idLivre+
+                                " a été réservé par "+idUtilisateur);
 
 			 stmt.close();
 			 connect.commit();
 			 connect.close();
+                    }else{System.out.println("Livre disponible après "+Main.addDays(dateDerniereReservation,14));}
 		}
 		catch(SQLException e) {
 			e.getStackTrace();
@@ -162,6 +170,39 @@ public class Insertions extends ConnectParent {
                                 + statusEM +"')");
                         System.out.println("Le livre "+idLivre+
                                 " a été emprunté pour "+idUtilisateur);
+
+			 stmt.close();
+			 connect.commit();
+			 connect.close();
+		}
+		catch(SQLException e) {
+			e.getStackTrace();
+		}    
+       
+        return null;
+   }
+   
+   public RendezVous insererRendezVous(int idRendezVous, String idLivre, String idUtilisateur, String datePrevue, String type, String statusRV){
+       
+       try {
+			connect.setAutoCommit(false);
+			Statement stmt ;
+			stmt = connect.createStatement();
+			stmt.executeUpdate("insert into RendezVous "
+                                + "(idRendezVous,"
+                                + "idLivre,"
+                                + "idUtilisateur,"
+                                + "datePrevue,"
+                                + "type,"
+                                + "statusRV)"
+                                + " values ('"
+                                + idRendezVous +"','"
+                                + idLivre +"','"
+                                + idUtilisateur +"','"
+                                + datePrevue +"','"
+                                + type +"','"                                 
+                                + statusRV +"')");
+                        System.out.println("Le rendez-vous a été fixé pour "+idUtilisateur+" le "+datePrevue+" "+type);
 
 			 stmt.close();
 			 connect.commit();
