@@ -3,14 +3,13 @@
  */
 package mainPack;
 
-
-
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import methodes.DernierId;
 import methodes.Emprunt;
 import methodes.Historique;
 import methodes.Insertions;
@@ -36,26 +35,25 @@ public class Main{
         
         Reinitialisation r = new Reinitialisation();
         Utilisateurs ut = r.rechercher(idUtilisateurEntree);
-        //System.out.println("TEST "+ut.toString());        
+        System.out.println("TEST "+ut.toString());        
         
         String dateNeEntree = "1234-12-12";
         String nouveauMotDePasse = "123encrypte";
-        
         String courrielEntree = "123@ex.com";
 
         //LOGIN===============================================================OK
         Login l = new Login();
         UsersMotDePasse umdp = new UsersMotDePasse();                
-        //umdp = l.trouverMotDePasse(idUtilisateurEntree,motDePasseEntree);
-        //System.out.println("TEST "+umdp.toString()); 
+        umdp = l.trouverMotDePasse(idUtilisateurEntree,motDePasseEntree);
+        System.out.println("TEST "+umdp.toString()); 
         
         String mdpEncrypte = umdp.getMdpEncripte();
         String mdpDecrypte = l.decrypterMotDePasse(motDePasseEntree);
-        //System.out.println("TEST MOT DE PASSE ENCRYPTE "+mdpEncrypte); 
+        System.out.println("TEST MOT DE PASSE ENCRYPTE "+mdpEncrypte); 
         System.out.println("TEST MOT DE PASSE DECRYPTE "+mdpDecrypte);
 
-        //l.trouverMotDePasse(idUtilisateurEntree,motDePasseEntree);
-        //l.comparerMotDePasse(motDePasseEntree,mdpDecrypte);
+        l.trouverMotDePasse(idUtilisateurEntree,motDePasseEntree);
+        l.comparerMotDePasse(motDePasseEntree,mdpDecrypte);
 
         //RÉINITIALISER MOT DE PASSE============================================OK        
         String idConfirmee = r.chercherUtilisateur(idUtilisateurEntree, dateNeEntree);
@@ -64,7 +62,7 @@ public class Main{
         //RECHERCHE DE LIVRE PAR TITRE==========================================OK
         String titreEntre = "Nom du livre";
         RechercherParTitre rpt = new RechercherParTitre();
-        //rpt.rechercherSimple(titreEntre);
+        rpt.rechercherSimple(titreEntre);
 
         //INSERTIONS============================================================
         Insertions in = new Insertions();
@@ -115,8 +113,8 @@ public class Main{
         
         //HITORIQUES WEB ET ANDROID=============================================OK
         Historique historique = new Historique();
-        //historique.chercherHistoriqueWeb();
-        //historique.chercherHistoriqueAndroid(idUtilisateurEntree);
+        historique.chercherHistoriqueWeb();
+        historique.chercherHistoriqueAndroid(idUtilisateurEntree);
         
         //EMPRUNTS DE LIVRES====================================================OK
         //ATTENTION L'EMPRUNT NE PEUT PAS ÊTRE SUPPRIMÉ!!!!!!!!!!!!
@@ -165,6 +163,14 @@ public class Main{
         String statusEM = e.getStatusEM();
         
         //rn.insererRenouvellement(idEmpruntPremierEmprunt,idLivrePremierEmprunt,idUtilisateurPremierEmprunt,dateEmp,dateRen,statusEM);
+        
+        //CHERCHER LE DÉRNIER IDENTIFICATEUR MIS================================
+        DernierId di = new DernierId();
+        di.chercherDernierIdEmprunt();
+        di.chercherDernierIdRendezVous();
+        di.chercherDernierIdReservation();
+        di.chercherDernierIdAmende();
+
 
         //TEST POUR CHANGER DATE================================================
         //System.out.println("Date de retour "+e.getDateRen());
