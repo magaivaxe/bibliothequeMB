@@ -25,6 +25,10 @@ public class Livres {
 
     }
 
+    public Livres() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public String getIdLivre() {
         return idLivre;
     }

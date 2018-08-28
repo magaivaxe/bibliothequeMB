@@ -15,12 +15,9 @@ public class Main {
      */
     public static void main(String[] args) {
         // App initialisator
-//        Identifier identifier = new Identifier();
-//        identifier.setVisible(true);
-        // Tests
-        Log.getInstance().createLogFile("Marcao");
-        Log.getInstance().writeLogFile("Je suis cool");
-        Log.getInstance().writeLogFile("next");
+        Identifier identifier = new Identifier();
+        identifier.setVisible(true);
+        
     }
     
 }
