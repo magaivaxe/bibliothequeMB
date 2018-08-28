@@ -80,22 +80,23 @@ public class Reinitialisation extends ConnectParent {
 
 //==============================================================================
     
-         public String changerMotDePasse(String idConfirmee, String nouveauMotDePasse)
+         public String changerMotDePasse(String id, String new_pw)
      {        
          try {
             Statement stmt;
             stmt = connect.createStatement();
             stmt.executeUpdate("update UsersMotDePasse "
-                    + "set mdpEncripte="+"'"+ nouveauMotDePasse+"'"
-                    + "where idUtilisateur="+"'"+ idConfirmee+"'");
+                + "set mdpEncripte="+
+                "AES_ENCRYPT('"+ new_pw+"','"+ new_pw+"')"
+              + " where idUtilisateur="+"'"+ id+"'");
           
-		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + nouveauMotDePasse 
-                        +" POUR L'UTILISATEUR "+idConfirmee);		
+		System.out.println("LE NOUVEAU MOT DE PASSE EST "  + new_pw 
+                        +" POUR L'UTILISATEUR "+id);		
     
         } catch (SQLException e) {
             
         }
-        return nouveauMotDePasse;
+        return new_pw;
         }  
          
 //==============================================================================         

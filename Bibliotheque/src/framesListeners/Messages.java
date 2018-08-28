@@ -33,4 +33,13 @@ public class Messages {
         //
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.OK_OPTION);
     }
+    
+    public int confirmMessages(String msg){
+        // Locals
+        String title = "Attention!";
+        //
+        int r = JOptionPane.showConfirmDialog(null, msg, title,
+                JOptionPane.YES_OPTION, JOptionPane.WARNING_MESSAGE);
+        return r;
+    }
 }

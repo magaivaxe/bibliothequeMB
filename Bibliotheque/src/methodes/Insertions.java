@@ -7,10 +7,7 @@ package methodes;
 
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Date;
 import mainPack.DateTime;
-import mainPack.Main;
-import mainPack.MainBackEnd;
 import tables.Emprunts;
 import tables.Livres;
 import tables.RendezVous;

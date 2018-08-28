@@ -21,6 +21,8 @@ public class ReinitialiserMDPListener implements ActionListener{
     private final String MSG_2 = "Utilisateur incorrect.";
     private final String MSG_3 = "Mot de passe à jour.";
     private final String MSG_4 = "Date invalide.";
+    private final String MSG_5 = "Voulez-vous changer le mot de passe?\n"
+            + "Cette opération est irréversible.";
     
     // Objects
     private String date;
@@ -45,8 +47,17 @@ public class ReinitialiserMDPListener implements ActionListener{
             if (!USER.equals(rei.chercherUtilisateur(USER, date))) {
                 Messages.getInstance().showMessages(MSG_2);
             } else {
-                rei.changerMotDePasse(USER, pw);
-                Messages.getInstance().showMessages(MSG_3);
+                if (Messages.getInstance().confirmMessages(MSG_5) == 0) {
+                    rei.changerMotDePasse(USER, pw);
+                    Messages.getInstance().showMessages(MSG_3);
+                    nmp.dispose();
+                } else {
+                    nmp.getTf_utilisateur().setText("");
+                    nmp.getPf_motPasse().setText("");
+                    nmp.getDataChooser().setDateFormatString("");
+                    nmp.getPf_confirmation().setText("");
+                }
+                
             }
         }
     }
