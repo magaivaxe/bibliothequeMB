@@ -1,8 +1,11 @@
 
 package mainPack;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
@@ -10,8 +13,7 @@ import java.time.LocalDateTime;
  * @author Marcos Gomes
  */
 public final class Log {
-    // Fieds
-    private String path, filename;
+    
     // Singleton 
     private Log() {super();}
     
@@ -21,13 +23,35 @@ public final class Log {
         private static final Log INSTANCE = new Log();
     }
     
+    // Fieds
+    private String path, filename;
+    private File file;
+    
+    /**
+     * Write the current action and time on log
+     * @param info Information to write on log
+     */
     public void writeLogFile(String info){
-        
+        // Locals
+        final LocalDateTime LD = LocalDateTime.now();
+        final String TIME_FORMAT = "HH:mm:ss";
+        final String TIME = 
+            DateTime.getInstance().setLocalDateFormat(LD, TIME_FORMAT);
+        try (BufferedWriter writer = new BufferedWriter(
+            new FileWriter(file, true))) {
+            // Append log line
+            writer.append(info + " " + TIME);
+            writer.newLine();
+            // Close buffer
+            writer.close();
+        } catch (IOException e) {
+            e.getMessage();
+        }
     }
     
     /**
-     * Create a log file with user name and hour
-     * @param user Use the user name to create a file name
+     * Create a log newFile with user name and hour
+     * @param user Use the user name to create a newFile name
      */
     public void createLogFile(String user){
         // Locals
@@ -35,29 +59,32 @@ public final class Log {
         buildFilePath();
         //
         try {
-            File file = new File(path + filename);
-            file.createNewFile();
+            File newFile = new File(path + filename);
+            newFile.createNewFile();
+            // Set singleton file
+            setFile(newFile);
         } catch (IOException e) {
             e.getMessage();
         }
     }
     
     /**
-     * Build the file name with format date_hour.txt
+     * Build the newFile name with format (date hour.txt)
      * @param user User that does the login
-     * @return the file name to create a new document
+     * @return the newFile name to create a new document
      */
     private void buildFileName(String user){
         // Locals
-        final LocalDateTime LDT = LocalDateTime.now();
-        final String R = " " + LDT.getYear() + "-" + LDT.getMonthValue() + 
-            "-" + LDT.getDayOfMonth() + " " + LDT.getHour() + 
-            ":" + LDT.getMinute() + ":" + LDT.getSecond();
-        setFilename(user + R + ".txt");
+        final LocalDateTime LD = LocalDateTime.now();
+        final String DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
+        final String DATE = 
+            DateTime.getInstance().setLocalDateFormat(LD, DATE_FORMAT);
+        // Set singleton file
+        setFilename(user + DATE + ".txt");
     }
-    
+   
     /**
-     * Build the file string path
+     * Build the newFile string path
      * @return the string path
      */
     private void buildFilePath(){
@@ -70,6 +97,7 @@ public final class Log {
                 relPath = "\\log\\";
             } else {
                 relPath = "/log/";}
+        // Set singleton path
         setPath(ROOT.getAbsolutePath() + relPath);
     }
     
@@ -78,20 +106,10 @@ public final class Log {
         System.out.println(s);
     }
 
-    public String getPath() {
-        return path;
-    }
+    public void setFile(File file) {this.file = file;}
+    
+    public void setPath(String path) {this.path = path;}
 
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+    public void setFilename(String filename) {this.filename = filename;}
     
 }

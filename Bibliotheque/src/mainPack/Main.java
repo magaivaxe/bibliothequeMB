@@ -18,10 +18,9 @@ public class Main {
 //        Identifier identifier = new Identifier();
 //        identifier.setVisible(true);
         // Tests
-//        Acceuil acceuil = new Acceuil();
-//        acceuil.setVisible(true);
-        
-        Log.getInstance().createLogFile("coco"); 
+        Log.getInstance().createLogFile("Marcao");
+        Log.getInstance().writeLogFile("Je suis cool");
+        Log.getInstance().writeLogFile("next");
     }
     
 }
