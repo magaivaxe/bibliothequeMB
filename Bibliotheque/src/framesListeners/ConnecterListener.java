@@ -47,12 +47,13 @@ public class ConnecterListener implements ActionListener
             System.out.println(umdp.toString());
             // Same passwords, new runnable
             if (PW.equals(l.decrypterMotDePasse(PW))) {
-                
+                //
+                final String ROLE = l.findRole(USER);
                 Thread tmp = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         Acceuil acc;
-                        acc = new Acceuil();
+                        acc = new Acceuil(ROLE);
                         acc.setVisible(true);
                     }
                 });

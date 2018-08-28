@@ -12,4 +12,11 @@ public interface DefineActions {
      * 
      */
     public void definirListeners();
+    
+    /**
+     * 
+     */
+    public void definirDefaults();
+    
+    
 }

@@ -173,6 +173,11 @@ public class NewMotPasse
     public JPasswordField getPf_motPasse() {return pf_motPasse;}
 
     public JPasswordField getPf_confirmation() {return pf_confirmation;}
+
+    @Override
+    public void definirDefaults() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
 }

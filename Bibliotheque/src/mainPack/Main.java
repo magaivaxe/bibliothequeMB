@@ -15,9 +15,12 @@ public class Main {
      */
     public static void main(String[] args) {
         // App initialisator
-        Identifier identifier = new Identifier();
-        identifier.setVisible(true);
-        
+//        Identifier identifier = new Identifier();
+//        identifier.setVisible(true);
+        // Tests
+        String role = "role0";
+        Acceuil acceuil = new Acceuil(role);
+        acceuil.setVisible(true);
     }
     
 }

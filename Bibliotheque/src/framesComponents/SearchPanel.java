@@ -209,5 +209,11 @@ public final class SearchPanel extends JPanel implements DefineComponents{
     public JDateChooser getDc_final() {return dc_final;}
 
     public JCheckBox getCb_deadArchive() {return cb_deadArchive;}
+
+    public JLabel getL_startDate() {return l_startDate;}
+
+    public JLabel getL_finalDate() {return l_finalDate;}
+
+    public JSeparator getSep_vertical() {return sep_vertical;}
     
 }

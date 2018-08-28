@@ -14,6 +14,7 @@ import framesComponents.SearchPanel;
 import framesComponents.UserPanel;
 import framesInterfaces.DefineActions;
 import framesInterfaces.DefineComponents;
+import framesListeners.AProposListener;
 import framesListeners.RechercheListener;
 
 /**
@@ -22,7 +23,7 @@ import framesListeners.RechercheListener;
 public final class Acceuil
         extends JFrame implements DefineActions, DefineComponents {
     // Champs
-    
+    String role;
     // Objects
     private JPanel searchPanel, historyPanel,
             loanPanel,bookPanel,
@@ -32,12 +33,18 @@ public final class Acceuil
     public static Acceuil courant;
     
     // Constructeur
-    public Acceuil() {
+    private Acceuil(){}
+    
+    public Acceuil(String role) {
+        this.role = role;
+        
         initialiserComposants();
         layouts();
         styles();
         polices();
         definirListeners();
+        definirDefaults();
+        
         courant = this;
     }
     
@@ -84,17 +91,14 @@ public final class Acceuil
         setResizable(false);
         setSize(WL_FRAME, HL_FRAME);
         setLocationRelativeTo(null);
-        
     }
 
     @Override
     public void styles() {
-        
     }
 
     @Override
     public void polices() {
-        
     }
 
     @Override
@@ -102,12 +106,42 @@ public final class Acceuil
         // Locals
         final String MSG_1 = "Voulez-vous quiter l'appication?";
         final String MSG_1_TITRE = "Message";
+        GeneralMenuBar gmb = GeneralMenuBar.courant;
         // Menubar
-        GeneralMenuBar.courant.getMi_quiter().addActionListener(
+        gmb.getMi_quiter().addActionListener(
             new QuiterListener(this, MSG_1, MSG_1_TITRE)); 
+        gmb.getMi_aPropos().addActionListener(
+            new AProposListener());
         // Search Panel
         SearchPanel.courant.getB_recherche().addActionListener(
             new RechercheListener());
+    }
+
+    @Override
+    public void definirDefaults() {
+        // Locals
+        SearchPanel sp = SearchPanel.courant;
+        
+        sp.getCb_auteur().setEnabled(false);
+        sp.getCb_isbn().setEnabled(false);
+        sp.getCb_sujet().setEnabled(false);
+        sp.getCb_titre().setSelected(true);
+        
+        // hide components from users
+        if (role.equals("role0")) {
+            // Search panel
+            sp.getL_startDate().setVisible(false);
+            sp.getL_finalDate().setVisible(false);
+            sp.getSep_vertical().setVisible(false);
+            sp.getDc_start().setVisible(false);
+            sp.getDc_final().setVisible(false);
+            sp.getCb_deadArchive().setVisible(false);
+            sp.getB_update().setVisible(false);
+            // Others
+            tp_main.setEnabledAt(2, false);
+            tp_main.setEnabledAt(3, false);
+            tp_main.setEnabledAt(4, false);
+        }
     }
     
 }

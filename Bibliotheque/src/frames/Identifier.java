@@ -151,5 +151,10 @@ public class Identifier
     
     public JPasswordField getTextMotDePasse(){return pf_motPasse;}
 
+    @Override
+    public void definirDefaults() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
  
 }

@@ -35,7 +35,6 @@ public class Login extends ConnectParent {
 
         UsersMotDePasse aRetourner = new UsersMotDePasse();
         try {
-            //select * from UsersMotDePasse where idUtilisateur="Utilisateur" and mdpEncripte=AES_ENCRYPT('123util','123util');
             Statement stmt;
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery("select * from UsersMotDePasse "
@@ -61,8 +60,6 @@ public class Login extends ConnectParent {
      public String decrypterMotDePasse(String motDePasseEntree) {
 
         try {
-            //Cette requête foncitionne bien
-            //select AES_DECRYPT(AES_ENCRYPT('123util','123util'),'123util') as mdpDecrypte from UsersMotDePasse where mdpEncripte=AES_ENCRYPT('123util','123util');
             Statement stmt;
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery("select AES_DECRYPT(AES_ENCRYPT('"+motDePasseEntree+"','"+motDePasseEntree+"'),'"+motDePasseEntree+"') as mdpDecrypte"
@@ -80,12 +77,22 @@ public class Login extends ConnectParent {
 
 //==============================================================================
      
-     public String comparerMotDePasse(String motDePasseEntree, String mdpDecrypte)
-     {
-            if(motDePasseEntree.compareTo(mdpDecrypte)==0)
-            {System.out.println("MOT DE PASSE CONFIRMÉ");} 
-             else{ System.out.println("MOT DE PASSE ERRONÉ");}
-        return null;
+     public String findRole(String user){
+        // Locals
+        String role = "";
+        try {
+            Statement stmt;
+            stmt = connect.createStatement();
+            ResultSet rs = stmt.executeQuery(
+                "SELECT role from Utilisateurs where idUtilisateur = '"+user+"'");
+            while (rs.next()) {
+                role = rs.getString("role");
+            }         
+
+        } catch (SQLException e) {
+            System.err.println("role non trouvable");
+        }
+        return role;
      }
 //==============================================================================
     
