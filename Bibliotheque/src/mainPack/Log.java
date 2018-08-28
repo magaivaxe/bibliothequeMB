@@ -80,7 +80,7 @@ public final class Log {
         final String DATE = 
             DateTime.getInstance().setLocalDateFormat(LD, DATE_FORMAT);
         // Set singleton file
-        setFilename(user + DATE + ".txt");
+        setFilename(user + " " + DATE + ".txt");
     }
    
     /**
