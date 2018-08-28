@@ -44,7 +44,6 @@ public class Searches extends ConnectParent {
                         + " inner join Auteurs on"
                         + " Livres_Editions.idAuteur=Auteurs.idAuteur"
                         + " where livres.titre like "+"'%"+title+"%'");
-        
         while (rs.next()) {
             SearchedBook sb = new SearchedBook();
             sb.setTitre(rs.getString("titre"));
@@ -56,19 +55,4 @@ public class Searches extends ConnectParent {
         }
         return list;
     }
-    
-    private ResultSet querrySearch(String info, String type) throws SQLException{
-        Statement stmt;
-        stmt = connect.createStatement();
-        
-        ResultSet rs = stmt.executeQuery("select livres.titre,livres.cdu,"
-                        + "auteurs.p_a_PreNom,auteurs.p_a_Nom,livres.typeLivre"
-                        + " from livres inner join Livres_Editions on"
-                        + " livres.idLivre=Livres_Editions.idLivre"
-                        + " inner join Auteurs on"
-                        + " Livres_Editions.idAuteur=Auteurs.idAuteur"
-                        + " where "+ type +" like "+"'%"+info+"%'");
-        return rs;
-    }
-    
 }
