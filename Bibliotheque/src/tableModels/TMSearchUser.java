@@ -6,6 +6,7 @@
 package tableModels;
 
 import framesInterfaces.DataTables;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import javax.swing.table.DefaultTableModel;
 import tableData.SearchedUser;
@@ -29,12 +30,12 @@ public final class TMSearchUser
         setRowCount(0);
     }
     @Override
-    public void setRows(LinkedList<SearchedUser> list) {
+    public void setRows(ArrayList<SearchedUser> list) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
 
     @Override
-    public LinkedList<SearchedUser> getRow(int[] row) {
+    public ArrayList<SearchedUser> getRow(int[] row) {
         throw new UnsupportedOperationException("Not supported yet."); 
     }
     

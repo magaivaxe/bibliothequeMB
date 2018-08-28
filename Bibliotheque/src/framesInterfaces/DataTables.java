@@ -5,6 +5,7 @@
  */
 package framesInterfaces;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 /**
@@ -14,7 +15,7 @@ import java.util.LinkedList;
  */
 public interface DataTables<T> {
     
-    public void setRows(LinkedList<T> list);
+    public void setRows(ArrayList<T> list);
     
-    public LinkedList<T> getRow(int [] row);
+    public ArrayList<T> getRow(int [] row);
 }

@@ -8,7 +8,7 @@ package methodes;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import tableData.SearchedBook;
 
 /**
@@ -27,29 +27,26 @@ public class Searches extends ConnectParent {
 
     /**
      * 
-     * @param titreEntre
+     * @param title
      * @return
      * @throws SQLException 
      */
-    public LinkedList<SearchedBook> byTitle(String titreEntre)
-                                                           throws SQLException {
+    public ArrayList<SearchedBook> byTitle(String title) throws SQLException {
         // Locals
-        LinkedList<SearchedBook> list = new LinkedList<>();
-        SearchedBook sb = new SearchedBook();
-        
+        ArrayList list = new ArrayList();
         Statement stmt;
         stmt = connect.createStatement();
         
-        ResultSet rs = stmt.executeQuery(
-                "select livres.titre,livres.cdu,"
+        ResultSet rs = stmt.executeQuery("select livres.titre,livres.cdu,"
                         + "auteurs.p_a_PreNom,auteurs.p_a_Nom,livres.typeLivre"
                         + " from livres inner join Livres_Editions on"
                         + " livres.idLivre=Livres_Editions.idLivre"
                         + " inner join Auteurs on"
                         + " Livres_Editions.idAuteur=Auteurs.idAuteur"
-                        + " where livres.titre="+"'"+titreEntre+"'");
+                        + " where livres.titre like "+"'%"+title+"%'");
         
         while (rs.next()) {
+            SearchedBook sb = new SearchedBook();
             sb.setTitre(rs.getString("titre"));
             sb.setCdu(rs.getString("cdu"));
             sb.setAuteur(rs.getString("p_a_Nom") + ", "
@@ -57,8 +54,21 @@ public class Searches extends ConnectParent {
             sb.setType(rs.getString("typeLivre"));
             list.add(sb);
         }
-        
         return list;
+    }
+    
+    private ResultSet querrySearch(String info, String type) throws SQLException{
+        Statement stmt;
+        stmt = connect.createStatement();
+        
+        ResultSet rs = stmt.executeQuery("select livres.titre,livres.cdu,"
+                        + "auteurs.p_a_PreNom,auteurs.p_a_Nom,livres.typeLivre"
+                        + " from livres inner join Livres_Editions on"
+                        + " livres.idLivre=Livres_Editions.idLivre"
+                        + " inner join Auteurs on"
+                        + " Livres_Editions.idAuteur=Auteurs.idAuteur"
+                        + " where "+ type +" like "+"'%"+info+"%'");
+        return rs;
     }
     
 }

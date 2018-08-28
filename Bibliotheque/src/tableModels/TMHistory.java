@@ -2,7 +2,7 @@
 package tableModels;
 
 import framesInterfaces.DataTables;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import tableData.SearchedHistory;
 
@@ -30,12 +30,12 @@ public class TMHistory extends DefaultTableModel
     }
     
     @Override
-    public void setRows(LinkedList<SearchedHistory> list) {
+    public void setRows(ArrayList<SearchedHistory> list) {
         
     }
 
     @Override
-    public LinkedList<SearchedHistory> getRow(int[] row) {
+    public ArrayList<SearchedHistory> getRow(int[] row) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

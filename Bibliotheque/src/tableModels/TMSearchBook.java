@@ -2,8 +2,7 @@
 package tableModels;
 
 import framesInterfaces.DataTables;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import tableData.SearchedBook;
 
@@ -29,30 +28,26 @@ public class TMSearchBook extends DefaultTableModel
     }
     
     @Override
-    public void setRows(LinkedList<SearchedBook> list){
+    public void setRows(ArrayList<SearchedBook> list){
         // Set rows number before add
         setRowCount(0);
-        SearchedBook sb = new SearchedBook();
-        Iterator iter = list.iterator();
         // Loop to fill table
-        while (iter.hasNext()) {
-            // loop locals
+        for (int i = 0; i < list.size(); i++) {
             Object [] row = new Object[rowLength];
-            sb = (SearchedBook) iter.next();
             // Fill row
-            row[0] = sb.getCdu();
-            row[1] = sb.getAuteur();
-            row[2] = sb.getTitre();
-            row[3] = sb.getType();
+            row[0] = list.get(i).getCdu();
+            row[1] = list.get(i).getAuteur();
+            row[2] = list.get(i).getTitre();
+            row[3] = list.get(i).getType();
             // Add row
             addRow(row);
         }
     }
     
     @Override
-    public LinkedList<SearchedBook> getRow(int [] selectedRows){
+    public ArrayList<SearchedBook> getRow(int [] selectedRows){
         // Locals
-        LinkedList<SearchedBook> toReturn = new LinkedList<>();
+        ArrayList<SearchedBook> toReturn = new ArrayList<>();
         // Nestes loop to get values
         for (int i = 0; i < selectedRows.length; i++) {
             // Loop locals
@@ -72,5 +67,7 @@ public class TMSearchBook extends DefaultTableModel
         }
         return toReturn;
     }
+
+    
 }
 
