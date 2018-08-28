@@ -3,6 +3,7 @@
  */
 package mainPack;
 
+import framesListeners.Messages;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -16,6 +17,8 @@ import java.util.GregorianCalendar;
  * @author Marcos Gomes
  */
 public class DateTime {
+    // Fields
+    
     // Singleton
     private DateTime() {}
     
@@ -36,7 +39,7 @@ public class DateTime {
      * </ul>
      * @return a date on format yyyy-mm-dd.
      */
-    public String setDateFormat(Date date, String format){
+    public String setDateFormat(Date date, String format) throws Exception{
         //
         return new SimpleDateFormat(format).format(date);
     }

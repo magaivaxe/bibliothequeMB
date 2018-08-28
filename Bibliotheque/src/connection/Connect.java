@@ -16,7 +16,7 @@ public class Connect {
        
         private static String url = "jdbc:mysql://localhost:3306/bibliothequeMB_DB?useSSL=false";
 	private static String user = "root";
-	private static String passwd = "16thfeb76";
+	private static String passwd = "mp09s02g00";
         private static Connection connection;
         
     public static Connection connecter(){

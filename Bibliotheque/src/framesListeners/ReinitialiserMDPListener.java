@@ -8,7 +8,7 @@ package framesListeners;
 import frames.NewMotPasse;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JOptionPane;
+import mainPack.DateTime;
 import methodes.Reinitialisation;
 
 /**
@@ -17,32 +17,55 @@ import methodes.Reinitialisation;
  */
 public class ReinitialiserMDPListener implements ActionListener{
     // Fields
-    private final String TITLE_MSG = "ATTENTION!";
-    private final String MSG_1 = "Quelques informations ne sont pas correctes.";
+    private final String MSG_1 = "Informations incorrectes.";
     private final String MSG_2 = "Utilisateur incorrect.";
+    private final String MSG_3 = "Mot de passe à jour.";
+    private final String MSG_4 = "Date invalide.";
+    
+    // Objects
+    private String date;
     private Reinitialisation rei;
+    
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         // Locals
         final NewMotPasse nmp = NewMotPasse.courant;
-        final String user = nmp.getTf_utilisateur().getText();
-        final String date = nmp.getDataChooser().getToolTipText();
-        final char [] pw = nmp.getPf_motPasse().getPassword();
-        final char [] pwc = nmp.getPf_confirmation().getPassword();
-        System.out.println(date);
-        // Cconditions to do the query
-        if(!checkDatas(user,date,pw,pwc)) {
-            JOptionPane.showMessageDialog(null, MSG_1, TITLE_MSG, 
-                    JOptionPane.OK_OPTION);
+        
+        final String USER = nmp.getTf_utilisateur().getText();
+        final String pw = String.valueOf(nmp.getPf_motPasse().getPassword());
+        final String pwc = String.valueOf(
+            nmp.getPf_confirmation().getPassword());
+        
+        // Conditions to do the query
+        if(!checkDatas(USER,pw,pwc)) {
+            Messages.getInstance().showMessages(MSG_1);
         } else {
            rei = new Reinitialisation();
-            if (!user.equals(rei.chercherUtilisateur(user, date))) {
-                JOptionPane.showMessageDialog(null, MSG_2, TITLE_MSG,
-                    JOptionPane.OK_OPTION);
+            if (!USER.equals(rei.chercherUtilisateur(USER, date))) {
+                Messages.getInstance().showMessages(MSG_2);
             } else {
-                String pwts = String.valueOf(pw);
-                rei.changerMotDePasse(user, pwts);
+                rei.changerMotDePasse(USER, pw);
+                Messages.getInstance().showMessages(MSG_3);
             }
+        }
+    }
+    
+    /**
+     * 
+     * @param nmp
+     * @return 
+     */
+    private boolean checkDate(NewMotPasse nmp){
+        //
+        final String FORMAT = "yyyy-MM-dd";
+        try {
+            date = DateTime.getInstance().setDateFormat(
+                nmp.getDataChooser().getDate(), FORMAT);
+            return true;
+        } catch (Exception e) {
+            Messages.getInstance().showMessages(MSG_4);
+            return false;
         }
     }
     
@@ -54,19 +77,14 @@ public class ReinitialiserMDPListener implements ActionListener{
      * @param pwc new password confirmation
      * @return false if the entries are wrongs else true
      */
-    private boolean checkDatas(String user,String date,char[] pw,char[] pwc){
+    private boolean checkDatas(String user,String pw,String pwc){
         //
         if(user.isEmpty() || user.length() > 8){
             return false;
-        } else if (date.isEmpty()) {
+        } else if (!checkDate(NewMotPasse.courant)) {
             return false;
-        } else if (pw.length == 0 || pwc.length == 0) {
+        } else if (pw.isEmpty() || pwc.isEmpty()) {
             return false;
-        } else if (!pw.equals(pwc)) {
-            return false;
-        } else {
-            return true;
-        }
+        } else return pw.equals(pwc);
     }
-    
 }
