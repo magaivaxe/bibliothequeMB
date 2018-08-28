@@ -15,7 +15,7 @@ import framesComponents.UserPanel;
 import framesInterfaces.DefineActions;
 import framesInterfaces.DefineComponents;
 import framesListeners.AProposListener;
-import framesListeners.RechercheListener;
+import framesListeners.SearchListener;
 
 /**
  * @author Marcos Gomes
@@ -113,8 +113,7 @@ public final class Acceuil
         gmb.getMi_aPropos().addActionListener(
             new AProposListener());
         // Search Panel
-        SearchPanel.courant.getB_recherche().addActionListener(
-            new RechercheListener());
+        SearchPanel.courant.getB_recherche().addActionListener(new SearchListener());
     }
 
     @Override
@@ -141,7 +140,14 @@ public final class Acceuil
             tp_main.setEnabledAt(2, false);
             tp_main.setEnabledAt(3, false);
             tp_main.setEnabledAt(4, false);
+        } else if (role.equals("role1")) {
+            // Others
+            UserPanel up = UserPanel.courant;
+            up.getCb_employee().setVisible(false);
+        } else if (role.equals("role2")) {
+            
         }
+        
     }
     
 }

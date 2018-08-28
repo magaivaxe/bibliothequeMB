@@ -190,5 +190,49 @@ public final class UserPanel extends JPanel implements DefineComponents {
     }
   
     // Add setters and getters
-  
+
+    public JDateChooser getDc_birthdate() {
+        return dc_birthdate;
+    }
+
+    public JTextField getTf_firstName() {
+        return tf_firstName;
+    }
+
+    public JTextField getTf_lastName() {
+        return tf_lastName;
+    }
+
+    public JTextField getTf_address() {
+        return tf_address;
+    }
+
+    public JTextField getTf_phone() {
+        return tf_phone;
+    }
+
+    public JTextField getTf_mail() {
+        return tf_mail;
+    }
+
+    public JTextField getTf_id() {
+        return tf_id;
+    }
+
+    public JTextField getTf_tempPassword() {
+        return tf_tempPassword;
+    }
+
+    public JButton getB_temPassword() {
+        return b_temPassword;
+    }
+
+    public JButton getB_saveUser() {
+        return b_saveUser;
+    }
+
+    public JCheckBox getCb_employee() {
+        return cb_employee;
+    }
+    
 }

@@ -18,7 +18,7 @@ public class Main {
 //        Identifier identifier = new Identifier();
 //        identifier.setVisible(true);
         // Tests
-        String role = "role0";
+        String role = "role2";
         Acceuil acceuil = new Acceuil(role);
         acceuil.setVisible(true);
     }

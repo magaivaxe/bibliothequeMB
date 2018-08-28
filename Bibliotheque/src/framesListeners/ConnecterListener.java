@@ -9,7 +9,6 @@ import frames.Acceuil;
 import frames.Identifier;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 import methodes.Login;
 import tables.UsersMotDePasse;
 
@@ -33,7 +32,7 @@ public class ConnecterListener implements ActionListener
         final String USER = idt.getTf_utilisateur().getText();
         final String PW = String.valueOf(
             idt.getTextMotDePasse().getPassword());
-        //
+        // Connect conditions
         if (USER.isEmpty() || PW.isEmpty()){
             Messages.getInstance().showMessages(MSG_1);
         }
