@@ -11,7 +11,7 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import tables.Emprunts;
+import rules.Emprunts;
 
 /**
  *

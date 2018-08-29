@@ -17,6 +17,7 @@ import framesInterfaces.DefineComponents;
 import framesListeners.AProposListener;
 import framesListeners.ReserveListener;
 import framesListeners.SearchListener;
+import framesListeners.UpdateBookListener;
 
 /**
  * @author Marcos Gomes
@@ -46,7 +47,6 @@ public final class Acceuil
         polices();
         definirListeners();
         definirDefaults();
-        
         courant = this;
     }
     
@@ -118,6 +118,7 @@ public final class Acceuil
         // Search Panel
         sp.getB_recherche().addActionListener(new SearchListener());
         sp.getB_reserver().addActionListener(new ReserveListener());
+        sp.getB_update().addActionListener(new UpdateBookListener());
     }
 
     @Override

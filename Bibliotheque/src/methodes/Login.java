@@ -3,11 +3,11 @@
  */
 package methodes;
 
-import tables.UsersMotDePasse;
+import rules.UsersMotDePasse;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import tables.Utilisateurs;
+import rules.Utilisateurs;
 
 /**
  *

@@ -10,8 +10,8 @@ import frames.Identifier;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import methodes.Login;
-import tables.UsersMotDePasse;
-import tables.Utilisateurs;
+import rules.UsersMotDePasse;
+import rules.Utilisateurs;
 
 /**
  *

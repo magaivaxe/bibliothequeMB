@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import rules.UpdateBook;
 import tableData.SearchedBook;
 
 /**
@@ -54,6 +55,47 @@ public class Searches extends ConnectParent {
             list.add(sb);
         }
         return list;
+    }
+    
+    public UpdateBook byID(String id) throws SQLException {
+        // Locals
+        UpdateBook ub = new UpdateBook();
+        Statement stm = connect.createStatement();
+        
+        ResultSet rs = stm.executeQuery(
+            "select l.idLivre,l.cdu,l.titre,l.typeLivre,"
+          + "a.p_a_PreNom,a.p_a_Nom,a.anneeNe,a.anneeMort,"
+          + "a.s_a_PreNom,a.s_a_Nom,a.t_a_PreNom,a.t_a_Nom,"
+          + "e.isbn,e.maisonPub,e.villePub,e.anneePub,e.pages,e.prix"
+          + " from Livres as l" +
+            " inner join Livres_Editions as le" +
+            " on l.idLivre = le.idLivre" +
+            " inner join Editions as e" +
+            " on le.isbn = e.isbn" +
+            " inner join Auteurs as a" +
+            " on le.idAuteur = a.idAuteur" +
+            " where l.idLivre = '"+ id +"'");
+        
+        if (rs.first()) {
+            ub.setId(rs.getString(1));
+            ub.setCdu(rs.getString(2));
+            ub.setType(rs.getString(3));
+            ub.setPrenomA1(rs.getString(4));
+            ub.setNomA1(rs.getString(5));
+            ub.setYearBirth(rs.getString(6));
+            ub.setYearDeath(rs.getString(7));
+            ub.setPrenomA2(rs.getString(8));
+            ub.setNomA2(rs.getString(9));
+            ub.setPrenomA3(rs.getString(10));
+            ub.setNomA3(rs.getString(11));
+            ub.setIsbn(rs.getInt(12));
+            ub.setPublisher(rs.getString(13));
+            ub.setCity(rs.getString(14));
+            ub.setYearPub(rs.getString(15));
+            ub.setPages(rs.getInt(16));
+            ub.setPrice(rs.getDouble(17));
+        }
+        return ub;
     }
     
     /**

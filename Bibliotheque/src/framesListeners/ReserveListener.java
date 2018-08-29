@@ -39,7 +39,6 @@ public class ReserveListener implements ActionListener{
         } else if (ROWS.length > 3) {
             Messages.getInstance().showMessages(MSG_2);
         } else {
-            final String LIVRES = booksString(LIST);
             final String MSG_CONF = "Voulez-vous réserver: " + booksString(LIST);
             int r = Messages.getInstance().warningMessages(MSG_CONF);
             //

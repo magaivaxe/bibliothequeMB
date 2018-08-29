@@ -8,12 +8,12 @@ package methodes;
 import java.sql.SQLException;
 import java.sql.Statement;
 import mainPack.DateTime;
-import tables.Emprunts;
-import tables.Livres;
-import tables.RendezVous;
-import tables.Reservations;
-import tables.UsersMotDePasse;
-import tables.Utilisateurs;
+import rules.Emprunts;
+import rules.Livres;
+import rules.RendezVous;
+import rules.Reservations;
+import rules.UsersMotDePasse;
+import rules.Utilisateurs;
 
 /**
  *
