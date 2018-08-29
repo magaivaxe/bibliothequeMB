@@ -12,12 +12,12 @@ import java.sql.DriverManager;
  * @author luizgustavopacheco
  */
 public class Connect {
-        
-       
-        private static String url = "jdbc:mysql://localhost:3306/bibliothequeMB_DB?useSSL=false";
+    
+    private static String url =
+        "jdbc:mysql://localhost:3306/bibliothequeMB_DB?useSSL=false";
 	private static String user = "root";
 	private static String passwd = "mp09s02g00";
-        private static Connection connection;
+    private static Connection connection;
         
     public static Connection connecter(){
        if (connection == null){
@@ -29,6 +29,4 @@ public class Connect {
        }
        return connection;
     }
-
-    
 }

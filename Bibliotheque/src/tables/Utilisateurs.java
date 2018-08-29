@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package tables;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 /**
  *
  * @author eleves

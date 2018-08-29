@@ -15,6 +15,7 @@ import framesComponents.UserPanel;
 import framesInterfaces.DefineActions;
 import framesInterfaces.DefineComponents;
 import framesListeners.AProposListener;
+import framesListeners.ReserveListener;
 import framesListeners.SearchListener;
 
 /**
@@ -23,7 +24,7 @@ import framesListeners.SearchListener;
 public final class Acceuil
         extends JFrame implements DefineActions, DefineComponents {
     // Champs
-    String role;
+    String role, idUser;
     // Objects
     private JPanel searchPanel, historyPanel,
             loanPanel,bookPanel,
@@ -35,8 +36,9 @@ public final class Acceuil
     // Constructeur
     private Acceuil(){}
     
-    public Acceuil(String role) {
+    public Acceuil(String role, String idUser) {
         this.role = role;
+        this.idUser = idUser;
         
         initialiserComposants();
         layouts();
@@ -107,19 +109,22 @@ public final class Acceuil
         final String MSG_1 = "Voulez-vous quiter l'appication?";
         final String MSG_1_TITRE = "Message";
         GeneralMenuBar gmb = GeneralMenuBar.courant;
+        SearchPanel sp = SearchPanel.courant;
         // Menubar
         gmb.getMi_quiter().addActionListener(
             new QuiterListener(this, MSG_1, MSG_1_TITRE)); 
         gmb.getMi_aPropos().addActionListener(
             new AProposListener());
         // Search Panel
-        SearchPanel.courant.getB_recherche().addActionListener(new SearchListener());
+        sp.getB_recherche().addActionListener(new SearchListener());
+        sp.getB_reserver().addActionListener(new ReserveListener());
     }
 
     @Override
     public void definirDefaults() {
         // Locals
         SearchPanel sp = SearchPanel.courant;
+        HistoryPanel hp = HistoryPanel.courant;
         
         sp.getCb_auteur().setEnabled(false);
         sp.getCb_isbn().setEnabled(false);
@@ -136,6 +141,11 @@ public final class Acceuil
             sp.getDc_final().setVisible(false);
             sp.getCb_deadArchive().setVisible(false);
             sp.getB_update().setVisible(false);
+            // History panel
+            hp.getCb_phone().setVisible(false);
+            hp.getCb_id().setVisible(false);
+            hp.getTf_search().setVisible(false);
+            
             // Others
             tp_main.setEnabledAt(2, false);
             tp_main.setEnabledAt(3, false);
@@ -147,7 +157,11 @@ public final class Acceuil
         } else if (role.equals("role2")) {
             
         }
-        
+    }
+    
+    // Getters
+    public String getIdUser() {
+        return idUser;
     }
     
 }

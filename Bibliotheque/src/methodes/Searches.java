@@ -33,11 +33,11 @@ public class Searches extends ConnectParent {
      */
     public ArrayList<SearchedBook> byTitle(String title) throws SQLException {
         // Locals
-        ArrayList list = new ArrayList();
+        ArrayList<SearchedBook> list = new ArrayList();
         Statement stmt;
         stmt = connect.createStatement();
         
-        ResultSet rs = stmt.executeQuery("select livres.titre,livres.cdu,"
+        ResultSet rs = stmt.executeQuery("select livres.titre,livres.idLivre,"
                         + "auteurs.p_a_PreNom,auteurs.p_a_Nom,livres.typeLivre"
                         + " from livres inner join Livres_Editions on"
                         + " livres.idLivre=Livres_Editions.idLivre"
@@ -47,12 +47,21 @@ public class Searches extends ConnectParent {
         while (rs.next()) {
             SearchedBook sb = new SearchedBook();
             sb.setTitre(rs.getString("titre"));
-            sb.setCdu(rs.getString("cdu"));
+            sb.setIdLivre(rs.getString("idLivre"));
             sb.setAuteur(rs.getString("p_a_Nom") + ", "
                     + rs.getString("p_a_PreNom"));
             sb.setType(rs.getString("typeLivre"));
             list.add(sb);
         }
         return list;
+    }
+    
+    /**
+     * 
+     * @return 
+     */
+    public ArrayList<SearchedBook> byDeadArchive(){
+        // TODO search dead archive
+        return new ArrayList<>();
     }
 }

@@ -7,6 +7,7 @@ import tables.UsersMotDePasse;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import tables.Utilisateurs;
 
 /**
  *
@@ -77,22 +78,23 @@ public class Login extends ConnectParent {
 
 //==============================================================================
      
-     public String findRole(String user){
+     public Utilisateurs findUserRole(String id){
         // Locals
-        String role = "";
+        Utilisateurs user = new Utilisateurs();
         try {
             Statement stmt;
             stmt = connect.createStatement();
             ResultSet rs = stmt.executeQuery(
-                "SELECT role from Utilisateurs where idUtilisateur = '"+user+"'");
-            while (rs.next()) {
-                role = rs.getString("role");
-            }         
-
+                "SELECT idUtilisateur,role from Utilisateurs"
+              + " where idUtilisateur = '"+id+"'");
+            if (rs.first()) {
+                user.setRole(rs.getString("role"));
+                user.setIdUtilisateur(rs.getString("idUtilisateur"));
+            } 
         } catch (SQLException e) {
             System.err.println("role non trouvable");
         }
-        return role;
+        return user;
      }
 //==============================================================================
     

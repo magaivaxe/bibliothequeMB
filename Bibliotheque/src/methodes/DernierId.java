@@ -48,21 +48,7 @@ public class DernierId extends ConnectParent{
         return 0;
 }
     
-    public int chercherDernierIdReservation(){
-        try {
-            Statement stmt;
-            stmt = connect.createStatement();
-            ResultSet rs = stmt.executeQuery("select idReservation from Reservations order by idReservation desc limit 1");
-            while (rs.next()) {
-                int DernierIdReservation = rs.getInt("idReservation");
-                System.out.println("Le dernier idReservation est "+DernierIdReservation);
-            }
-        }
-            catch (SQLException e) {
-            e.printStackTrace();
-        }        
-        return 0;
-}
+    
     
     public int chercherDernierIdAmende(){
         try {

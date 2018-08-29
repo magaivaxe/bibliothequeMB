@@ -16,7 +16,7 @@ public class TMSearchBook extends DefaultTableModel
     private final int rowLength;
     
     // Objects
-    private final String [] collumnNames = {"CDU","Auteur","Titre","Type"};
+    private final String [] collumnNames = {"ID Book","Auteur","Titre","Type"};
     
     // Constructor
     public TMSearchBook(){
@@ -35,7 +35,7 @@ public class TMSearchBook extends DefaultTableModel
         for (int i = 0; i < list.size(); i++) {
             Object [] row = new Object[rowLength];
             // Fill row
-            row[0] = list.get(i).getCdu();
+            row[0] = list.get(i).getIdLivre();
             row[1] = list.get(i).getAuteur();
             row[2] = list.get(i).getTitre();
             row[3] = list.get(i).getType();
@@ -58,7 +58,7 @@ public class TMSearchBook extends DefaultTableModel
                 row[j] = getValueAt(selectedRows[i], j).toString();
             }
             // Set values to object
-            sb.setCdu(row[0]);
+            sb.setIdLivre(row[0]);
             sb.setAuteur(row[1]);
             sb.setTitre(row[2]);
             sb.setType(row[3]);

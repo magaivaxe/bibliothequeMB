@@ -11,24 +11,24 @@ package tableData;
  */
 public class SearchedBook {
     // Fields
-    private String cdu;
+    private String idLivre;
     private String auteur;
     private String titre;
     private String type;
     
     // Constructors
     public SearchedBook() {}
-    public SearchedBook(String cdu, String auteur, String titre, String type) {
-        this.cdu = cdu;
+    public SearchedBook(String idLivre, String auteur, String titre, String type) {
+        this.idLivre = idLivre;
         this.auteur = auteur;
         this.titre = titre;
         this.type = type;
     }
     
     // Setters and getters
-    public String getCdu() {return cdu;}
+    public String getIdLivre() {return idLivre;}
 
-    public void setCdu(String cdu) { this.cdu = cdu;}
+    public void setIdLivre(String idLivre) { this.idLivre = idLivre;}
 
     public String getAuteur() {return auteur;}
 
@@ -46,7 +46,7 @@ public class SearchedBook {
     @Override
     public String toString() {
         return "SearchedBook{" + 
-                "cdu=" + cdu + 
+                "cdu=" + idLivre + 
                 ", auteur=" + auteur + 
                 ", titre=" + titre + 
                 ", type=" + type + '}';

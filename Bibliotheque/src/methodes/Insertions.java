@@ -106,42 +106,7 @@ public class Insertions extends ConnectParent {
         return null;
     }
 
-    public Reservations insererReservation(int idReservation, 
-            String idLivre, String idUtilisateur, 
-            String datePrevue, String statusRs){
-    		try {
-                    Reservation r = new Reservation();
-                    String dateDerniereReservation=r.conditionReservation(idLivre);
-                    String dateEntree =  datePrevue;
-                    if(dateEntree.compareTo(DateTime.getInstance().addDays(dateDerniereReservation,14))>0){
-			connect.setAutoCommit(false);
-			Statement stmt ;
-			stmt = connect.createStatement();
-			stmt.executeUpdate("insert into Reservations "
-                                + "(idReservation,"
-                                + "idLivre,"
-                                + "idUtilisateur,"
-                                + "datePrevue,"
-                                + "statusRs)"
-                                + " values ('"
-                                + idReservation+"','"
-                                + idLivre+"','"
-                                + idUtilisateur+"','"
-                                + datePrevue+"','"                                
-                                + statusRs+"')");
-                        System.out.println("Le livre "+idLivre+
-                                " a été réservé par "+idUtilisateur);
-
-			 stmt.close();
-			 connect.commit();
-			 connect.close();
-                    }else{System.out.println("Livre disponible après "+DateTime.getInstance().addDays(dateDerniereReservation,14));}
-		}
-		catch(SQLException e) {
-			e.getStackTrace();
-		}    
-        return null;
-    }
+    
 
 
    

@@ -25,14 +25,13 @@ public class HistoryPanel extends JPanel implements DefineComponents{
     // Objects
     private JLabel l_startDate, l_finalDate;
     private JDateChooser dc_startDate, dc_finalDate;
-    private JButton  b_renew, b_change;
+    private JButton  b_renew, b_change, b_search;
     private JScrollPane scrollPane;
     private JTable ta_history;
     private TMHistory tm_history;
         // Hide to users
         private JCheckBox cb_phone, cb_id;
         private JTextField tf_search;
-        private JButton b_search;
     
     public static HistoryPanel courant;
     

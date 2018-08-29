@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import methodes.Login;
 import tables.UsersMotDePasse;
+import tables.Utilisateurs;
 
 /**
  *
@@ -47,12 +48,12 @@ public class ConnecterListener implements ActionListener
             // Same passwords, new runnable
             if (PW.equals(l.decrypterMotDePasse(PW))) {
                 //
-                final String ROLE = l.findRole(USER);
+                Utilisateurs user = l.findUserRole(USER);
                 Thread tmp = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         Acceuil acc;
-                        acc = new Acceuil(ROLE);
+                        acc = new Acceuil(user.getRole(),user.getIdUtilisateur());
                         acc.setVisible(true);
                     }
                 });

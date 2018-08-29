@@ -47,7 +47,7 @@ public class ReinitialiserMDPListener implements ActionListener{
             if (!USER.equals(rei.chercherUtilisateur(USER, date))) {
                 Messages.getInstance().showMessages(MSG_2);
             } else {
-                if (Messages.getInstance().confirmMessages(MSG_5) == 0) {
+                if (Messages.getInstance().warningMessages(MSG_5) == 0) {
                     rei.changerMotDePasse(USER, pw);
                     Messages.getInstance().showMessages(MSG_3);
                     nmp.dispose();

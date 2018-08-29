@@ -204,6 +204,8 @@ public final class SearchPanel extends JPanel implements DefineComponents{
 
     public TMSearchBook getTm_recherche() {return tm_recherche;}
 
+    public JTable getTa_recherche() {return ta_recherche;}
+    
     public JDateChooser getDc_start() {return dc_start;}
 
     public JDateChooser getDc_final() {return dc_final;}

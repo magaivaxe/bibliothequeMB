@@ -34,7 +34,7 @@ public class Messages {
         JOptionPane.showMessageDialog(null, msg, title, JOptionPane.OK_OPTION);
     }
     
-    public int confirmMessages(String msg){
+    public int warningMessages(String msg){
         // Locals
         String title = "Attention!";
         //

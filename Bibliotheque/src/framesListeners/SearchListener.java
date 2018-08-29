@@ -37,8 +37,10 @@ public class SearchListener implements ActionListener{
             Messages.getInstance().showMessages(MSG_1);
         } else if(!sp.getCb_titre().isSelected()) {
             Messages.getInstance().showMessages(MSG_2);
+        } else if (sp.getCb_deadArchive().isSelected()) {
+            //TODO search by bead archive
         } else {
-            //
+            // Search a book by title
             try {
                 ArrayList<SearchedBook> list =
                         Searches.getInstance().byTitle(INFO);
@@ -48,5 +50,4 @@ public class SearchListener implements ActionListener{
             }
         }
     }
-    
 }
